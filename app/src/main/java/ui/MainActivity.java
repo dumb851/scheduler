@@ -1,4 +1,4 @@
-package com.zubrid.scheduler.ui;
+package ui;
 
 import android.content.Intent;
 import android.os.Bundle;
