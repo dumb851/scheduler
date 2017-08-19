@@ -30,7 +30,7 @@ public class ScheduleItemActivity extends AppCompatActivity {
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
 
         final View customActionBarView = inflater.inflate(
-                R.layout.actionbar_custom_view_done_cancel, null);
+                R.layout.actionbar_done_cancel, null);
 
         customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
                 new View.OnClickListener() {
