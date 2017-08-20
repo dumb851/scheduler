@@ -30,7 +30,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
     @Override
     public int getItemCount() {
-        return 10; //!temporarily
+        return 25; //!temporarily
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

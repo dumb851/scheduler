@@ -2,12 +2,10 @@ package ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.zubrid.scheduler.R;
 
@@ -17,20 +15,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this,
-                        ScheduleItemActivity.class);
-
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -47,11 +35,30 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+        switch (id) {
+
+            case R.id.action_new_schedule:
+
+                addNewScheduleAction();
+                return true;
+
+            case R.id.action_settings:
+
+                return true;
+
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addNewScheduleAction() {
+
+        Intent intent = new Intent(MainActivity.this,
+                ScheduleItemActivity.class);
+
+        startActivity(intent);
+
     }
 }

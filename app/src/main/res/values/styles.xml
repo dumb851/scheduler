@@ -1,9 +1,6 @@
 <resources>
 
 
-
-
-
     <!-- Base application theme. -->
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light">-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -13,6 +10,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--<item name="windowActionBar">true</item>-->
         <!--<item name="windowNoTitle">true</item>-->
+
+        <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,5 +23,9 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+     <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="textAllCaps">false</item>
+    </style>
 
 </resources>
