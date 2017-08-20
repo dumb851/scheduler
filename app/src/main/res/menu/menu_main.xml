@@ -14,5 +14,6 @@
         android:title="@string/action_new_schedule"
         app:showAsAction="always|withText"
         android:icon="@drawable/ic_add"
+        
         />
 </menu>
