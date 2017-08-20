@@ -25,7 +25,7 @@ class DbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_SCHEDULE_LIST_TABLE = "CREATE TABLE " + ScheduleListEntry.TABLE_NAME + " (" +
                 ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ScheduleListEntry.COLUMN_SCHEDULE_TITLE + " TEXT, " +
-                ScheduleListEntry.COLUMN_SORT_ORDER + " INTEGER NOT NULL AUTOINCREMENT" +
+                ScheduleListEntry.COLUMN_SORT_ORDER + " INTEGER NOT NULL" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SCHEDULE_LIST_TABLE);

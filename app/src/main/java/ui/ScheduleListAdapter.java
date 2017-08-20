@@ -1,7 +1,7 @@
 package ui;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +9,24 @@ import android.widget.TextView;
 
 import com.zubrid.scheduler.R;
 
+import java.util.ArrayList;
+
+import data.DbLab;
+import model.ScheduleItem;
+
 
 public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>{
 
     public static final String TAG = ScheduleListAdapter.class.getSimpleName();
+
+    private ArrayList<ScheduleItem> mDataSet;
+    private Context mContext;
+
+    // Constructor
+    public ScheduleListAdapter(Context context) {
+        mContext = context;
+        refreshDataSet();
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -25,19 +39,24 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        Log.d(TAG, "onBindViewHolder: pos = " + position);
+        ScheduleItem scheduleItem = mDataSet.get(position);
+
+        holder.setScheduleTitle(scheduleItem.getTitle());
+
     }
 
     @Override
     public int getItemCount() {
-        return 25; //!temporarily
+        return mDataSet.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        //private final TextView textView;
+
+        private final TextView scheduleTitle;
 
         public ViewHolder(View v) {
             super(v);
+
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,13 +64,19 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
                 }
             });
-            //textView = (TextView) v.findViewById(R.id.textView);
+
+            scheduleTitle = (TextView) v.findViewById(R.id.schedulelist_item_title);
         }
 
-        public TextView getTextView() {
-            //!return textView;
-            return null;
+        public void setScheduleTitle(String title) {
+            scheduleTitle.setText(title);
         }
+    }
+
+    public void refreshDataSet() {
+
+        mDataSet = DbLab.getLab(mContext).getScheduleItemList();
+
     }
 
 }

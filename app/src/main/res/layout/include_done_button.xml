@@ -12,5 +12,6 @@
         android:drawableLeft="@drawable/ic_action_done"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:text="@string/done" />
+        android:text="@string/done"/>
+
 </FrameLayout>

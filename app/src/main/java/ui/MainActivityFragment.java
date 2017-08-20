@@ -30,7 +30,7 @@ public class MainActivityFragment extends Fragment {
 
         mRecyclerViewScheduleList = (RecyclerView) rootView.findViewById(R.id.rv_schedule_list);
 
-        mScheduleListAdapter = new ScheduleListAdapter();
+        mScheduleListAdapter = new ScheduleListAdapter(getActivity());
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerViewScheduleList.setLayoutManager(mLayoutManager);
 
