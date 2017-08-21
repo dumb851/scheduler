@@ -1,6 +1,7 @@
 package data;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -27,9 +28,13 @@ public class DbLab {
         return sDbLab;
     }
 
-    public void insertSchedule(ScheduleItem scheduleItem) {
+    public void saveSchedule(ScheduleItem scheduleItem) {
 
-        //TODO
+        ContentValues values = new ContentValues();
+        values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE, scheduleItem.getTitle());
+
+        mDataBase.insert(DbContract.ScheduleListEntry.TABLE_NAME, null, values);
+
 
     }
 
