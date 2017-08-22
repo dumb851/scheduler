@@ -3,6 +3,7 @@ package data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class DbLab {
 
     private static DbLab sDbLab;
     private SQLiteDatabase mDataBase;
+    public static int sSortOrder;
 
     // Constructor
     private DbLab(Context context) {
@@ -32,15 +34,49 @@ public class DbLab {
 
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE, scheduleItem.getTitle());
+        values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, sSortOrder);
 
-        mDataBase.insert(DbContract.ScheduleListEntry.TABLE_NAME, null, values);
-
-
+        mDataBase.insert(
+                DbContract.ScheduleListEntry.TABLE_NAME,
+                null,
+                values
+        );
     }
 
     public ArrayList<ScheduleItem> getScheduleItemList() {
 
-        //! temp test
+        ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();
+
+        Cursor cursor = mDataBase.query(
+                DbContract.ScheduleListEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                DbContract.ScheduleListEntry.COLUMN_SORT_ORDER
+        );
+
+        while (cursor.moveToNext()) {
+
+            ScheduleItem scheduleItem = new ScheduleItem();
+
+            String title = cursor.getString(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE
+                    )
+            );
+
+            scheduleItem.setTitle(title);
+            itemArrayList.add(scheduleItem);
+        }
+
+        return itemArrayList;
+    }
+
+    //! TODO
+    public void addDemo() {
+
         ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();
 
         ScheduleItem scheduleItem1 = new ScheduleItem();
@@ -72,10 +108,7 @@ public class DbLab {
         itemArrayList.add(scheduleItem6);
         itemArrayList.add(scheduleItem7);
 
-        return itemArrayList;
-        //
+        itemArrayList.clear();
 
-        //return null;
     }
-
 }

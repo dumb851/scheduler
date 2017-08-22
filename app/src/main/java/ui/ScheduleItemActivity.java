@@ -7,10 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.zubrid.scheduler.R;
 
+import data.DbLab;
+import model.ScheduleItem;
+
 public class ScheduleItemActivity extends AppCompatActivity {
+
+    private DbLab mDbLab;
+    private ScheduleItem mScheduleItem;
+    private TextView mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +27,19 @@ public class ScheduleItemActivity extends AppCompatActivity {
         setActionBar();
 
         setContentView(R.layout.activity_schedule_item);
+
+        initVariables();
+
+    }
+
+    private void initVariables() {
+
+        mDbLab = DbLab.getLab(this);
+
+        //TODO temp
+        mScheduleItem = new ScheduleItem();
+
+        mTitle = (TextView) findViewById(R.id.schedule_title);
     }
 
     private void setActionBar() {
@@ -36,7 +57,10 @@ public class ScheduleItemActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // "Done"
+
+                        mScheduleItem.setTitle(mTitle.getText().toString());
+
+                        mDbLab.saveSchedule(mScheduleItem);
                         finish();
                     }
                 });
