@@ -41,5 +41,7 @@ class DbHelper extends SQLiteOpenHelper {
         // temporarily
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ScheduleListEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
+
+        //!TODO should recalculate COLUMN_SORT_ORDER
     }
 }

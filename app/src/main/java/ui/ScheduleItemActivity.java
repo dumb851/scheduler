@@ -44,7 +44,6 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
     private void setActionBar() {
 
-        //final ActionBar actionBar = getActionBar();
         final ActionBar actionBar = getSupportActionBar();
 
         final LayoutInflater inflater = (LayoutInflater) actionBar.getThemedContext()
