@@ -14,7 +14,7 @@ public class DbLab {
 
     private static DbLab sDbLab;
     private SQLiteDatabase mDataBase;
-    public static int sSortOrder;
+    private static int sSortOrder;
 
     // Constructor
     private DbLab(Context context) {
@@ -70,6 +70,8 @@ public class DbLab {
             scheduleItem.setTitle(title);
             itemArrayList.add(scheduleItem);
         }
+
+        cursor.close();
 
         return itemArrayList;
     }
