@@ -36,7 +36,7 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
         mDbLab = DbLab.getLab(this);
 
-        //TODO temp
+        //TODO temp test
         mScheduleItem = new ScheduleItem();
 
         mTitle = (TextView) findViewById(R.id.schedule_title);
