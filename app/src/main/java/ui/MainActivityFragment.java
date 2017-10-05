@@ -7,13 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener{
 
     protected RecyclerView mRecyclerViewScheduleList;
     protected ScheduleListAdapter mScheduleListAdapter;
@@ -28,14 +29,22 @@ public class MainActivityFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        mRecyclerViewScheduleList = (RecyclerView) rootView.findViewById(R.id.rv_schedule_list);
+        mRecyclerViewScheduleList = rootView.findViewById(R.id.rv_schedule_list);
 
         mScheduleListAdapter = new ScheduleListAdapter(getActivity());
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerViewScheduleList.setLayoutManager(mLayoutManager);
 
         mRecyclerViewScheduleList.setAdapter(mScheduleListAdapter);
+        mScheduleListAdapter.setItemClickListener(this);
 
         return rootView;
+    }
+
+    @Override
+    public void OnItemClickListener(View v) {
+
+        Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+
     }
 }

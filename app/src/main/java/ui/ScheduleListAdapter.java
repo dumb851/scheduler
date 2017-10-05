@@ -15,17 +15,26 @@ import data.DbLab;
 import model.ScheduleItem;
 
 
-public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>{
+public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder> {
 
     public static final String TAG = ScheduleListAdapter.class.getSimpleName();
 
     private ArrayList<ScheduleItem> mDataSet;
     private Context mContext;
+    private static ItemClickListener sItemClickListener;
 
     // Constructor
     public ScheduleListAdapter(Context context) {
         mContext = context;
         refreshDataSet();
+    }
+
+    public interface ItemClickListener {
+        void OnItemClickListener(View v);
+    }
+
+    public void setItemClickListener(ItemClickListener listener) {
+        sItemClickListener = listener;
     }
 
     @Override
@@ -40,7 +49,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         ScheduleItem scheduleItem = mDataSet.get(position);
-
         holder.setScheduleTitle(scheduleItem.getTitle());
 
     }
@@ -54,21 +62,25 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         private final TextView scheduleTitle;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
             super(v);
 
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (sItemClickListener != null) {
+                        // TODO: 05.10.2017
+                        //should it be an id of schedule? to open it later
+                        sItemClickListener.OnItemClickListener(v);
+                    }
                 }
             });
 
-            scheduleTitle = (TextView) v.findViewById(R.id.schedulelist_item_title);
+            scheduleTitle = v.findViewById(R.id.schedulelist_item_title);
         }
 
-        public void setScheduleTitle(String title) {
+        void setScheduleTitle(String title) {
             scheduleTitle.setText(title);
         }
     }
