@@ -67,6 +67,15 @@ public class DbLab {
                     )
             );
 
+            int ID = cursor.getInt(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry._ID
+                    )
+            );
+
+            // TODO: 05.10.2017
+            //ID
+            scheduleItem.setID(ID);
             scheduleItem.setTitle(title);
             itemArrayList.add(scheduleItem);
         }
@@ -74,6 +83,13 @@ public class DbLab {
         cursor.close();
 
         return itemArrayList;
+    }
+
+    public ScheduleItem getScheduleItem(int ID) {
+
+        // TODO: 05.10.2017
+        //should find in database
+        return new ScheduleItem();
     }
 
     //! TODO

@@ -49,8 +49,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         ScheduleItem scheduleItem = mDataSet.get(position);
-        holder.setScheduleTitle(scheduleItem.getTitle());
-
+        holder.setScheduleViewTitle(scheduleItem.getTitle());
+        holder.setScheduleViewID(scheduleItem.getID());
     }
 
     @Override
@@ -60,7 +60,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView scheduleTitle;
+        private final TextView scheduleViewTitle;
+        private final TextView scheduleViewID;
 
         ViewHolder(View v) {
             super(v);
@@ -77,18 +78,21 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
                 }
             });
 
-            scheduleTitle = v.findViewById(R.id.schedulelist_item_title);
+            scheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
+            scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
         }
 
-        void setScheduleTitle(String title) {
-            scheduleTitle.setText(title);
+        void setScheduleViewTitle(String title) {
+            scheduleViewTitle.setText(title);
+        }
+
+        void setScheduleViewID(int scheduleID) {
+            scheduleViewID.setText(String.valueOf(scheduleID));
         }
     }
 
     public void refreshDataSet() {
-
         mDataSet = DbLab.getLab(mContext).getScheduleItemList();
-
     }
 
 }

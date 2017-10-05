@@ -1,6 +1,7 @@
 package ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,9 @@ public class ScheduleItemActivity extends AppCompatActivity {
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
     private TextView mTitle;
+    private Intent mIntent;
+
+    public static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,22 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
         mDbLab = DbLab.getLab(this);
 
-        //TODO temp test
-        mScheduleItem = new ScheduleItem();
+        mIntent = getIntent();
+
+        mScheduleItem = getScheduleItem();
 
         mTitle = (TextView) findViewById(R.id.schedule_title);
+    }
+
+    private ScheduleItem getScheduleItem() {
+
+        int schedule_ID = mIntent.getIntExtra(EXTRA_ID, -1);
+
+        if (schedule_ID != -1) {
+            return mDbLab.getScheduleItem(schedule_ID);
+        } else {
+            return new ScheduleItem();
+        }
     }
 
     private void setActionBar() {
