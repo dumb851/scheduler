@@ -32,18 +32,32 @@ public class DbLab {
 
     public void saveSchedule(ScheduleItem scheduleItem) {
 
-        //// TODO: 09.10.2017
-        //update if id is has been filled, now always as new
-
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE, scheduleItem.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, sSortOrder);
 
-        mDataBase.insert(
-                DbContract.ScheduleListEntry.TABLE_NAME,
-                null,
-                values
-        );
+        if (scheduleItem.getID() != 0) {
+
+            String whereClause = DbContract.ScheduleListEntry._ID + "=?";
+            String[] whereArgs = {String.valueOf(scheduleItem.getID())};
+
+            mDataBase.update(DbContract.ScheduleListEntry.TABLE_NAME,
+                    values,
+                    whereClause,
+                    whereArgs
+            );
+
+        } else {
+            mDataBase.insert(
+                    DbContract.ScheduleListEntry.TABLE_NAME,
+                    null,
+                    values
+            );
+        }
+
+
+
+
     }
 
     public ArrayList<ScheduleItem> getScheduleItemList() {

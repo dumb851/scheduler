@@ -73,8 +73,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
                 @Override
                 public void onClick(View v) {
                     if (sItemClickListener != null) {
-                        // TODO: 05.10.2017
-                        //should it be an id of schedule? to open it later
                         sItemClickListener.OnItemClickListener(ID);
                     }
                 }
