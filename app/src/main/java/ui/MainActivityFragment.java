@@ -1,5 +1,6 @@
 package ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,9 +43,15 @@ public class MainActivityFragment extends Fragment implements ScheduleListAdapte
     }
 
     @Override
-    public void OnItemClickListener(View v) {
+    public void OnItemClickListener(int ID) {
 
-        Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "click: " + ID, Toast.LENGTH_SHORT).show();
 
+        Intent intent = new Intent(getActivity(),
+                ScheduleItemActivity.class);
+
+        intent.putExtra(ScheduleItemActivity.EXTRA_ID, ID);
+
+        startActivity(intent);
     }
 }

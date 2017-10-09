@@ -30,7 +30,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     }
 
     public interface ItemClickListener {
-        void OnItemClickListener(View v);
+        void OnItemClickListener(int ID);
     }
 
     public void setItemClickListener(ItemClickListener listener) {
@@ -62,7 +62,9 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         private final TextView scheduleViewTitle;
         private final TextView scheduleViewID;
+        private int ID;
 
+        // constructor
         ViewHolder(View v) {
             super(v);
 
@@ -73,7 +75,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
                     if (sItemClickListener != null) {
                         // TODO: 05.10.2017
                         //should it be an id of schedule? to open it later
-                        sItemClickListener.OnItemClickListener(v);
+                        sItemClickListener.OnItemClickListener(ID);
                     }
                 }
             });
@@ -87,6 +89,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
 
         void setScheduleViewID(int scheduleID) {
+            ID = scheduleID;
             scheduleViewID.setText(String.valueOf(scheduleID));
         }
     }

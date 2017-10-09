@@ -34,6 +34,8 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
         initVariables();
 
+        fillUI();
+
     }
 
     private void initVariables() {
@@ -100,5 +102,8 @@ public class ScheduleItemActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
+    private void fillUI() {
+        mTitle.setText(mScheduleItem.getTitle());
+    }
 
 }

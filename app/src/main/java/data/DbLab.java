@@ -32,6 +32,9 @@ public class DbLab {
 
     public void saveSchedule(ScheduleItem scheduleItem) {
 
+        //// TODO: 09.10.2017
+        //update if id is has been filled, now always as new
+
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE, scheduleItem.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, sSortOrder);
@@ -44,52 +47,17 @@ public class DbLab {
     }
 
     public ArrayList<ScheduleItem> getScheduleItemList() {
-
-        ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();
-
-        Cursor cursor = mDataBase.query(
-                DbContract.ScheduleListEntry.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                DbContract.ScheduleListEntry.COLUMN_SORT_ORDER
-        );
-
-        while (cursor.moveToNext()) {
-
-            ScheduleItem scheduleItem = new ScheduleItem();
-
-            String title = cursor.getString(
-                    cursor.getColumnIndex(
-                            DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE
-                    )
-            );
-
-            int ID = cursor.getInt(
-                    cursor.getColumnIndex(
-                            DbContract.ScheduleListEntry._ID
-                    )
-            );
-
-            // TODO: 05.10.2017
-            //ID
-            scheduleItem.setID(ID);
-            scheduleItem.setTitle(title);
-            itemArrayList.add(scheduleItem);
-        }
-
-        cursor.close();
-
-        return itemArrayList;
+        return getScheduleItemList(null, null);
     }
 
     public ScheduleItem getScheduleItem(int ID) {
 
-        // TODO: 05.10.2017
-        //should find in database
-        return new ScheduleItem();
+        String whereClause = DbContract.ScheduleListEntry._ID + "=?";
+        String[] whereArgs = {String.valueOf(ID)};
+
+        ArrayList<ScheduleItem> itemArrayList = getScheduleItemList(whereClause, whereArgs);
+
+        return itemArrayList.get(0);
     }
 
     //! TODO
@@ -129,4 +97,45 @@ public class DbLab {
         itemArrayList.clear();
 
     }
+
+    private ArrayList<ScheduleItem> getScheduleItemList(String whereClause, String[] whereArgs) {
+
+        ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();
+
+        Cursor cursor = mDataBase.query(
+                DbContract.ScheduleListEntry.TABLE_NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                DbContract.ScheduleListEntry.COLUMN_SORT_ORDER
+        );
+
+        while (cursor.moveToNext()) {
+
+            ScheduleItem scheduleItem = new ScheduleItem();
+
+            String title = cursor.getString(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE
+                    )
+            );
+
+            int ID = cursor.getInt(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry._ID
+                    )
+            );
+
+            scheduleItem.setID(ID);
+            scheduleItem.setTitle(title);
+            itemArrayList.add(scheduleItem);
+        }
+
+        cursor.close();
+
+        return itemArrayList;
+    }
+
 }
