@@ -15,13 +15,34 @@ public class DbLab {
     private static DbLab sDbLab;
     private SQLiteDatabase mDataBase;
     private static int sSortOrder;
+    private static ArrayList<ScheduleItemListListener> sScheduleItemListListeners =
+            new ArrayList<>();
 
-    // Constructor
+    // constructor
     private DbLab(Context context) {
 
         mDataBase = new DbHelper(context).getWritableDatabase();
     }
 
+    // interface ScheduleItemListListener
+    public interface ScheduleItemListListener{
+
+        void scheduleItemListChanged();
+
+    }
+
+    public static void registerScheduleItemListListener(ScheduleItemListListener listener) {
+        sScheduleItemListListeners.add(listener);
+    }
+
+    private void notifyScheduleItemListChanged() {
+
+        for (ScheduleItemListListener listener : sScheduleItemListListeners) {
+            listener.scheduleItemListChanged();
+        }
+    }
+
+    //
     public static DbLab getLab(Context context) {
 
         if (sDbLab == null) {
@@ -55,9 +76,7 @@ public class DbLab {
             );
         }
 
-
-
-
+        notifyScheduleItemListChanged();
     }
 
     public ArrayList<ScheduleItem> getScheduleItemList() {

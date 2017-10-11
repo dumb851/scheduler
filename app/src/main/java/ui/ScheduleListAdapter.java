@@ -15,7 +15,8 @@ import data.DbLab;
 import model.ScheduleItem;
 
 
-public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder> {
+public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
+    implements DbLab.ScheduleItemListListener{
 
     public static final String TAG = ScheduleListAdapter.class.getSimpleName();
 
@@ -27,6 +28,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public ScheduleListAdapter(Context context) {
         mContext = context;
         refreshDataSet();
+        DbLab.registerScheduleItemListListener(this);
     }
 
     public interface ItemClickListener {
@@ -92,8 +94,13 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
     }
 
-    public void refreshDataSet() {
+    private void refreshDataSet() {
         mDataSet = DbLab.getLab(mContext).getScheduleItemList();
     }
 
+    @Override
+    public void scheduleItemListChanged() {
+        refreshDataSet();
+        notifyDataSetChanged();
+    }
 }
