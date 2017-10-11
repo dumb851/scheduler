@@ -45,8 +45,6 @@ public class MainActivityFragment extends Fragment implements ScheduleListAdapte
     @Override
     public void OnItemClickListener(int ID) {
 
-        Toast.makeText(getActivity(), "click: " + ID, Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(getActivity(),
                 ScheduleItemActivity.class);
 
