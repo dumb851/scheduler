@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zubrid.scheduler.R;
@@ -21,6 +22,8 @@ public class ScheduleItemActivity extends AppCompatActivity {
     private ScheduleItem mScheduleItem;
     private TextView mTitle;
     private Intent mIntent;
+    private ImageView mIsRunningView;
+    private boolean mIsRunning;
 
     public static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
@@ -36,6 +39,15 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
         fillUI();
 
+        mIsRunningView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mIsRunning = !mIsRunning;
+                setIsRunningView();
+
+            }
+        });
     }
 
     private void initVariables() {
@@ -45,8 +57,10 @@ public class ScheduleItemActivity extends AppCompatActivity {
         mIntent = getIntent();
 
         mScheduleItem = getScheduleItem();
+        mIsRunning = mScheduleItem.isRunning();
 
         mTitle = (TextView) findViewById(R.id.schedule_title);
+        mIsRunningView = (ImageView) findViewById(R.id.schedule_iv_running);
     }
 
     private ScheduleItem getScheduleItem() {
@@ -76,6 +90,7 @@ public class ScheduleItemActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         mScheduleItem.setTitle(mTitle.getText().toString());
+                        mScheduleItem.setIsRunning(mIsRunning);
 
                         mDbLab.saveSchedule(mScheduleItem);
                         finish();
@@ -96,6 +111,7 @@ public class ScheduleItemActivity extends AppCompatActivity {
                 ActionBar.DISPLAY_SHOW_CUSTOM,
                 ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
                         | ActionBar.DISPLAY_SHOW_TITLE);
+
         actionBar.setCustomView(customActionBarView,
                 new ActionBar.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -104,6 +120,18 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
     private void fillUI() {
         mTitle.setText(mScheduleItem.getTitle());
+
+        setIsRunningView();
     }
 
+    void setIsRunningView() {
+
+        if (mIsRunning) {
+            int[] state = new int[] {android.R.attr.state_checked};
+            mIsRunningView.setImageState(state, false);
+        } else {
+            int[] state = new int[] {};
+            mIsRunningView.setImageState(state, false);
+        }
+    }
 }

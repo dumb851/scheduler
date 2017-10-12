@@ -24,6 +24,14 @@ public class DbLab {
         mDataBase = new DbHelper(context).getWritableDatabase();
     }
 
+    public static void changeScheduleRunningState(int id) {
+        ScheduleItem scheduleItem = sDbLab.getScheduleItem(id);
+
+        scheduleItem.setIsRunning(!scheduleItem.isRunning());
+        sDbLab.saveSchedule(scheduleItem);
+
+    }
+
     // interface ScheduleItemListListener
     public interface ScheduleItemListListener{
 
@@ -56,6 +64,13 @@ public class DbLab {
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE, scheduleItem.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, sSortOrder);
+
+        int isRunningInt = 0;
+        if (scheduleItem.isRunning()) {
+            isRunningInt = 1;
+        }
+
+        values.put(DbContract.ScheduleListEntry.COLUMN_IS_RUNNING, isRunningInt);
 
         if (scheduleItem.getID() != 0) {
 
@@ -161,8 +176,18 @@ public class DbLab {
                     )
             );
 
+            int isRunningInt = cursor.getInt(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_IS_RUNNING
+                    )
+            );
+
             scheduleItem.setID(ID);
             scheduleItem.setTitle(title);
+            if (isRunningInt == 1) {
+                scheduleItem.setIsRunning(true);
+            }
+
             itemArrayList.add(scheduleItem);
         }
 

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -56,7 +55,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         holder.setScheduleViewTitle(scheduleItem.getTitle());
         holder.setScheduleViewID(scheduleItem.getID());
 
-        holder.setIsRunningView(false);
+        holder.setIsRunningView(scheduleItem.isRunning());
     }
 
     @Override
@@ -90,11 +89,10 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
             scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
             isRunningImage = v.findViewById(R.id.iv_running);
 
-            //!test
             isRunningImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "play stop click", Toast.LENGTH_SHORT).show();
+                    DbLab.changeScheduleRunningState(ID);
                 }
             });
         }

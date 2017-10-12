@@ -10,7 +10,7 @@ import data.DbContract.*;
 class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "scheduler.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Constructor
     DbHelper(Context context) {
@@ -22,9 +22,10 @@ class DbHelper extends SQLiteOpenHelper {
 
         // Create a table to hold ScheduleList data
         final String SQL_CREATE_SCHEDULE_LIST_TABLE = "CREATE TABLE " + ScheduleListEntry.TABLE_NAME + " (" +
-                ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                ScheduleListEntry.COLUMN_SCHEDULE_TITLE + " TEXT, " +
-                ScheduleListEntry.COLUMN_SORT_ORDER + " INTEGER NOT NULL" +
+                ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
+                ScheduleListEntry.COLUMN_SCHEDULE_TITLE + " TEXT" + ", " +
+                ScheduleListEntry.COLUMN_SORT_ORDER + " INTEGER NOT NULL" + ", "+
+                ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SCHEDULE_LIST_TABLE);
