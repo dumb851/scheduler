@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -53,6 +55,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         ScheduleItem scheduleItem = mDataSet.get(position);
         holder.setScheduleViewTitle(scheduleItem.getTitle());
         holder.setScheduleViewID(scheduleItem.getID());
+
+        holder.setIsRunningView(false);
     }
 
     @Override
@@ -64,6 +68,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         private final TextView scheduleViewTitle;
         private final TextView scheduleViewID;
+        private final ImageView isRunningImage;
+
         private int ID;
 
         // constructor
@@ -82,6 +88,15 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
             scheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
             scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
+            isRunningImage = v.findViewById(R.id.iv_running);
+
+            //!test
+            isRunningImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(view.getContext(), "play stop click", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         void setScheduleViewTitle(String title) {
@@ -91,6 +106,16 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         void setScheduleViewID(int scheduleID) {
             ID = scheduleID;
             scheduleViewID.setText(String.valueOf(scheduleID));
+        }
+
+        void setIsRunningView(boolean isRunning) {
+            if (isRunning) {
+                int[] state = new int[] {android.R.attr.state_checked};
+                isRunningImage.setImageState(state, false);
+            } else {
+                int[] state = new int[] {};
+                isRunningImage.setImageState(state, false);
+            }
         }
     }
 
