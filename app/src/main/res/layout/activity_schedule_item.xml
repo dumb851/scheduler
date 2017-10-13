@@ -23,16 +23,4 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp" />
 
-    <ImageView
-        android:id="@+id/schedule_iv_running"
-        android:layout_width="90dp"
-        android:layout_height="79dp"
-        app:srcCompat="@drawable/start_stop_running"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="71dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="16dp" />
 </android.support.constraint.ConstraintLayout>

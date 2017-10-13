@@ -68,6 +68,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         private final TextView scheduleViewTitle;
         private final TextView scheduleViewID;
         private final ImageView isRunningImage;
+        private final TextView isRunningText;
 
         private int ID;
 
@@ -87,7 +88,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
             scheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
             scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
-            isRunningImage = v.findViewById(R.id.iv_running);
+            isRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
+            isRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
 
             isRunningImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,12 +109,18 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
 
         void setIsRunningView(boolean isRunning) {
+
             if (isRunning) {
                 int[] state = new int[] {android.R.attr.state_checked};
                 isRunningImage.setImageState(state, false);
+
+                isRunningText.setText(R.string.running);
+
             } else {
                 int[] state = new int[] {};
                 isRunningImage.setImageState(state, false);
+
+                isRunningText.setText(R.string.not_running);
             }
         }
     }
