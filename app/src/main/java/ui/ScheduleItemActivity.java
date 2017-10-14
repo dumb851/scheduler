@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -20,8 +21,9 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
-    private TextView mTitle;
+    private TextView mTvTitle;
     private Intent mIntent;
+    private Button mBtnAddPoint;
 
     public static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
@@ -37,6 +39,15 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
         fillUI();
 
+        mBtnAddPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //// TODO: 14.10.2017
+                Toast.makeText(ScheduleItemActivity.this, "click", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     private void initVariables() {
@@ -47,7 +58,9 @@ public class ScheduleItemActivity extends AppCompatActivity {
 
         mScheduleItem = getScheduleItem();
 
-        mTitle = (TextView) findViewById(R.id.schedule_title);
+        mTvTitle = (TextView) findViewById(R.id.schedule_item_title);
+        mBtnAddPoint = (Button) findViewById(R.id.schedule_item_btn_add_point);
+
     }
 
     private ScheduleItem getScheduleItem() {
@@ -76,7 +89,7 @@ public class ScheduleItemActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        mScheduleItem.setTitle(mTitle.getText().toString());
+                        mScheduleItem.setTitle(mTvTitle.getText().toString());
 
                         mDbLab.saveSchedule(mScheduleItem);
                         finish();
@@ -105,7 +118,7 @@ public class ScheduleItemActivity extends AppCompatActivity {
     }
 
     private void fillUI() {
-        mTitle.setText(mScheduleItem.getTitle());
+        mTvTitle.setText(mScheduleItem.getTitle());
 
     }
 

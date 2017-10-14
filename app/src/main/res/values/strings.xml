@@ -6,4 +6,6 @@
     <string name="action_new_schedule">New</string>
     <string name="running">running</string>
     <string name="not_running">not running</string>
+    <string name="hint_name">name</string>
+    <string name="add_point">add point</string>
 </resources>
