@@ -21,6 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name="ui.ScheduleItemActivity"/>
+        <activity android:name="ui.ExactTimePickerActivity"
+                  android:theme="@style/DialogStyle"
+                  />
     </application>
 
 </manifest>

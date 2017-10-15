@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -42,11 +41,17 @@ public class ScheduleItemActivity extends AppCompatActivity {
         mBtnAddPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //// TODO: 14.10.2017
-                Toast.makeText(ScheduleItemActivity.this, "click", Toast.LENGTH_SHORT).show();
-
+                showExactTimePicker();
             }
         });
+
+    }
+
+    private void showExactTimePicker() {
+        //// TODO: 15.10.2017
+
+        Intent intent = new Intent(ScheduleItemActivity.this, ExactTimePickerActivity.class);
+        startActivity(intent);
 
     }
 

@@ -16,6 +16,10 @@
 
     </style>
 
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
+
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
