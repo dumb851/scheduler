@@ -16,7 +16,7 @@ import com.zubrid.scheduler.R;
 import data.DbLab;
 import model.ScheduleItem;
 
-public class ScheduleItemActivity extends AppCompatActivity {
+public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
 
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
@@ -79,52 +79,22 @@ public class ScheduleItemActivity extends AppCompatActivity {
         }
     }
 
-    private void setActionBar() {
-
-        final ActionBar actionBar = getSupportActionBar();
-
-        final LayoutInflater inflater = (LayoutInflater) actionBar.getThemedContext()
-                .getSystemService(LAYOUT_INFLATER_SERVICE);
-
-        final View customActionBarView = inflater.inflate(
-                R.layout.actionbar_done_cancel, null);
-
-        customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        mScheduleItem.setTitle(mTvTitle.getText().toString());
-
-                        mDbLab.saveSchedule(mScheduleItem);
-                        finish();
-                    }
-                });
-        customActionBarView.findViewById(R.id.actionbar_cancel).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // "Cancel"
-                        finish();
-                    }
-                });
-
-        // Show the custom action bar view and hide the normal Home icon and title.
-
-        actionBar.setDisplayOptions(
-                ActionBar.DISPLAY_SHOW_CUSTOM,
-                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
-                        | ActionBar.DISPLAY_SHOW_TITLE);
-
-        actionBar.setCustomView(customActionBarView,
-                new ActionBar.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT));
-    }
-
     private void fillUI() {
         mTvTitle.setText(mScheduleItem.getTitle());
 
     }
 
+    @Override
+    void OnDoneClick() {
+
+        mScheduleItem.setTitle(mTvTitle.getText().toString());
+        mDbLab.saveSchedule(mScheduleItem);
+        finish();
+
+    }
+
+    @Override
+    void OnCancelClick() {
+        finish();
+    }
 }

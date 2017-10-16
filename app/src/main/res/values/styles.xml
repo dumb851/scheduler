@@ -16,7 +16,7 @@
 
     </style>
 
-    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light">
 
     </style>
 
