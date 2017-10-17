@@ -1,15 +1,13 @@
 package ui;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -23,6 +21,7 @@ public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
     private TextView mTvTitle;
     private Intent mIntent;
     private Button mBtnAddPoint;
+    private static int EXACT_TIME_PICKER_REQUEST = 27;
 
     public static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
@@ -44,14 +43,6 @@ public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
                 showExactTimePicker();
             }
         });
-
-    }
-
-    private void showExactTimePicker() {
-        //// TODO: 15.10.2017
-
-        Intent intent = new Intent(ScheduleItemActivity.this, ExactTimePickerActivity.class);
-        startActivity(intent);
 
     }
 
@@ -96,5 +87,29 @@ public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
     @Override
     void OnCancelClick() {
         finish();
+    }
+
+    private void showExactTimePicker() {
+        //// TODO: 15.10.2017
+
+        Intent intent = new Intent(ScheduleItemActivity.this, ExactTimePickerActivity.class);
+        startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == EXACT_TIME_PICKER_REQUEST) {
+
+            if (resultCode != Activity.RESULT_OK) {
+
+                Toast.makeText(this, "NOT_RESULT_OK", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Toast.makeText(this, "RESULT_OK", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
