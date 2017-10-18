@@ -1,6 +1,6 @@
 package model;
 
-public class ScheduleItem {
+public final class ScheduleItem {
 
     private String mTitle;
     private int mID;

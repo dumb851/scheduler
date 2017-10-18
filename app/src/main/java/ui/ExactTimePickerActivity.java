@@ -11,7 +11,8 @@ import com.zubrid.scheduler.R;
 
 public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
-    public static String EXTRA_TIMESTAMP = "ExactTimePickerActivity_EXTRA_TIMESTAMP";
+    public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
+    public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
     public static String EXTRA_DESCRIPTION = "ExactTimePickerActivity_EXTRA_DESCRIPTION";
 
     TimePicker mTpExactTime;
@@ -40,9 +41,9 @@ public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
         Intent data = new Intent();
 
-        //// TODO: 17.10.2017 get data from UI components
-        data.putExtra(EXTRA_TIMESTAMP, true);
-        data.putExtra(EXTRA_DESCRIPTION, true);
+        data.putExtra(EXTRA_TIME_HOUR,  mTpExactTime.getHour());
+        data.putExtra(EXTRA_TIME_MINUTE,  mTpExactTime.getMinute());
+        data.putExtra(EXTRA_DESCRIPTION, mEtDescription.getText().toString());
 
         setResult(Activity.RESULT_OK, data);
 

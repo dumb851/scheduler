@@ -108,7 +108,7 @@ public class DbLab {
         return itemArrayList.get(0);
     }
 
-    //! TODO
+    //!
     public void addDemo() {
 
         ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();

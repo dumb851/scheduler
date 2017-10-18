@@ -14,7 +14,7 @@ import com.zubrid.scheduler.R;
 import data.DbLab;
 import model.ScheduleItem;
 
-public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
+public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
 
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
@@ -90,7 +90,6 @@ public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
     }
 
     private void showExactTimePicker() {
-        //// TODO: 15.10.2017
 
         Intent intent = new Intent(ScheduleItemActivity.this, ExactTimePickerActivity.class);
         startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
@@ -100,6 +99,7 @@ public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        //// TODO: 15.10.2017
         if (requestCode == EXACT_TIME_PICKER_REQUEST) {
 
             if (resultCode != Activity.RESULT_OK) {
@@ -107,6 +107,10 @@ public class ScheduleItemActivity extends ActivityDoneCancelActionBar {
                 Toast.makeText(this, "NOT_RESULT_OK", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            String description = data.getStringExtra(ExactTimePickerActivity.EXTRA_DESCRIPTION);
+            int hour = data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, -1);
+            int minute = data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, -1);
 
             Toast.makeText(this, "RESULT_OK", Toast.LENGTH_SHORT).show();
         }
