@@ -4,6 +4,8 @@ package ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
     private TextView mTvTitle;
     private Intent mIntent;
     private Button mBtnAddPoint;
+    private RecyclerView mRvTimePointList;
+
     private static int EXACT_TIME_PICKER_REQUEST = 27;
 
     public static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
@@ -56,6 +60,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
 
         mTvTitle = (TextView) findViewById(R.id.schedule_item_title);
         mBtnAddPoint = (Button) findViewById(R.id.schedule_item_btn_add_point);
+        mRvTimePointList = (RecyclerView) findViewById(R.id.schedule_item_rv_time_point_list);
 
     }
 
@@ -71,7 +76,15 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
     }
 
     private void fillUI() {
+
         mTvTitle.setText(mScheduleItem.getTitle());
+
+        TimePointListAdapter listAdapter = new TimePointListAdapter(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        mRvTimePointList.setLayoutManager(layoutManager);
+        mRvTimePointList.setAdapter(listAdapter);
+        mRvTimePointList.setNestedScrollingEnabled(false);
 
     }
 

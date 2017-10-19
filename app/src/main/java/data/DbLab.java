@@ -194,23 +194,26 @@ final public class DbLab {
     }
 
     public ArrayList<TimePoint> getTimePointList(int scheduleItemID) {
-        //// TODO: 19.10.2017
 
-        return null;
+        //// TODO: 19.10.2017 temp
+        return addDemoTimePoint();
+
+//        String whereClause = DbContract.TimePointListEntry.COLUMN_SCHEDULE_ID + "=?";
+//        String[] whereArgs = {String.valueOf(scheduleItemID)};
+//
+//        return getTimePointList(whereClause, whereArgs);
+
     }
 
     public TimePoint getTimePoint(int ID) {
 
-        //// TODO: 19.10.2017
+        String whereClause = DbContract.TimePointListEntry._ID + "=?";
+        String[] whereArgs = {String.valueOf(ID)};
 
-//        String whereClause = DbContract.ScheduleListEntry._ID + "=?";
-//        String[] whereArgs = {String.valueOf(ID)};
-//
-//        ArrayList<ScheduleItem> itemArrayList = getScheduleItemList(whereClause, whereArgs);
+        ArrayList<TimePoint> itemArrayList = getTimePointList(whereClause, whereArgs);
 
-        //return itemArrayList.get(0);
+        return itemArrayList.get(0);
 
-        return null;
     }
 
     private ArrayList<TimePoint> getTimePointList(String whereClause, String[] whereArgs) {
@@ -302,5 +305,28 @@ final public class DbLab {
 
     }
 
+    public ArrayList<TimePoint> addDemoTimePoint() {
+
+        ArrayList<TimePoint> itemArrayList = new ArrayList<>();
+
+        TimePoint item1 = new TimePoint();
+        item1.setTitle("TimePoint 1");
+
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+
+        return itemArrayList;
+    }
 
 }
