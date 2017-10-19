@@ -4,6 +4,7 @@ public final class TimePoint {
 
     private String mTitle;
     private int mID;
+    private int mScheduleID;
     private int mHour;
     private int mMinute;
 
@@ -37,5 +38,13 @@ public final class TimePoint {
 
     public void setMinute(int minute) {
         mMinute = minute;
+    }
+
+    public int getScheduleID() {
+        return mScheduleID;
+    }
+
+    public void setScheduleID(int scheduleID) {
+        mScheduleID = scheduleID;
     }
 }

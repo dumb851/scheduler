@@ -16,7 +16,7 @@ import data.DbLab;
 import model.ScheduleItem;
 
 
-public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
+final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
     implements DbLab.ScheduleItemListListener{
 
     public static final String TAG = ScheduleListAdapter.class.getSimpleName();

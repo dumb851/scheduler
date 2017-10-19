@@ -17,7 +17,7 @@ final class DbContract {
         static final String COLUMN_TITLE = "title";
         static final String COLUMN_HOUR = "hour";
         static final String COLUMN_MINUTE = "minute";
-        static final String SCHEDULE_ID = "scheduleID";
+        static final String COLUMN_SCHEDULE_ID = "scheduleID";
 
     }
 }

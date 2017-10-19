@@ -9,7 +9,7 @@ import android.widget.TimePicker;
 
 import com.zubrid.scheduler.R;
 
-public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
+final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
     public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
     public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";

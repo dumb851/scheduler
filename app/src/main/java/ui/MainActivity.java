@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.zubrid.scheduler.R;
 
-public class MainActivity extends AppCompatActivity {
+final public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

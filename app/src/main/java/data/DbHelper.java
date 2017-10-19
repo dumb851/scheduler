@@ -34,7 +34,7 @@ final class DbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_TIME_POINT_LIST_TABLE = "CREATE TABLE " + TimePointListEntry.TABLE_NAME + " (" +
                 TimePointListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
                 TimePointListEntry.COLUMN_TITLE + " TEXT" + ", " +
-                TimePointListEntry.SCHEDULE_ID + " INTEGER NOT NULL" + ", "+
+                TimePointListEntry.COLUMN_SCHEDULE_ID + " INTEGER NOT NULL" + ", "+
                 TimePointListEntry.COLUMN_HOUR + " INTEGER NOT NULL" + ", "+
                 TimePointListEntry.COLUMN_MINUTE + " INTEGER NOT NULL" +
                 "); ";

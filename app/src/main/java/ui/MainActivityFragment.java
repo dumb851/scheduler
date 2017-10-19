@@ -14,7 +14,7 @@ import com.zubrid.scheduler.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener{
+final public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener{
 
     protected RecyclerView mRecyclerViewScheduleList;
     protected ScheduleListAdapter mScheduleListAdapter;
