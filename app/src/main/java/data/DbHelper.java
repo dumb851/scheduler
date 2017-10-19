@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import data.DbContract.*;
 
 
-class DbHelper extends SQLiteOpenHelper {
+final class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "scheduler.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Constructor
     DbHelper(Context context) {
@@ -20,15 +20,27 @@ class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        // Create a table to hold ScheduleList data
+        // Create a table to hold ScheduleItem data
         final String SQL_CREATE_SCHEDULE_LIST_TABLE = "CREATE TABLE " + ScheduleListEntry.TABLE_NAME + " (" +
                 ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
-                ScheduleListEntry.COLUMN_SCHEDULE_TITLE + " TEXT" + ", " +
+                ScheduleListEntry.COLUMN_TITLE + " TEXT" + ", " +
                 ScheduleListEntry.COLUMN_SORT_ORDER + " INTEGER NOT NULL" + ", "+
                 ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SCHEDULE_LIST_TABLE);
+
+        // Create a table to hold TimePoint data
+        final String SQL_CREATE_TIME_POINT_LIST_TABLE = "CREATE TABLE " + TimePointListEntry.TABLE_NAME + " (" +
+                TimePointListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
+                TimePointListEntry.COLUMN_TITLE + " TEXT" + ", " +
+                TimePointListEntry.SCHEDULE_ID + " INTEGER NOT NULL" + ", "+
+                TimePointListEntry.COLUMN_HOUR + " INTEGER NOT NULL" + ", "+
+                TimePointListEntry.COLUMN_MINUTE + " INTEGER NOT NULL" +
+                "); ";
+
+        sqLiteDatabase.execSQL(SQL_CREATE_TIME_POINT_LIST_TABLE);
+
     }
 
     @Override
@@ -44,4 +56,5 @@ class DbHelper extends SQLiteOpenHelper {
 
         //!TODO should recalculate COLUMN_SORT_ORDER
     }
+
 }

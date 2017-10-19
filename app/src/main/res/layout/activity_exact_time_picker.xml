@@ -8,12 +8,12 @@
 
 
     <TimePicker
-        android:id="@+id/dlg_exact_time_picker_tp_time_picker"
+        android:id="@+id/acv_exact_time_picker_tp_time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/dlg_exact_time_picker_te_name"
+        android:id="@+id/acv_exact_time_picker_te_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="hint//!"

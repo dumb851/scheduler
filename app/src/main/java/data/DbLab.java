@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import model.ScheduleItem;
 
-public class DbLab {
+final public class DbLab {
 
     private static DbLab sDbLab;
     private SQLiteDatabase mDataBase;
@@ -62,7 +62,7 @@ public class DbLab {
     public void saveSchedule(ScheduleItem scheduleItem) {
 
         ContentValues values = new ContentValues();
-        values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE, scheduleItem.getTitle());
+        values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduleItem.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, sSortOrder);
 
         int isRunningInt = 0;
@@ -166,7 +166,7 @@ public class DbLab {
 
             String title = cursor.getString(
                     cursor.getColumnIndex(
-                            DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TITLE
+                            DbContract.ScheduleListEntry.COLUMN_TITLE
                     )
             );
 

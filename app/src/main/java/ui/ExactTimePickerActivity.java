@@ -13,10 +13,10 @@ public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
     public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
     public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
-    public static String EXTRA_DESCRIPTION = "ExactTimePickerActivity_EXTRA_DESCRIPTION";
+    public static String EXTRA_TITLE = "ExactTimePickerActivity_EXTRA_TITLE";
 
     TimePicker mTpExactTime;
-    EditText mEtDescription;
+    EditText mEtTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,8 +31,8 @@ public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
     private void initVariables() {
 
-        mEtDescription = (EditText) findViewById(R.id.dlg_exact_time_picker_te_name);
-        mTpExactTime = (TimePicker) findViewById(R.id.dlg_exact_time_picker_tp_time_picker);
+        mEtTitle = (EditText) findViewById(R.id.acv_exact_time_picker_te_title);
+        mTpExactTime = (TimePicker) findViewById(R.id.acv_exact_time_picker_tp_time_picker);
 
     }
 
@@ -43,7 +43,7 @@ public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
         data.putExtra(EXTRA_TIME_HOUR,  mTpExactTime.getHour());
         data.putExtra(EXTRA_TIME_MINUTE,  mTpExactTime.getMinute());
-        data.putExtra(EXTRA_DESCRIPTION, mEtDescription.getText().toString());
+        data.putExtra(EXTRA_TITLE, mEtTitle.getText().toString());
 
         setResult(Activity.RESULT_OK, data);
 

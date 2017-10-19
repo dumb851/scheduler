@@ -108,7 +108,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
                 return;
             }
 
-            String description = data.getStringExtra(ExactTimePickerActivity.EXTRA_DESCRIPTION);
+            String title = data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE);
             int hour = data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, -1);
             int minute = data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, -1);
 
