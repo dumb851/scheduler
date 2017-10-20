@@ -1,6 +1,7 @@
 package ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.widget.TimePicker;
 import com.zubrid.scheduler.R;
 
 final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
+
+    private static String EXTRA_ID = "ExactTimePickerActivity_EXTRA_ID";
 
     public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
     public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
@@ -27,6 +30,14 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
         setContentView(R.layout.activity_exact_time_picker);
 
         initVariables();
+    }
+
+    public static Intent getIntent(Context context, int timePointID) {
+
+        Intent intent = new Intent(context, ExactTimePickerActivity.class);
+        intent.putExtra(EXTRA_ID, timePointID);
+
+        return intent;
     }
 
     private void initVariables() {

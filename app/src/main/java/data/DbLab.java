@@ -18,6 +18,8 @@ final public class DbLab {
     private static int sSortOrder;
     private static ArrayList<ScheduleItemListListener> sScheduleItemListListeners =
             new ArrayList<>();
+    private static ArrayList<TimePointListListener> sTimePointListListeners =
+            new ArrayList<>();
 
     // constructor
     private DbLab(Context context) {
@@ -161,6 +163,10 @@ final public class DbLab {
         }
     }
 
+    public static void unregisterScheduleItemListListener(ScheduleItemListListener listener) {
+        sScheduleItemListListeners.remove(listener);
+    }
+
 
     // TimePoint
     public void saveTimePoint(TimePoint timePoint) {
@@ -267,6 +273,28 @@ final public class DbLab {
 
     }
 
+    //// interface TimePointListListener
+    public interface TimePointListListener{
+
+        void timePointListChanged();
+
+    }
+
+    public static void registerTimePointListListener(TimePointListListener listener) {
+        sTimePointListListeners.add(listener);
+    }
+
+    public static void unregisterTimePointListListener(TimePointListListener listener) {
+        sTimePointListListeners.add(listener);
+    }
+
+    private void notifyTimePointListChanged() {
+
+        for (TimePointListListener listener : sTimePointListListeners) {
+            listener.timePointListChanged();
+        }
+    }
+
     //!
     public void addDemo() {
 
@@ -314,7 +342,19 @@ final public class DbLab {
 
         itemArrayList.add(item1);
         itemArrayList.add(item1);
+
         itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+        itemArrayList.add(item1);
+
         itemArrayList.add(item1);
         itemArrayList.add(item1);
         itemArrayList.add(item1);

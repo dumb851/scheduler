@@ -13,34 +13,30 @@ import java.util.ArrayList;
 import data.DbLab;
 import model.TimePoint;
 
-//// TODO: 19.10.2017 do i need a recycler view? may be something else?
-//RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
-//        recycler.setNestedScrollingEnabled(false);
-
-
 final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointListAdapter.ViewHolder>
-    implements DbLab.ScheduleItemListListener{
+    implements DbLab.TimePointListListener{
 
     public static final String TAG = TimePointListAdapter.class.getSimpleName();
 
     private ArrayList<TimePoint> mDataSet;
     private Context mContext;
-    //private static ItemClickListener sItemClickListener;
+    private static ItemClickListener sItemClickListener;
+    private int mScheduleID;
 
     // Constructor
-    public TimePointListAdapter(Context context) {
+    public TimePointListAdapter(Context context, int scheduleID) {
         mContext = context;
+        mScheduleID = scheduleID;
         refreshDataSet();
-       //! DbLab.registerScheduleItemListListener(this);
     }
 
     public interface ItemClickListener {
-        void OnItemClickListener(int ID);
+        void OnItemClickListener(int id);
     }
 
-//    public void setItemClickListener(ItemClickListener listener) {
-//        sItemClickListener = listener;
-//    }
+    public void setItemClickListener(ItemClickListener listener) {
+        sItemClickListener = listener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -71,33 +67,28 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 //        private final ImageView isRunningImage;
 //        private final TextView isRunningText;
 
-        private int ID;
+        private int id;
 
         // constructor
         ViewHolder(View v) {
             super(v);
 
-            // Define click listener for the ViewHolder's View.
-//            v.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (sItemClickListener != null) {
-//                        sItemClickListener.OnItemClickListener(ID);
-//                    }
-//                }
-//            });
+             //Define click listener for the ViewHolder's View.
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (sItemClickListener != null) {
+                        sItemClickListener.OnItemClickListener(id);
+                    }
+                }
+            });
 
 //            scheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
 //            scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
 //            isRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
 //            isRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
 //
-//            isRunningImage.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    DbLab.changeScheduleRunningState(ID);
-//                }
-//            });
+
         }
 
 //        void setScheduleViewTitle(String title) {
@@ -112,13 +103,26 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
     }
 
     private void refreshDataSet() {
-        //// TODO: 19.10.2017  0-temp
-        mDataSet = DbLab.getLab(mContext).getTimePointList(0);
+        mDataSet = DbLab.getLab(mContext).getTimePointList(mScheduleID);
     }
 
     @Override
-    public void scheduleItemListChanged() {
+    public void timePointListChanged() {
         refreshDataSet();
         //notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        DbLab.registerTimePointListListener(this);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+
+        DbLab.unregisterTimePointListListener(this);
     }
 }

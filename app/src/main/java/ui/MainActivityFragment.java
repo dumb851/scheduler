@@ -42,13 +42,10 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
     }
 
     @Override
-    public void OnItemClickListener(int ID) {
+    public void OnItemClickListener(int id) {
 
-        Intent intent = new Intent(getActivity(),
-                ScheduleItemActivity.class);
-
-        intent.putExtra(ScheduleItemActivity.EXTRA_ID, ID);
-
+        Intent intent = ScheduleItemActivity.getIntent(getContext(), id);
         startActivity(intent);
+
     }
 }

@@ -29,7 +29,6 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     public ScheduleListAdapter(Context context) {
         mContext = context;
         refreshDataSet();
-        DbLab.registerScheduleItemListListener(this);
     }
 
     public interface ItemClickListener {
@@ -133,5 +132,19 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     public void scheduleItemListChanged() {
         refreshDataSet();
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        DbLab.registerScheduleItemListListener(this);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+
+        DbLab.unregisterScheduleItemListListener(this);
     }
 }
