@@ -201,20 +201,17 @@ final public class DbLab {
 
     public ArrayList<TimePoint> getTimePointList(int scheduleItemID) {
 
-        //// TODO: 19.10.2017 temp
-        return addDemoTimePoint();
+        String whereClause = DbContract.TimePointListEntry.COLUMN_SCHEDULE_ID + "=?";
+        String[] whereArgs = {String.valueOf(scheduleItemID)};
 
-//        String whereClause = DbContract.TimePointListEntry.COLUMN_SCHEDULE_ID + "=?";
-//        String[] whereArgs = {String.valueOf(scheduleItemID)};
-//
-//        return getTimePointList(whereClause, whereArgs);
+        return getTimePointList(whereClause, whereArgs);
 
     }
 
-    public TimePoint getTimePoint(int ID) {
+    public TimePoint getTimePoint(int id) {
 
         String whereClause = DbContract.TimePointListEntry._ID + "=?";
-        String[] whereArgs = {String.valueOf(ID)};
+        String[] whereArgs = {String.valueOf(id)};
 
         ArrayList<TimePoint> itemArrayList = getTimePointList(whereClause, whereArgs);
 

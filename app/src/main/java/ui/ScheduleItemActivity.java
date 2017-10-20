@@ -15,16 +15,14 @@ import com.zubrid.scheduler.R;
 import data.DbLab;
 import model.ScheduleItem;
 
-public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
+public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
+        implements TimePointListAdapter.ItemClickListener{
 
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
     private TextView mTvTitle;
-    private Intent mIntent;
     private Button mBtnAddPoint;
     private RecyclerView mRvTimePointList;
-
-    //!private static int EXACT_TIME_PICKER_REQUEST = 27;
 
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
@@ -52,7 +50,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
             @Override
             public void onClick(View view) {
                 //TODO
-                showExactTimePicker(0);
+                showExactTimePicker(-1);
             }
         });
 
@@ -62,7 +60,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
 
         mDbLab = DbLab.getLab(this);
 
-        mIntent = getIntent();
+
 
         mScheduleItem = getScheduleItem();
 
@@ -74,7 +72,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
 
     private ScheduleItem getScheduleItem() {
 
-        int schedule_ID = mIntent.getIntExtra(EXTRA_ID, -1);
+        int schedule_ID = getIntent().getIntExtra(EXTRA_ID, -1);
 
         if (schedule_ID != -1) {
             return mDbLab.getScheduleItem(schedule_ID);
@@ -89,6 +87,8 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
 
         TimePointListAdapter listAdapter = new TimePointListAdapter(this, mScheduleItem.getID());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        listAdapter.setItemClickListener(this);
 
         mRvTimePointList.setLayoutManager(layoutManager);
         mRvTimePointList.setAdapter(listAdapter);
@@ -115,6 +115,11 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar {
         Intent intent = ExactTimePickerActivity.getIntent(this, id);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void OnItemClickListener(int id) {
+        showExactTimePicker(id);
     }
 
 //!    @Override
