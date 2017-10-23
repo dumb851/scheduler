@@ -30,6 +30,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
     private int clickedTimePointId;
     private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
+    private TimePointListAdapter mListAdapter;
 
     public static Intent getIntent(Context context, int scheduleID) {
 
@@ -90,13 +91,14 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
 
         mTvTitle.setText(mScheduleItem.getTitle());
 
-        TimePointListAdapter listAdapter = new TimePointListAdapter(this, mScheduleItem.getID());
+        mListAdapter = new TimePointListAdapter(mTimePointArrayList);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        listAdapter.setItemClickListener(this);
+        mListAdapter.setItemClickListener(this);
 
         mRvTimePointList.setLayoutManager(layoutManager);
-        mRvTimePointList.setAdapter(listAdapter);
+        mRvTimePointList.setAdapter(mListAdapter);
         mRvTimePointList.setNestedScrollingEnabled(false);
 
     }
@@ -124,7 +126,19 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
     private void showExactTimePicker(int id) {
 
         clickedTimePointId = id;
+        Bundle bundle = new Bundle();
+        //// TODO: 23.10.2017  here
+        //!bundle.putString(ExactTimePickerActivity.EXTRA_TITLE, );
+//        clickedTimePoint.setTitle(
+//                data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE));
+//        clickedTimePoint.setHour(
+//                data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, -1));
+//        clickedTimePoint.setMinute(
+//                data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, -1));
+//        bundle
+
         Intent intent = ExactTimePickerActivity.getIntent(this, id);
+
         startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
 
     }
@@ -165,6 +179,8 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
                     data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, -1));
             clickedTimePoint.setMinute(
                     data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, -1));
+
+            mListAdapter.refreshDataSet(mTimePointArrayList);
 
         }
     }

@@ -1,6 +1,5 @@
 package ui;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +19,12 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
     public static final String TAG = TimePointListAdapter.class.getSimpleName();
 
     private ArrayList<TimePoint> mDataSet;
-    private Context mContext;
     private static ItemClickListener sItemClickListener;
-    private int mScheduleID;
 
     // constructor
-    public TimePointListAdapter(Context context, int scheduleID) {
-        mContext = context;
-        mScheduleID = scheduleID;
-        refreshDataSet();
+    public TimePointListAdapter(ArrayList<TimePoint> timePointArrayList) {
+
+        mDataSet = timePointArrayList;
     }
 
     public interface ItemClickListener {
@@ -99,14 +95,14 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 
     }
 
-    private void refreshDataSet() {
-        //// TODO: 23.10.2017 data set should come from ScheduleItemActivity
-        mDataSet = DbLab.getLab(mContext).getTimePointList(mScheduleID);
+    void refreshDataSet(ArrayList<TimePoint> timePointArrayList) {
+        mDataSet = timePointArrayList;
+        notifyDataSetChanged();
     }
 
     @Override
     public void timePointListChanged() {
-        refreshDataSet();
+        //!refreshDataSet();
         //notifyDataSetChanged();
     }
 
