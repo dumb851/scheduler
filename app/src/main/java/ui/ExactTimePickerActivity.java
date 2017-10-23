@@ -10,26 +10,21 @@ import android.widget.TimePicker;
 
 import com.zubrid.scheduler.R;
 
-import data.DbLab;
-import model.TimePoint;
-
 final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
-    private static String EXTRA_ID = "ExactTimePickerActivity_EXTRA_ID";
+    private static String EXTRA_BUNDLE = "ExactTimePickerActivity_EXTRA_ID";
 
     public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
     public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
     public static String EXTRA_TITLE = "ExactTimePickerActivity_EXTRA_TITLE";
 
-    private DbLab mDbLab;
-    private TimePoint mTimePoint;
     TimePicker mTpExactTime;
     EditText mEtTitle;
 
-    public static Intent getIntent(Context context, int timePointID) {
+    public static Intent getIntent(Context context, Bundle bundle) {
 
         Intent intent = new Intent(context, ExactTimePickerActivity.class);
-        intent.putExtra(EXTRA_ID, timePointID);
+        intent.putExtra(EXTRA_BUNDLE, bundle);
 
         return intent;
     }
@@ -43,28 +38,17 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
         setContentView(R.layout.activity_exact_time_picker);
 
         initVariables();
+
+        //// TODO: 23.10.2017  fill UI EXTRA_BUNDLE
     }
 
     private void initVariables() {
 
         mEtTitle = (EditText) findViewById(R.id.acv_exact_time_picker_te_title);
         mTpExactTime = (TimePicker) findViewById(R.id.acv_exact_time_picker_tp_time_picker);
-
-        mDbLab = DbLab.getLab(this);
-
-        mTimePoint = getTimePoint();
     }
 
-    private TimePoint getTimePoint() {
 
-        int id = getIntent().getIntExtra(EXTRA_ID, -1);
-
-        if (id != -1) {
-            return mDbLab.getTimePoint(id);
-        } else {
-            return new TimePoint();
-        }
-    }
 
     @Override
     void OnDoneClick() {

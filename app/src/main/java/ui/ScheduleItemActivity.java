@@ -27,7 +27,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
     private Button mBtnAddPoint;
     private RecyclerView mRvTimePointList;
     private ArrayList<TimePoint> mTimePointArrayList;
-    private int clickedTimePointId;
+    private int mClickedTimePointPos;
     private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
     private TimePointListAdapter mListAdapter;
@@ -109,7 +109,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         mScheduleItem.setTitle(mTvTitle.getText().toString());
         int resultID = mDbLab.saveSchedule(mScheduleItem);
 
-        for (TimePoint point: mTimePointArrayList) {
+        for (TimePoint point : mTimePointArrayList) {
             point.setScheduleID(resultID);
             mDbLab.saveTimePoint(point);
         }
@@ -123,29 +123,30 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         finish();
     }
 
-    private void showExactTimePicker(int id) {
+    private void showExactTimePicker(int pos) {
 
-        clickedTimePointId = id;
         Bundle bundle = new Bundle();
-        //// TODO: 23.10.2017  here
-        //!bundle.putString(ExactTimePickerActivity.EXTRA_TITLE, );
-//        clickedTimePoint.setTitle(
-//                data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE));
-//        clickedTimePoint.setHour(
-//                data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, -1));
-//        clickedTimePoint.setMinute(
-//                data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, -1));
-//        bundle
 
-        Intent intent = ExactTimePickerActivity.getIntent(this, id);
+        mClickedTimePointPos = pos;
+
+        if (pos != -1) {
+
+            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
+
+            bundle.putString(ExactTimePickerActivity.EXTRA_TITLE, clickedTimePoint.getTitle());
+            bundle.putInt(ExactTimePickerActivity.EXTRA_TIME_HOUR, clickedTimePoint.getHour());
+            bundle.putInt(ExactTimePickerActivity.EXTRA_TIME_MINUTE, clickedTimePoint.getMinute());
+        }
+
+        Intent intent = ExactTimePickerActivity.getIntent(this, bundle);
 
         startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
 
     }
 
     @Override
-    public void OnItemClickListener(int id) {
-        showExactTimePicker(id);
+    public void OnItemClickListener(int pos) {
+        showExactTimePicker(pos);
     }
 
     //!    @Override
@@ -154,34 +155,37 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         if (requestCode == EXACT_TIME_PICKER_REQUEST) {
 
             if (resultCode != Activity.RESULT_OK) {
-                //!Toast.makeText(this, "NOT_RESULT_OK", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            TimePoint clickedTimePoint = null;
-
-            if (clickedTimePointId != -1) {
-                for (TimePoint point: mTimePointArrayList) {
-
-                    if (point.getID() == clickedTimePointId) {
-                        clickedTimePoint = point;
-                        break;
-                    }
-                }
-            } else {
-                clickedTimePoint = new TimePoint();
-                mTimePointArrayList.add(clickedTimePoint);
-            }
+            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
 
             clickedTimePoint.setTitle(
                     data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE));
             clickedTimePoint.setHour(
-                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, -1));
+                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, 0));
             clickedTimePoint.setMinute(
-                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, -1));
+                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, 0));
 
             mListAdapter.refreshDataSet(mTimePointArrayList);
 
         }
     }
+
+    TimePoint findTimePointByPos(int pos) {
+
+        if (pos == -1) {
+            TimePoint clickedTimePoint = new TimePoint();
+            mTimePointArrayList.add(clickedTimePoint);
+
+            return clickedTimePoint;
+        } else {
+
+            return mTimePointArrayList.get(pos);
+
+        }
+
+
+    }
+
 }

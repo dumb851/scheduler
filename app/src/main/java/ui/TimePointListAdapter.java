@@ -23,12 +23,11 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 
     // constructor
     public TimePointListAdapter(ArrayList<TimePoint> timePointArrayList) {
-
         mDataSet = timePointArrayList;
     }
 
     public interface ItemClickListener {
-        void OnItemClickListener(int id);
+        void OnItemClickListener(int pos);
     }
 
     public void setItemClickListener(ItemClickListener listener) {
@@ -48,7 +47,7 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 
         TimePoint item = mDataSet.get(position);
         holder.setViewTitle(item.getTitle());
-        holder.setID(item.getID());
+        holder.setPos(position);
     }
 
     @Override
@@ -63,7 +62,7 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 //        private final ImageView isRunningImage;
 //        private final TextView isRunningText;
 
-        private int id;
+        private int pos;
 
         // constructor
         ViewHolder(View v) {
@@ -74,13 +73,12 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
                 @Override
                 public void onClick(View v) {
                     if (sItemClickListener != null) {
-                        sItemClickListener.OnItemClickListener(id);
+                        sItemClickListener.OnItemClickListener(pos);
                     }
                 }
             });
 
             viewTitle = v.findViewById(R.id.time_point_list_item_tv_title);
-//!            scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
 
         }
 
@@ -88,9 +86,8 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
             viewTitle.setText(title);
         }
 
-        void setID(int timePointID) {
-            id = timePointID;
-            //scheduleViewID.setText(String.valueOf(scheduleID));
+        void setPos(int pos) {
+            this.pos = pos;
         }
 
     }
