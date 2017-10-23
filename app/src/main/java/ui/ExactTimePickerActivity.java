@@ -1,5 +1,6 @@
 package ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +17,9 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
     private static String EXTRA_ID = "ExactTimePickerActivity_EXTRA_ID";
 
-//    public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
-//    public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
-//    public static String EXTRA_TITLE = "ExactTimePickerActivity_EXTRA_TITLE";
+    public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
+    public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
+    public static String EXTRA_TITLE = "ExactTimePickerActivity_EXTRA_TITLE";
 
     private DbLab mDbLab;
     private TimePoint mTimePoint;
@@ -68,8 +69,14 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
     @Override
     void OnDoneClick() {
 
-        mTimePoint.setTitle(mEtTitle.getText().toString());
-        mDbLab.saveTimePoint(mTimePoint);
+        Intent data = new Intent();
+
+        data.putExtra(EXTRA_TIME_HOUR,  mTpExactTime.getHour());
+        data.putExtra(EXTRA_TIME_MINUTE,  mTpExactTime.getMinute());
+        data.putExtra(EXTRA_TITLE, mEtTitle.getText().toString());
+
+        setResult(Activity.RESULT_OK, data);
+
         finish();
 
     }

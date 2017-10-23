@@ -38,7 +38,7 @@ final public class DbLab {
 
     // ScheduleItem
 
-    public void saveSchedule(ScheduleItem scheduleItem) {
+    public int saveSchedule(ScheduleItem scheduleItem) {
 
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduleItem.getTitle());
@@ -51,7 +51,11 @@ final public class DbLab {
 
         values.put(DbContract.ScheduleListEntry.COLUMN_IS_RUNNING, isRunningInt);
 
+        int resultID = -1;
+
         if (scheduleItem.getID() != 0) {
+
+            resultID = scheduleItem.getID();
 
             String whereClause = DbContract.ScheduleListEntry._ID + "=?";
             String[] whereArgs = {String.valueOf(scheduleItem.getID())};
@@ -63,7 +67,7 @@ final public class DbLab {
             );
 
         } else {
-            mDataBase.insert(
+            resultID = (int) mDataBase.insert(
                     DbContract.ScheduleListEntry.TABLE_NAME,
                     null,
                     values
@@ -71,6 +75,8 @@ final public class DbLab {
         }
 
         notifyScheduleItemListChanged();
+
+        return resultID;
     }
 
     public ArrayList<ScheduleItem> getScheduleItemList() {
@@ -220,6 +226,8 @@ final public class DbLab {
     }
 
     private ArrayList<TimePoint> getTimePointList(String whereClause, String[] whereArgs) {
+
+        //return addDemoTimePoint();
 
         ArrayList<TimePoint> itemArrayList = new ArrayList<>();
 
