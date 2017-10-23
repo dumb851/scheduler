@@ -58,9 +58,6 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView viewTitle;
-//!        private final TextView scheduleViewID;
-//        private final ImageView isRunningImage;
-//        private final TextView isRunningText;
 
         private int pos;
 
