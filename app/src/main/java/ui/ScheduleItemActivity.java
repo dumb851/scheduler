@@ -55,7 +55,6 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         mBtnAddPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
                 showExactTimePicker(-1);
             }
         });
@@ -125,20 +124,23 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
 
     private void showExactTimePicker(int pos) {
 
-        Bundle bundle = new Bundle();
-
         mClickedTimePointPos = pos;
+
+        Intent intent;
 
         if (pos != -1) {
 
             TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
 
-            bundle.putString(ExactTimePickerActivity.EXTRA_TITLE, clickedTimePoint.getTitle());
-            bundle.putInt(ExactTimePickerActivity.EXTRA_TIME_HOUR, clickedTimePoint.getHour());
-            bundle.putInt(ExactTimePickerActivity.EXTRA_TIME_MINUTE, clickedTimePoint.getMinute());
-        }
+            intent = ExactTimePickerActivity.getIntent(this,
+                    clickedTimePoint.getTitle(),
+                    clickedTimePoint.getHour(),
+                    clickedTimePoint.getMinute()
+            );
 
-        Intent intent = ExactTimePickerActivity.getIntent(this, bundle);
+        } else {
+            intent = ExactTimePickerActivity.getIntent(this);
+        }
 
         startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
 

@@ -12,7 +12,7 @@ import com.zubrid.scheduler.R;
 
 final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
-    private static String EXTRA_BUNDLE = "ExactTimePickerActivity_EXTRA_ID";
+    //!private static String EXTRA_BUNDLE = "ExactTimePickerActivity_EXTRA_ID";
 
     public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
     public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
@@ -21,10 +21,18 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
     TimePicker mTpExactTime;
     EditText mEtTitle;
 
-    public static Intent getIntent(Context context, Bundle bundle) {
+    public static Intent getIntent(Context context) {
+
+        return  new Intent(context, ExactTimePickerActivity.class);
+
+    }
+
+    public static Intent getIntent(Context context, String title, int hour, int minute) {
 
         Intent intent = new Intent(context, ExactTimePickerActivity.class);
-        intent.putExtra(EXTRA_BUNDLE, bundle);
+        intent.putExtra(EXTRA_TITLE, title);
+        intent.putExtra(EXTRA_TIME_HOUR, hour);
+        intent.putExtra(EXTRA_TIME_MINUTE, minute);
 
         return intent;
     }
@@ -39,7 +47,7 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
         initVariables();
 
-        //// TODO: 23.10.2017  fill UI EXTRA_BUNDLE
+        fillUI();
     }
 
     private void initVariables() {
@@ -48,7 +56,31 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
         mTpExactTime = (TimePicker) findViewById(R.id.acv_exact_time_picker_tp_time_picker);
     }
 
+    private void fillUI() {
 
+        //// TODO: 24.10.2017  
+        String title = getIntent().getStringExtra(EXTRA_TITLE);
+
+        if (title != null) {
+            
+        }
+
+        //bundle.getString()
+
+
+//        mTvTitle.setText(mScheduleItem.getTitle());
+//
+//        mListAdapter = new TimePointListAdapter(mTimePointArrayList);
+//
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//
+//        mListAdapter.setItemClickListener(this);
+//
+//        mRvTimePointList.setLayoutManager(layoutManager);
+//        mRvTimePointList.setAdapter(mListAdapter);
+//        mRvTimePointList.setNestedScrollingEnabled(false);
+
+    }
 
     @Override
     void OnDoneClick() {
