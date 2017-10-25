@@ -128,6 +128,10 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         mDataSet = DbLab.getLab(mContext).getScheduleItemList();
     }
 
+    public ArrayList<ScheduleItem> getDataSet() {
+        return mDataSet;
+    }
+
     @Override
     public void scheduleItemListChanged() {
         refreshDataSet();

@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.zubrid.scheduler.R;
 
+import java.util.Collections;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -49,12 +51,27 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
         ItemTouchHelper.Callback touchHelperCallback = new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                return 0;
+
+                return makeFlag(ItemTouchHelper.ACTION_STATE_DRAG,
+                        ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.START | ItemTouchHelper.END);
+
+                //!return 0;
             }
 
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
+            public boolean onMove(RecyclerView recyclerView,
+                                  RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                //!return false;
+
+                Collections.swap(mScheduleListAdapter.getDataSet(),
+                        viewHolder.getAdapterPosition(),
+                        target.getAdapterPosition()
+                );
+
+                mScheduleListAdapter.notifyItemMoved(viewHolder.getAdapterPosition(),
+                        target.getAdapterPosition());
+                return true;
             }
 
             @Override
