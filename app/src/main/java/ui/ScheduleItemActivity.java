@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -88,6 +89,10 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         mRvTimePointList.setLayoutManager(layoutManager);
         mRvTimePointList.setAdapter(mListAdapter);
         mRvTimePointList.setNestedScrollingEnabled(false);
+
+        if (!mTvTitle.getText().toString().isEmpty()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        }
 
     }
 
