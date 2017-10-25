@@ -12,14 +12,12 @@ import com.zubrid.scheduler.R;
 
 final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
-    //!private static String EXTRA_BUNDLE = "ExactTimePickerActivity_EXTRA_ID";
-
     public static String EXTRA_TIME_HOUR = "ExactTimePickerActivity_EXTRA_TIME_HOUR";
     public static String EXTRA_TIME_MINUTE = "ExactTimePickerActivity_EXTRA_TIME_MINUTE";
     public static String EXTRA_TITLE = "ExactTimePickerActivity_EXTRA_TITLE";
 
-    TimePicker mTpExactTime;
-    EditText mEtTitle;
+    private TimePicker mTpExactTime;
+    private EditText mEtTitle;
 
     public static Intent getIntent(Context context) {
 
@@ -58,27 +56,20 @@ final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 
     private void fillUI() {
 
-        //// TODO: 24.10.2017  
         String title = getIntent().getStringExtra(EXTRA_TITLE);
-
         if (title != null) {
-            
+            mEtTitle.setText(title);
         }
 
-        //bundle.getString()
+        int hour = getIntent().getIntExtra(EXTRA_TIME_HOUR, -1);
+        if (hour != -1) {
+            mTpExactTime.setHour(hour);
+        }
 
-
-//        mTvTitle.setText(mScheduleItem.getTitle());
-//
-//        mListAdapter = new TimePointListAdapter(mTimePointArrayList);
-//
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//
-//        mListAdapter.setItemClickListener(this);
-//
-//        mRvTimePointList.setLayoutManager(layoutManager);
-//        mRvTimePointList.setAdapter(mListAdapter);
-//        mRvTimePointList.setNestedScrollingEnabled(false);
+        int minute = getIntent().getIntExtra(EXTRA_TIME_MINUTE, -1);
+        if (minute != -1) {
+            mTpExactTime.setMinute(minute);
+        }
 
     }
 

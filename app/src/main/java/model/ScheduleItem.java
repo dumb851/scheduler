@@ -6,6 +6,11 @@ public final class ScheduleItem {
     private int mID;
     private boolean mIsRunning;
 
+    // constructor
+    public ScheduleItem() {
+        mID = -1;
+    }
+
     public boolean isRunning() {
         return mIsRunning;
     }
@@ -29,6 +34,5 @@ public final class ScheduleItem {
     public void setID(int ID) {
         mID = ID;
     }
-
 
 }

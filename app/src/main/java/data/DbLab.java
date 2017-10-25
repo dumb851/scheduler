@@ -51,9 +51,9 @@ final public class DbLab {
 
         values.put(DbContract.ScheduleListEntry.COLUMN_IS_RUNNING, isRunningInt);
 
-        int resultID = -1;
+        int resultID;
 
-        if (scheduleItem.getID() != 0) {
+        if (scheduleItem.getID() != -1) {
 
             resultID = scheduleItem.getID();
 

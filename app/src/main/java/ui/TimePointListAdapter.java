@@ -48,6 +48,7 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
         TimePoint item = mDataSet.get(position);
         holder.setViewTitle(item.getTitle());
         holder.setPos(position);
+        holder.setViewTime(item.getHour(), item.getMinute());
     }
 
     @Override
@@ -58,6 +59,7 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView viewTitle;
+        private final TextView viewTime;
 
         private int pos;
 
@@ -76,11 +78,16 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
             });
 
             viewTitle = v.findViewById(R.id.time_point_list_item_tv_title);
+            viewTime = v.findViewById(R.id.time_point_list_item_tv_time);
 
         }
 
         void setViewTitle(String title) {
             viewTitle.setText(title);
+        }
+
+        void setViewTime(int hour, int minute) {
+            viewTime.setText("" + hour + " : " + minute);
         }
 
         void setPos(int pos) {

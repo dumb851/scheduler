@@ -75,17 +75,6 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
 
     }
 
-    private ScheduleItem getScheduleItem() {
-
-        int schedule_ID = getIntent().getIntExtra(EXTRA_ID, -1);
-
-        if (schedule_ID != -1) {
-            return mDbLab.getScheduleItem(schedule_ID);
-        } else {
-            return new ScheduleItem();
-        }
-    }
-
     private void fillUI() {
 
         mTvTitle.setText(mScheduleItem.getTitle());
@@ -100,6 +89,17 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         mRvTimePointList.setAdapter(mListAdapter);
         mRvTimePointList.setNestedScrollingEnabled(false);
 
+    }
+
+    private ScheduleItem getScheduleItem() {
+
+        int schedule_ID = getIntent().getIntExtra(EXTRA_ID, -1);
+
+        if (schedule_ID != -1) {
+            return mDbLab.getScheduleItem(schedule_ID);
+        } else {
+            return new ScheduleItem();
+        }
     }
 
     @Override
