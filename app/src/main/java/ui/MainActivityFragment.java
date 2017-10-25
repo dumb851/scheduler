@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,34 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
         mRecyclerViewScheduleList.setAdapter(mScheduleListAdapter);
         mScheduleListAdapter.setItemClickListener(this);
 
+        setItemTouchHelper();
+
         return rootView;
+    }
+
+    private void setItemTouchHelper() {
+
+        ItemTouchHelper.Callback touchHelperCallback = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                return 0;
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        };
+
+        ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
+
+        touchHelper.attachToRecyclerView(mRecyclerViewScheduleList);
+
     }
 
     @Override
