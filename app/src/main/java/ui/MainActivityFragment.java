@@ -1,6 +1,7 @@
 package ui;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -76,6 +77,27 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+
+            @Override
+            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+                super.onSelectedChanged(viewHolder, actionState);
+
+                // TODO: 26.10.2017 falls down
+                Drawable drawable = viewHolder.itemView.getBackground();
+                int[] state = new int[] {android.R.attr.state_selected};
+                drawable.setState(state);
+
+//                //drawable.setState()
+//
+//                if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+//                    viewHolder.itemView.setSelected(true);
+//                    Toast.makeText(getActivity(), "ACTION_STATE_DRAG", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    viewHolder.itemView.setSelected(false);
+//                    Toast.makeText(getActivity(), "NOT_ACTION_STATE_DRAG: " + actionState, Toast.LENGTH_SHORT).show();
+//                }
 
             }
         };

@@ -53,7 +53,7 @@ final public class DbLab {
 
         int resultID;
 
-        if (scheduleItem.getID() != -1) {
+        if (scheduleItem.getID() != ScheduleItem.NO_ID) {
 
             resultID = scheduleItem.getID();
 

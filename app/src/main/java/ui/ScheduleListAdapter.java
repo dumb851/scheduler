@@ -1,6 +1,7 @@
 package ui;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,10 +65,11 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView scheduleViewTitle;
-        private final TextView scheduleViewID;
-        private final ImageView isRunningImage;
-        private final TextView isRunningText;
+        private final TextView mScheduleViewTitle;
+        private final TextView mScheduleViewID;
+        private final ImageView mIsRunningImage;
+        private final TextView mIsRunningText;
+        private final ConstraintLayout mContainer;
 
         private int ID;
 
@@ -85,12 +87,14 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
                 }
             });
 
-            scheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
-            scheduleViewID = v.findViewById(R.id.schedulelist_item_id);
-            isRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
-            isRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
+            mScheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
+            mScheduleViewID = v.findViewById(R.id.schedulelist_item_id);
+            mIsRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
+            mIsRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
+            mContainer = v.findViewById(R.id.schedulelist_item_container);
 
-            isRunningImage.setOnClickListener(new View.OnClickListener() {
+            mContainer.setSelected(true);
+            mIsRunningImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DbLab.changeScheduleRunningState(ID);
@@ -99,29 +103,35 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         }
 
         void setScheduleViewTitle(String title) {
-            scheduleViewTitle.setText(title);
+            mScheduleViewTitle.setText(title);
         }
 
         void setScheduleViewID(int scheduleID) {
             ID = scheduleID;
-            scheduleViewID.setText(String.valueOf(scheduleID));
+            mScheduleViewID.setText(String.valueOf(scheduleID));
         }
 
         void setIsRunningView(boolean isRunning) {
 
             if (isRunning) {
                 int[] state = new int[] {android.R.attr.state_checked};
-                isRunningImage.setImageState(state, false);
+                mIsRunningImage.setImageState(state, false);
 
-                isRunningText.setText(R.string.running);
+                mIsRunningText.setText(R.string.running);
 
             } else {
                 int[] state = new int[] {};
-                isRunningImage.setImageState(state, false);
+                mIsRunningImage.setImageState(state, false);
 
-                isRunningText.setText(R.string.not_running);
+                mIsRunningText.setText(R.string.not_running);
             }
         }
+
+
+
+//!        public void setDragDropState(boolean isDraging) {
+//            mContainer.setSelected(isDraging);
+//        }
     }
 
     private void refreshDataSet() {

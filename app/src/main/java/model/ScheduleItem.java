@@ -5,10 +5,11 @@ public final class ScheduleItem {
     private String mTitle;
     private int mID;
     private boolean mIsRunning;
+    public static final int NO_ID = -1;
 
     // constructor
     public ScheduleItem() {
-        mID = -1;
+        mID = NO_ID;
     }
 
     public boolean isRunning() {
