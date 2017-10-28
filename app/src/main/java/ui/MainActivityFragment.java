@@ -1,7 +1,6 @@
 package ui;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -85,9 +84,13 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                 super.onSelectedChanged(viewHolder, actionState);
 
                 // TODO: 26.10.2017 falls down
-                Drawable drawable = viewHolder.itemView.getBackground();
-                int[] state = new int[] {android.R.attr.state_selected};
-                drawable.setState(state);
+                // should do it through these variables
+                //  protected RecyclerView mRecyclerViewScheduleList;
+                // protected ScheduleListAdapter mScheduleListAdapter;
+
+//                Drawable drawable = viewHolder.itemView.getBackground();
+//                int[] state = new int[] {android.R.attr.state_selected};
+//                drawable.setState(state);
 
 //                //drawable.setState()
 //
