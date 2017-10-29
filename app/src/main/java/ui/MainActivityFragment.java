@@ -9,6 +9,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.zubrid.scheduler.R;
 
@@ -43,7 +44,25 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
 
         setItemTouchHelper();
 
+        figureTestButton(rootView);
+
         return rootView;
+    }
+
+    //! test
+    private void figureTestButton(View rootView) {
+
+        Button buttonTest = rootView.findViewById(R.id.test_button);
+
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
     }
 
     private void setItemTouchHelper() {
@@ -87,6 +106,7 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                 // should do it through these variables
                 //  protected RecyclerView mRecyclerViewScheduleList;
                 // protected ScheduleListAdapter mScheduleListAdapter;
+
 
 //                Drawable drawable = viewHolder.itemView.getBackground();
 //                int[] state = new int[] {android.R.attr.state_selected};

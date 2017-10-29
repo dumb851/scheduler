@@ -1,7 +1,6 @@
 package ui;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +68,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         private final TextView mScheduleViewID;
         private final ImageView mIsRunningImage;
         private final TextView mIsRunningText;
-        private final ConstraintLayout mContainer;
+        //!private final ConstraintLayout mContainer;
 
         private int ID;
 
@@ -91,9 +90,14 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             mScheduleViewID = v.findViewById(R.id.schedulelist_item_id);
             mIsRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
             mIsRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
-            mContainer = v.findViewById(R.id.schedulelist_item_container);
 
-            mContainer.setSelected(true);
+//!           Drawable drawable = v.getBackground();
+//            int[] state = new int[] {android.R.attr.state_selected};
+//            drawable.setState(state);
+
+//!            mContainer = v.findViewById(R.id.schedulelist_item_container);
+//            mContainer.setSelected(true);
+
             mIsRunningImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
