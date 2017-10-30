@@ -55,6 +55,13 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         holder.setScheduleViewID(scheduleItem.getID());
 
         holder.setIsRunningView(scheduleItem.isRunning());
+
+        //! test
+        // TODO: 30.10.2017
+        if (position ==1) {
+            //holder.itemView.setSelected(true);
+        }
+
     }
 
     @Override

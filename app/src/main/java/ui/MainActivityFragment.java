@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -108,19 +109,14 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                 // protected ScheduleListAdapter mScheduleListAdapter;
 
 
-//                Drawable drawable = viewHolder.itemView.getBackground();
-//                int[] state = new int[] {android.R.attr.state_selected};
-//                drawable.setState(state);
-
-//                //drawable.setState()
-//
-//                if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-//                    viewHolder.itemView.setSelected(true);
-//                    Toast.makeText(getActivity(), "ACTION_STATE_DRAG", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    viewHolder.itemView.setSelected(false);
-//                    Toast.makeText(getActivity(), "NOT_ACTION_STATE_DRAG: " + actionState, Toast.LENGTH_SHORT).show();
-//                }
+                //! it works!
+                if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+                    viewHolder.itemView.setSelected(true);
+                    Toast.makeText(getActivity(), "ACTION_STATE_DRAG", Toast.LENGTH_SHORT).show();
+                } else {
+                    //viewHolder.itemView.setSelected(false);
+                    Toast.makeText(getActivity(), "NOT_ACTION_STATE_DRAG: " + actionState, Toast.LENGTH_SHORT).show();
+                }
 
             }
         };
