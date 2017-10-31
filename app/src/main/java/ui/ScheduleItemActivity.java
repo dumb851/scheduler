@@ -156,7 +156,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         showExactTimePicker(pos);
     }
 
-    //!    @Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == EXACT_TIME_PICKER_REQUEST) {

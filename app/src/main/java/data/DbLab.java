@@ -201,8 +201,6 @@ final public class DbLab {
                     values
             );
         }
-
-//!        notifyScheduleItemListChanged();
     }
 
     public ArrayList<TimePoint> getTimePointList(int scheduleItemID) {

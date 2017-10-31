@@ -9,7 +9,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
@@ -45,25 +44,7 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
 
         setItemTouchHelper();
 
-        figureTestButton(rootView);
-
         return rootView;
-    }
-
-    //! test
-    private void figureTestButton(View rootView) {
-
-        Button buttonTest = rootView.findViewById(R.id.test_button);
-
-        buttonTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-            }
-        });
-
     }
 
     private void setItemTouchHelper() {
@@ -75,14 +56,12 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                 return makeFlag(ItemTouchHelper.ACTION_STATE_DRAG,
                         ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.START | ItemTouchHelper.END);
 
-                //!return 0;
             }
 
             @Override
             public boolean onMove(RecyclerView recyclerView,
                                   RecyclerView.ViewHolder viewHolder,
                                   RecyclerView.ViewHolder target) {
-                //!return false;
 
                 Collections.swap(mScheduleListAdapter.getDataSet(),
                         viewHolder.getAdapterPosition(),
@@ -103,13 +82,8 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
             public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
                 super.onSelectedChanged(viewHolder, actionState);
 
-                // TODO: 26.10.2017 falls down
-                // should do it through these variables
-                //  protected RecyclerView mRecyclerViewScheduleList;
-                // protected ScheduleListAdapter mScheduleListAdapter;
-
-
-                //! it works!
+                // TODO: 26.10.2017 it works!
+                // should do it through this variable - mScheduleListAdapter
                 if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
                     viewHolder.itemView.setSelected(true);
                     Toast.makeText(getActivity(), "ACTION_STATE_DRAG", Toast.LENGTH_SHORT).show();

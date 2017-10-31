@@ -55,13 +55,6 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         holder.setScheduleViewID(scheduleItem.getID());
 
         holder.setIsRunningView(scheduleItem.isRunning());
-
-        //! test
-        // TODO: 30.10.2017
-        if (position ==1) {
-            //holder.itemView.setSelected(true);
-        }
-
     }
 
     @Override
@@ -75,7 +68,6 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         private final TextView mScheduleViewID;
         private final ImageView mIsRunningImage;
         private final TextView mIsRunningText;
-        //!private final ConstraintLayout mContainer;
 
         private int ID;
 
@@ -97,13 +89,6 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             mScheduleViewID = v.findViewById(R.id.schedulelist_item_id);
             mIsRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
             mIsRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
-
-//!           Drawable drawable = v.getBackground();
-//            int[] state = new int[] {android.R.attr.state_selected};
-//            drawable.setState(state);
-
-//!            mContainer = v.findViewById(R.id.schedulelist_item_container);
-//            mContainer.setSelected(true);
 
             mIsRunningImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,11 +123,6 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             }
         }
 
-
-
-//!        public void setDragDropState(boolean isDraging) {
-//            mContainer.setSelected(isDraging);
-//        }
     }
 
     private void refreshDataSet() {
