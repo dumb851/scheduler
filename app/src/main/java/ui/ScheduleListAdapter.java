@@ -97,6 +97,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             mIsRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
             mIsRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
 
+            //TODO show and fill schedulelist_item_tv_sort_order with sortOrder column
             mIsRunningImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
