@@ -24,9 +24,15 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     private ArrayList<ScheduleItem> mDataSet;
     private Context mContext;
     private static ItemClickListener sItemClickListener;
+    private static ArrayList<RecyclerView.ViewHolder> sSelectedItems;
+
+    static{
+        sSelectedItems = new ArrayList<>();
+    }
 
     // Constructor
     public ScheduleListAdapter(Context context) {
+
         mContext = context;
         refreshDataSet();
     }
@@ -75,8 +81,9 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         ViewHolder(View v) {
             super(v);
 
+            View containerView = v.findViewById(R.id.schedulelist_item_container);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
+            containerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (sItemClickListener != null) {
@@ -121,6 +128,19 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
                 mIsRunningText.setText(R.string.not_running);
             }
+        }
+
+    }
+
+    void selectItem(RecyclerView.ViewHolder holder) {
+        holder.itemView.setSelected(true);
+        sSelectedItems.add(holder);
+    }
+
+    void unselectItems() {
+
+        for (RecyclerView.ViewHolder holder : sSelectedItems) {
+            holder.itemView.setSelected(false);
         }
 
     }

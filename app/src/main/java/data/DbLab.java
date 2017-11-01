@@ -225,7 +225,7 @@ final public class DbLab {
 
     private ArrayList<TimePoint> getTimePointList(String whereClause, String[] whereArgs) {
 
-        //return addDemoTimePoint();
+        //!return addDemoTimePoint();
 
         ArrayList<TimePoint> itemArrayList = new ArrayList<>();
 

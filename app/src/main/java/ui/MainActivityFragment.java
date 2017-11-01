@@ -9,7 +9,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -82,14 +81,11 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
             public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
                 super.onSelectedChanged(viewHolder, actionState);
 
-                // TODO: 26.10.2017 it works!
-                // should do it through this variable - mScheduleListAdapter
                 if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-                    viewHolder.itemView.setSelected(true);
-                    Toast.makeText(getActivity(), "ACTION_STATE_DRAG", Toast.LENGTH_SHORT).show();
+                    mScheduleListAdapter.selectItem(viewHolder);
                 } else {
-                    //viewHolder.itemView.setSelected(false);
-                    Toast.makeText(getActivity(), "NOT_ACTION_STATE_DRAG: " + actionState, Toast.LENGTH_SHORT).show();
+
+                    mScheduleListAdapter.unselectItems();
                 }
 
             }
