@@ -10,7 +10,7 @@ import data.DbContract.*;
 final class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "scheduler.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 1;
 
     // Constructor
     DbHelper(Context context) {

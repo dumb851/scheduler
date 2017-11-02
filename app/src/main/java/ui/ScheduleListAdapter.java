@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -17,23 +18,27 @@ import model.ScheduleItem;
 
 
 final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
-    implements DbLab.ScheduleItemListListener{
+        implements DbLab.ScheduleItemListListener {
 
     public static final String TAG = ScheduleListAdapter.class.getSimpleName();
 
     private ArrayList<ScheduleItem> mDataSet;
     private Context mContext;
     private static ItemClickListener sItemClickListener;
-    private static ArrayList<RecyclerView.ViewHolder> sSelectedItems;
+    private static RecyclerView.ViewHolder sSelectedItem;
+    private static int sSelectedItemPos;
+    private DbLab mDbLab;
 
-    static{
-        sSelectedItems = new ArrayList<>();
+    static {
+        sSelectedItem = null;
+        sSelectedItemPos = -1;
     }
 
     // Constructor
     public ScheduleListAdapter(Context context) {
 
         mContext = context;
+        mDbLab = DbLab.getLab(mContext);
         refreshDataSet();
     }
 
@@ -120,13 +125,13 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         void setIsRunningView(boolean isRunning) {
 
             if (isRunning) {
-                int[] state = new int[] {android.R.attr.state_checked};
+                int[] state = new int[]{android.R.attr.state_checked};
                 mIvIsRunning.setImageState(state, false);
 
                 mTvIsRunning.setText(R.string.running);
 
             } else {
-                int[] state = new int[] {};
+                int[] state = new int[]{};
                 mIvIsRunning.setImageState(state, false);
 
                 mTvIsRunning.setText(R.string.not_running);
@@ -139,20 +144,61 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     }
 
     void selectItem(RecyclerView.ViewHolder holder) {
+
         holder.itemView.setSelected(true);
-        sSelectedItems.add(holder);
+
+        sSelectedItem = holder;
+        sSelectedItemPos = holder.getLayoutPosition();
+
     }
 
     void unselectItems() {
 
-        for (RecyclerView.ViewHolder holder : sSelectedItems) {
-            holder.itemView.setSelected(false);
+        if (sSelectedItem != null) {
+
+            sSelectedItem.itemView.setSelected(false);
+            reorderScheduleItem(sSelectedItem);
+
         }
+
+        sSelectedItem = null;
+        sSelectedItemPos = -1;
+
+    }
+
+    private void reorderScheduleItem(RecyclerView.ViewHolder holder) {
+
+        // TODO here; works but wrong
+
+        int pos = holder.getLayoutPosition();
+
+        if (pos == sSelectedItemPos) {
+            Toast.makeText(mContext, "nothing: " + pos, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        ScheduleItem currentItem = mDataSet.get(sSelectedItemPos);
+
+        if (pos == 0) {
+
+            ScheduleItem nextItem = mDataSet.get(pos + 1);
+
+            long newSortOrder = nextItem.getSortOrder() / 2;
+
+            currentItem.setSortOrder(newSortOrder);
+            mDbLab.saveSchedule(currentItem);
+
+        } else {
+
+        }
+
+        Toast.makeText(mContext, "new pos: " + pos, Toast.LENGTH_SHORT).show();
 
     }
 
     private void refreshDataSet() {
-        mDataSet = DbLab.getLab(mContext).getScheduleItemList();
+        mDataSet = mDbLab.getScheduleItemList();
     }
 
     public ArrayList<ScheduleItem> getDataSet() {
