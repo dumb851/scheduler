@@ -61,6 +61,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         holder.setScheduleViewID(scheduleItem.getID());
 
         holder.setIsRunningView(scheduleItem.isRunning());
+        holder.setSortOrder(scheduleItem.getSortOrder());
     }
 
     @Override
@@ -70,10 +71,11 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView mScheduleViewTitle;
-        private final TextView mScheduleViewID;
-        private final ImageView mIsRunningImage;
-        private final TextView mIsRunningText;
+        private final TextView mTvScheduleTitle;
+        private final TextView mTvScheduleID;
+        private final ImageView mIvIsRunning;
+        private final TextView mTvIsRunning;
+        private final TextView mTvSortOrder;
 
         private int ID;
 
@@ -92,13 +94,13 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
                 }
             });
 
-            mScheduleViewTitle = v.findViewById(R.id.schedulelist_item_title);
-            mScheduleViewID = v.findViewById(R.id.schedulelist_item_id);
-            mIsRunningImage = v.findViewById(R.id.schedulelist_item_iv_running);
-            mIsRunningText = v.findViewById(R.id.schedulelist_item_tv_running);
+            mTvScheduleTitle = v.findViewById(R.id.schedulelist_item_title);
+            mTvScheduleID = v.findViewById(R.id.schedulelist_item_id);
+            mIvIsRunning = v.findViewById(R.id.schedulelist_item_iv_running);
+            mTvIsRunning = v.findViewById(R.id.schedulelist_item_tv_running);
+            mTvSortOrder = v.findViewById(R.id.schedulelist_item_tv_sort_order);
 
-            //TODO show and fill schedulelist_item_tv_sort_order with sortOrder column
-            mIsRunningImage.setOnClickListener(new View.OnClickListener() {
+            mIvIsRunning.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DbLab.changeScheduleRunningState(ID);
@@ -107,30 +109,33 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         }
 
         void setScheduleViewTitle(String title) {
-            mScheduleViewTitle.setText(title);
+            mTvScheduleTitle.setText(title);
         }
 
         void setScheduleViewID(int scheduleID) {
             ID = scheduleID;
-            mScheduleViewID.setText(String.valueOf(scheduleID));
+            mTvScheduleID.setText(String.valueOf(scheduleID));
         }
 
         void setIsRunningView(boolean isRunning) {
 
             if (isRunning) {
                 int[] state = new int[] {android.R.attr.state_checked};
-                mIsRunningImage.setImageState(state, false);
+                mIvIsRunning.setImageState(state, false);
 
-                mIsRunningText.setText(R.string.running);
+                mTvIsRunning.setText(R.string.running);
 
             } else {
                 int[] state = new int[] {};
-                mIsRunningImage.setImageState(state, false);
+                mIvIsRunning.setImageState(state, false);
 
-                mIsRunningText.setText(R.string.not_running);
+                mTvIsRunning.setText(R.string.not_running);
             }
         }
 
+        void setSortOrder(long sortOrder) {
+            mTvSortOrder.setText(String.valueOf(sortOrder));
+        }
     }
 
     void selectItem(RecyclerView.ViewHolder holder) {
