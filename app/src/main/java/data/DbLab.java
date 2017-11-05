@@ -15,7 +15,6 @@ final public class DbLab {
 
     private static DbLab sDbLab;
     private SQLiteDatabase mDataBase;
-    private static int sSortOrder;
     private static ArrayList<ScheduleItemListListener> sScheduleItemListListeners =
             new ArrayList<>();
     private static ArrayList<TimePointListListener> sTimePointListListeners =
