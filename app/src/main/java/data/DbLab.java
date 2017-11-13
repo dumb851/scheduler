@@ -128,7 +128,7 @@ final public class DbLab {
                     )
             );
 
-            long sortOrder = cursor.getInt(
+            float sortOrder = cursor.getFloat(
                     cursor.getColumnIndex(
                             DbContract.ScheduleListEntry.COLUMN_SORT_ORDER
                     )

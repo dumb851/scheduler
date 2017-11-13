@@ -10,7 +10,7 @@ import data.DbContract.*;
 final class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "scheduler.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     // Constructor
     DbHelper(Context context) {
@@ -24,7 +24,7 @@ final class DbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_SCHEDULE_LIST_TABLE = "CREATE TABLE " + ScheduleListEntry.TABLE_NAME + " (" +
                 ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
                 ScheduleListEntry.COLUMN_TITLE + " TEXT" + ", " +
-                ScheduleListEntry.COLUMN_SORT_ORDER + " INTEGER NOT NULL" + ", "+
+                ScheduleListEntry.COLUMN_SORT_ORDER + " REAL NOT NULL" + ", "+
                 ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL" +
                 "); ";
 
@@ -50,11 +50,13 @@ final class DbHelper extends SQLiteOpenHelper {
         // In a production app, this method might be modified to ALTER the table
         // instead of dropping it, so that existing data is not deleted.
 
-        // temporarily
+        //! temporarily
+        //!TODO should recalculate COLUMN_SORT_ORDER
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ScheduleListEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TimePointListEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
 
-        //!TODO should recalculate COLUMN_SORT_ORDER
+
     }
 
 }

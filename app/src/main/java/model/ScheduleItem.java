@@ -5,8 +5,8 @@ public final class ScheduleItem {
     private String mTitle;
     private int mID;
     private boolean mIsRunning;
-    private long mSortOrder;
-    private static long sSortOrder;
+    private float mSortOrder;
+    private static float sSortOrder;
 
     public static final int NO_ID = -1;
 
@@ -18,14 +18,14 @@ public final class ScheduleItem {
     public ScheduleItem() {
         mID = NO_ID;
 
-        mSortOrder = sSortOrder + 100;
+        mSortOrder = sSortOrder + 100f;
     }
 
-    public long getSortOrder() {
+    public float getSortOrder() {
         return mSortOrder;
     }
 
-    public void setSortOrder(long sortOrder) {
+    public void setSortOrder(float sortOrder) {
         mSortOrder = sortOrder;
 
         if (sortOrder > sSortOrder) {

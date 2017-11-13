@@ -137,7 +137,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             }
         }
 
-        void setSortOrder(long sortOrder) {
+        void setSortOrder(float sortOrder) {
             mTvSortOrder.setText(String.valueOf(sortOrder));
         }
     }
@@ -175,26 +175,27 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
         ScheduleItem currentItem = mDataSet.get(pos);
 
-        long newSortOrder;
+        // TODO: 13.11.2017 long -> float
+        float newSortOrder;
 
         if (pos == 0) {
 
             ScheduleItem nextItem = mDataSet.get(pos + 1);
 
-            newSortOrder = nextItem.getSortOrder() / 2;
+            newSortOrder = nextItem.getSortOrder() / 2f;
 
         } else if (pos == mDataSet.size() - 1) {
 
             ScheduleItem prevItem = mDataSet.get(pos - 1);
 
-            newSortOrder = prevItem.getSortOrder() + 100;
+            newSortOrder = prevItem.getSortOrder() + 100f;
 
         } else {
 
             ScheduleItem nextItem = mDataSet.get(pos + 1);
             ScheduleItem prevItem = mDataSet.get(pos - 1);
 
-            newSortOrder = (prevItem.getSortOrder() + nextItem.getSortOrder()) / 2;
+            newSortOrder = (prevItem.getSortOrder() + nextItem.getSortOrder()) / 2f;
         }
 
         currentItem.setSortOrder(newSortOrder);
