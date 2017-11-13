@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zubrid.scheduler.R;
 
@@ -168,32 +167,38 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
     private void reorderScheduleItem(RecyclerView.ViewHolder holder) {
 
-        // TODO here; works but wrong
-
         int pos = holder.getLayoutPosition();
 
         if (pos == sSelectedItemPos) {
-            Toast.makeText(mContext, "nothing: " + pos, Toast.LENGTH_SHORT).show();
             return;
         }
 
+        ScheduleItem currentItem = mDataSet.get(pos);
 
-        ScheduleItem currentItem = mDataSet.get(sSelectedItemPos);
+        long newSortOrder;
 
         if (pos == 0) {
 
             ScheduleItem nextItem = mDataSet.get(pos + 1);
 
-            long newSortOrder = nextItem.getSortOrder() / 2;
+            newSortOrder = nextItem.getSortOrder() / 2;
 
-            currentItem.setSortOrder(newSortOrder);
-            mDbLab.saveSchedule(currentItem);
+        } else if (pos == mDataSet.size() - 1) {
+
+            ScheduleItem prevItem = mDataSet.get(pos - 1);
+
+            newSortOrder = prevItem.getSortOrder() + 100;
 
         } else {
 
+            ScheduleItem nextItem = mDataSet.get(pos + 1);
+            ScheduleItem prevItem = mDataSet.get(pos - 1);
+
+            newSortOrder = (prevItem.getSortOrder() + nextItem.getSortOrder()) / 2;
         }
 
-        Toast.makeText(mContext, "new pos: " + pos, Toast.LENGTH_SHORT).show();
+        currentItem.setSortOrder(newSortOrder);
+        mDbLab.saveSchedule(currentItem);
 
     }
 
