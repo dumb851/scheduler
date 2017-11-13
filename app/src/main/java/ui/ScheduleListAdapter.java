@@ -175,7 +175,6 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
         ScheduleItem currentItem = mDataSet.get(pos);
 
-        // TODO: 13.11.2017 long -> float
         float newSortOrder;
 
         if (pos == 0) {
