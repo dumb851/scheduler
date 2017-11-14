@@ -17,7 +17,7 @@ import java.util.Collections;
 /**
  * A placeholder fragment containing a simple view.
  */
-final public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener{
+final public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener {
 
     protected RecyclerView mRecyclerViewScheduleList;
     protected ScheduleListAdapter mScheduleListAdapter;
@@ -52,8 +52,12 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
             @Override
             public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
 
-                return makeFlag(ItemTouchHelper.ACTION_STATE_DRAG,
-                        ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.START | ItemTouchHelper.END);
+                return makeMovementFlags(
+                        ItemTouchHelper.DOWN
+                                | ItemTouchHelper.UP
+                                | ItemTouchHelper.START
+                                | ItemTouchHelper.END,
+                        ItemTouchHelper.LEFT);
 
             }
 
@@ -88,6 +92,16 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                     mScheduleListAdapter.unselectItems();
                 }
 
+            }
+
+            @Override
+            public int convertToAbsoluteDirection(int flags, int layoutDirection) {
+
+                // TODO: 14.11.2017 here
+                //                if (swipeBack) {
+//                }
+
+                return super.convertToAbsoluteDirection(flags, layoutDirection);
             }
         };
 
