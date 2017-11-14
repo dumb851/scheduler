@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.zubrid.scheduler.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import data.DbLab;
 import model.ScheduleItem;
@@ -176,26 +177,35 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         ScheduleItem currentItem = mDataSet.get(pos);
 
         float newSortOrder;
+        float min;
+        float max;
+
+        Random random = new Random();
 
         if (pos == 0) {
 
             ScheduleItem nextItem = mDataSet.get(pos + 1);
 
-            newSortOrder = nextItem.getSortOrder() / 2f;
+            min = 0f;
+            max = nextItem.getSortOrder();
 
         } else if (pos == mDataSet.size() - 1) {
 
             ScheduleItem prevItem = mDataSet.get(pos - 1);
 
-            newSortOrder = prevItem.getSortOrder() + 100f;
+            min = prevItem.getSortOrder();
+            max = min + 100f;
 
         } else {
 
             ScheduleItem nextItem = mDataSet.get(pos + 1);
             ScheduleItem prevItem = mDataSet.get(pos - 1);
 
-            newSortOrder = (prevItem.getSortOrder() + nextItem.getSortOrder()) / 2f;
+            min = prevItem.getSortOrder();
+            max = nextItem.getSortOrder();
         }
+
+        newSortOrder = min + random.nextFloat() * (max - min);
 
         currentItem.setSortOrder(newSortOrder);
         mDbLab.saveSchedule(currentItem);
