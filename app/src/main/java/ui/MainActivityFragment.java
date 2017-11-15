@@ -1,12 +1,15 @@
 package ui;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,12 +22,12 @@ import java.util.Collections;
  */
 final public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener {
 
+    private static final String TAG = MainActivityFragment.class.getSimpleName();
     protected RecyclerView mRecyclerViewScheduleList;
     protected ScheduleListAdapter mScheduleListAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
 
-    public MainActivityFragment() {
-    }
+    private boolean mSwipeBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +88,8 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
             public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
                 super.onSelectedChanged(viewHolder, actionState);
 
+                Log.d(TAG, "onSelectedChanged: ");
+
                 if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
                     mScheduleListAdapter.selectItem(viewHolder);
                 } else {
@@ -97,12 +102,45 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
             @Override
             public int convertToAbsoluteDirection(int flags, int layoutDirection) {
 
-                // TODO: 14.11.2017 here
-                //                if (swipeBack) {
-//                }
+                Log.d(TAG, "convertToAbsoluteDirection: ");
+
+                // TODO: 15.11.2017 here
+                // now, selection works not so good, i think
+                // because of flags for drag, they action like swipe
+                // scenario: drag item, try to select it again
+
+                if (mSwipeBack) {
+                    mSwipeBack = false;
+                    return 0;
+                }
 
                 return super.convertToAbsoluteDirection(flags, layoutDirection);
             }
+
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView,
+                                    RecyclerView.ViewHolder viewHolder,
+                                    float dX, float dY, int actionState,
+                                    boolean isCurrentlyActive) {
+
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+
+                    recyclerView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            mSwipeBack = event.getAction() == MotionEvent.ACTION_CANCEL
+                                    || event.getAction() == MotionEvent.ACTION_UP;
+                            return false;
+                        }
+
+                    });
+
+                }
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+
+
         };
 
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
@@ -110,6 +148,8 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
         touchHelper.attachToRecyclerView(mRecyclerViewScheduleList);
 
     }
+
+
 
     @Override
     public void OnItemClickListener(int id) {
