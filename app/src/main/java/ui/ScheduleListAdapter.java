@@ -141,6 +141,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         void setSortOrder(float sortOrder) {
             mTvSortOrder.setText(String.valueOf(sortOrder));
         }
+
     }
 
     void selectItem(RecyclerView.ViewHolder holder) {
