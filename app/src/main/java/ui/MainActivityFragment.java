@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -101,6 +102,13 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
             @Override
             public int convertToAbsoluteDirection(int flags, int layoutDirection) {
 
+                // TODO: 17.11.2017 selecting works bad, should review
+                // gonna try this
+                // https://www.learn2crack.com/2016/02/custom-swipe-recyclerview.html
+
+                Log.d(TAG, "convertToAbsoluteDirection: ");
+                Log.d(TAG, "convertToAbsoluteDirection: mSwipeBack= " + mSwipeBack);
+
                 int result;
 
                 if (mSwipeBack) {
@@ -118,18 +126,34 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                                     float dX, float dY, int actionState,
                                     boolean isCurrentlyActive) {
 
+                Log.d(TAG, "onChildDraw: actionState = " + actionState);
+
                 if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+
+                    //mSwipeBack = true;
+
+                    //!
 
                     recyclerView.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
 
-                            mSwipeBack = event.getAction() == MotionEvent.ACTION_CANCEL
-                                    || event.getAction() == MotionEvent.ACTION_UP;
+                            Log.d(TAG, "onTouch: getAction() = " + event.getAction());
 
+                            if (mSwipeBack) {
+                                mSwipeBack = false;
+
+                            } else {
+                                mSwipeBack = event.getAction() == MotionEvent.ACTION_CANCEL
+                                        || event.getAction() == MotionEvent.ACTION_UP;
+                            }
+
+                            Log.d(TAG, "onTouch: mSwipeBack set = " + mSwipeBack);
                             return false;
                         }
                     });
+                } else {
+                    mSwipeBack = false;
                 }
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
