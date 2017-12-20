@@ -2,6 +2,7 @@ package ui;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,8 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
     protected RecyclerView.LayoutManager mLayoutManager;
 
     private boolean mSwipeBack;
+
+    private Paint p = new Paint(); //! test block
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,6 +128,38 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                                     RecyclerView.ViewHolder viewHolder,
                                     float dX, float dY, int actionState,
                                     boolean isCurrentlyActive) {
+
+
+                //!test block start
+//                Bitmap icon;
+//                if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE){
+//
+//                    View itemView = viewHolder.itemView;
+//                    float height = (float) itemView.getBottom() - (float) itemView.getTop();
+//                    float width = height / 3;
+//
+//                    if(dX > 0){
+//                        p.setColor(Color.parseColor("#388E3C"));
+//                        RectF background = new RectF((float) itemView.getLeft(), (float) itemView.getTop(), dX,(float) itemView.getBottom());
+//                        c.drawRect(background,p);
+//                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_pause);
+//                        RectF icon_dest = new RectF((float) itemView.getLeft() + width ,(float) itemView.getTop() + width,(float) itemView.getLeft()+ 2*width,(float)itemView.getBottom() - width);
+//                        c.drawBitmap(icon,null,icon_dest,p);
+//                    } else {
+//                        p.setColor(Color.parseColor("#D32F2F"));
+//                        RectF background = new RectF((float) itemView.getRight() + dX, (float) itemView.getTop(),(float) itemView.getRight(), (float) itemView.getBottom());
+//                        c.drawRect(background,p);
+//                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_pause);
+//                        RectF icon_dest = new RectF((float) itemView.getRight() - 2*width ,(float) itemView.getTop() + width,(float) itemView.getRight() - width,(float)itemView.getBottom() - width);
+//                        c.drawBitmap(icon,null,icon_dest,p);
+//                    }
+//                }
+
+                //test block finish
+
+
+
+
 
                 Log.d(TAG, "onChildDraw: actionState = " + actionState);
 
