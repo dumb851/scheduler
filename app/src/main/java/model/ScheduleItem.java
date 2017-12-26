@@ -10,6 +10,11 @@ public final class ScheduleItem {
 
     public static final int NO_ID = -1;
 
+    public enum scheduleType {
+        EXACT_TIME,
+        NOT_EXACT_TIME
+    }
+
     static {
         sSortOrder = 0;
     }
