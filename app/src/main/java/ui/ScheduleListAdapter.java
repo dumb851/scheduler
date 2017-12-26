@@ -222,7 +222,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     }
 
     @Override
-    public void scheduleItemListChanged() {
+    public void onScheduleItemListChanged() {
         refreshDataSet();
         notifyDataSetChanged();
     }
