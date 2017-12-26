@@ -26,6 +26,7 @@ final class DbHelper extends SQLiteOpenHelper {
                 ScheduleListEntry.COLUMN_TITLE + " TEXT" + ", " +
                 ScheduleListEntry.COLUMN_SORT_ORDER + " REAL NOT NULL" + ", "+
                 ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL" +
+                ScheduleListEntry.COLUMN_SCHEDULE_TYPE + " TEXT NOT NULL" +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SCHEDULE_LIST_TABLE);

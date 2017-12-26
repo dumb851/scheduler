@@ -37,11 +37,16 @@ final public class DbLab {
 
     // ScheduleItem
 
+    // TODO: 26.12.2017 work with COLUMN_SCHEDULE_TYPE
+
     public int saveSchedule(ScheduleItem scheduleItem) {
 
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduleItem.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, scheduleItem.getSortOrder());
+        values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TYPE,
+                scheduleItem.getScheduleType().toString()
+        );
 
         int isRunningInt = 0;
         if (scheduleItem.isRunning()) {
@@ -141,6 +146,7 @@ final public class DbLab {
             }
 
             scheduleItem.setSortOrder(sortOrder);
+            scheduleItem.setScheduleType(ScheduleItem.ScheduleType.EXACT_TIME); //!
 
             itemArrayList.add(scheduleItem);
         }

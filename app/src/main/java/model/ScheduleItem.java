@@ -7,10 +7,11 @@ public final class ScheduleItem {
     private boolean mIsRunning;
     private float mSortOrder;
     private static float sSortOrder;
+    private ScheduleType scheduleType;
 
     public static final int NO_ID = -1;
 
-    public enum scheduleType {
+    public enum ScheduleType {
         EXACT_TIME,
         NOT_EXACT_TIME
     }
@@ -62,4 +63,11 @@ public final class ScheduleItem {
         mID = ID;
     }
 
+    public ScheduleType getScheduleType() {
+        return scheduleType;
+    }
+
+    public void setScheduleType(ScheduleType scheduleType) {
+        this.scheduleType = scheduleType;
+    }
 }
