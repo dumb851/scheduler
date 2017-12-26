@@ -167,7 +167,7 @@ final public class DbLab {
     //// interface ScheduleItemListListener
     public interface ScheduleItemListListener{
 
-        void scheduleItemListChanged();
+        void onScheduleItemListChanged();
 
     }
 
@@ -178,7 +178,7 @@ final public class DbLab {
     private void notifyScheduleItemListChanged() {
 
         for (ScheduleItemListListener listener : sScheduleItemListListeners) {
-            listener.scheduleItemListChanged();
+            listener.onScheduleItemListChanged();
         }
     }
 
