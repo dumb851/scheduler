@@ -121,6 +121,13 @@ final public class DbLab {
                     )
             );
 
+            String scheduleTypeString = cursor.getString(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TYPE
+                    )
+            );
+
+
             int ID = cursor.getInt(
                     cursor.getColumnIndex(
                             DbContract.ScheduleListEntry._ID
@@ -139,15 +146,22 @@ final public class DbLab {
                     )
             );
 
+
+
             scheduleItem.setID(ID);
             scheduleItem.setTitle(title);
+
+            if (scheduleTypeString.equals(ScheduleItem.ScheduleType.EXACT_TIME.toString())) {
+                scheduleItem.setScheduleType(ScheduleItem.ScheduleType.EXACT_TIME);
+            } else if (scheduleTypeString.equals(ScheduleItem.ScheduleType.PERIOD_TIME.toString())){
+                scheduleItem.setScheduleType(ScheduleItem.ScheduleType.PERIOD_TIME);
+            }
+
             if (isRunningInt == 1) {
                 scheduleItem.setIsRunning(true);
             }
 
             scheduleItem.setSortOrder(sortOrder);
-            scheduleItem.setScheduleType(ScheduleItem.ScheduleType.EXACT_TIME); //!
-
             itemArrayList.add(scheduleItem);
         }
 

@@ -10,5 +10,7 @@
     <string name="hint_name">name</string>
     <string name="add_point">add point</string>
     <string name="ok">OK</string>
+    <string name="period">period</string>
+    <string name="exact_time">exact time</string>
 
 </resources>

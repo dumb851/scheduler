@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.zubrid.scheduler.R;
@@ -32,6 +33,8 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
     private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
     private TimePointListAdapter mListAdapter;
+    private RadioButton mRbPeriod;
+    private RadioButton mRbExactTime;
 
     public static Intent getIntent(Context context, int scheduleID) {
 
@@ -68,17 +71,26 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
 
         mScheduleItem = getScheduleItem();
 
-        mTvTitle = (TextView) findViewById(R.id.schedule_item_title);
-        mBtnAddPoint = (Button) findViewById(R.id.schedule_item_btn_add_point);
-        mRvTimePointList = (RecyclerView) findViewById(R.id.schedule_item_rv_time_point_list);
+        mTvTitle = findViewById(R.id.schedule_item_title);
+        mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
+        mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
 
         mTimePointArrayList = mDbLab.getTimePointList(mScheduleItem.getID());
+
+        mRbPeriod = findViewById(R.id.schedule_item_r_btn_period);
+        mRbExactTime = findViewById(R.id.schedule_item_r_btn_exact_time);
 
     }
 
     private void fillUI() {
 
         mTvTitle.setText(mScheduleItem.getTitle());
+
+        if (mScheduleItem.getScheduleType() == ScheduleItem.ScheduleType.EXACT_TIME) {
+            mRbExactTime.setChecked(true);
+        } else {
+            mRbPeriod.setChecked(true);
+        }
 
         mListAdapter = new TimePointListAdapter(mTimePointArrayList);
 
@@ -111,6 +123,15 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
     void OnDoneClick() {
 
         mScheduleItem.setTitle(mTvTitle.getText().toString());
+
+        if (mRbExactTime.isChecked()){
+            mScheduleItem.setScheduleType(ScheduleItem.ScheduleType.EXACT_TIME);
+
+        } else {
+            mScheduleItem.setScheduleType(ScheduleItem.ScheduleType.PERIOD_TIME);
+        }
+
+
         int resultID = mDbLab.saveSchedule(mScheduleItem);
 
         for (TimePoint point : mTimePointArrayList) {

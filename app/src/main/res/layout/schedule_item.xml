@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,12 +23,36 @@
             android:inputType="textAutoComplete|textAutoCorrect"
             />
 
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <RadioButton
+                android:id="@+id/schedule_item_r_btn_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/period"/>
+
+            <RadioButton
+                android:id="@+id/schedule_item_r_btn_exact_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exact_time"/>
+
+
+        </RadioGroup>
+
+
+
         <Button
             android:id="@+id/schedule_item_btn_add_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginEnd="8dp"
+
             android:text="@string/add_point" />
 
         <android.support.v7.widget.RecyclerView
@@ -46,6 +69,8 @@
             android:overScrollMode="never" />
 
     </LinearLayout>
+
+
 
 
 </android.support.v4.widget.NestedScrollView>
