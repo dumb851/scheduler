@@ -22,10 +22,10 @@ final class DbHelper extends SQLiteOpenHelper {
 
         // Create a table to hold ScheduleItem data
         final String SQL_CREATE_SCHEDULE_LIST_TABLE = "CREATE TABLE " + ScheduleListEntry.TABLE_NAME + " (" +
-                ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
-                ScheduleListEntry.COLUMN_TITLE + " TEXT" + ", " +
-                ScheduleListEntry.COLUMN_SORT_ORDER + " REAL NOT NULL" + ", "+
-                ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL" +
+                ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ScheduleListEntry.COLUMN_TITLE + " TEXT, " +
+                ScheduleListEntry.COLUMN_SORT_ORDER + " REAL NOT NULL, " +
+                ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL, " +
                 ScheduleListEntry.COLUMN_SCHEDULE_TYPE + " TEXT NOT NULL" +
                 "); ";
 
@@ -33,10 +33,10 @@ final class DbHelper extends SQLiteOpenHelper {
 
         // Create a table to hold TimePoint data
         final String SQL_CREATE_TIME_POINT_LIST_TABLE = "CREATE TABLE " + TimePointListEntry.TABLE_NAME + " (" +
-                TimePointListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
-                TimePointListEntry.COLUMN_TITLE + " TEXT" + ", " +
-                TimePointListEntry.COLUMN_SCHEDULE_ID + " INTEGER NOT NULL" + ", "+
-                TimePointListEntry.COLUMN_HOUR + " INTEGER NOT NULL" + ", "+
+                TimePointListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TimePointListEntry.COLUMN_TITLE + " TEXT, " +
+                TimePointListEntry.COLUMN_SCHEDULE_ID + " INTEGER NOT NULL, " +
+                TimePointListEntry.COLUMN_HOUR + " INTEGER NOT NULL, " +
                 TimePointListEntry.COLUMN_MINUTE + " INTEGER NOT NULL" +
                 "); ";
 

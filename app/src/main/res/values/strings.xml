@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="delete"></string>
     <string name="action_new_schedule">New</string>
     <string name="running">running</string>
     <string name="not_running">not running</string>

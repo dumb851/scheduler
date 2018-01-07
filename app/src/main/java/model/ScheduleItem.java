@@ -7,13 +7,13 @@ public final class ScheduleItem {
     private boolean mIsRunning;
     private float mSortOrder;
     private static float sSortOrder;
-    private ScheduleType scheduleType;
+    private ScheduleType mScheduleType;
 
     public static final int NO_ID = -1;
 
     public enum ScheduleType {
         EXACT_TIME,
-        NOT_EXACT_TIME
+        PERIOD_TIME
     }
 
     static {
@@ -25,6 +25,7 @@ public final class ScheduleItem {
         mID = NO_ID;
 
         mSortOrder = sSortOrder + 100f;
+        setScheduleType(ScheduleType.PERIOD_TIME);
     }
 
     public float getSortOrder() {
@@ -64,10 +65,10 @@ public final class ScheduleItem {
     }
 
     public ScheduleType getScheduleType() {
-        return scheduleType;
+        return mScheduleType;
     }
 
     public void setScheduleType(ScheduleType scheduleType) {
-        this.scheduleType = scheduleType;
+        mScheduleType = scheduleType;
     }
 }
