@@ -5,7 +5,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
-        applicationId "com.zubrid.scheduler"
+        applicationId 'com.zubrid.scheduletimer'
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
