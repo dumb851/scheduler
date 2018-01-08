@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.zubrid.scheduler.R;
+import com.zubrid.scheduletimer.R;
 
 final public class MainActivity extends AppCompatActivity {
 

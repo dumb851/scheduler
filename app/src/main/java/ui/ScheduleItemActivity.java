@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.zubrid.scheduler.R;
+import com.zubrid.scheduletimer.R;
 
 import java.util.ArrayList;
 

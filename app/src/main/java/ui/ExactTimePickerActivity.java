@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.zubrid.scheduler.R;
+import com.zubrid.scheduletimer.R;
 
 final public class ExactTimePickerActivity extends ActivityDoneCancelActionBar {
 

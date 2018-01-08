@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zubrid.scheduler.R;
+import com.zubrid.scheduletimer.R;
 
 import java.util.Collections;
 

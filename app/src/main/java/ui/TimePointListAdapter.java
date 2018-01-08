@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.zubrid.scheduler.R;
+import com.zubrid.scheduletimer.R;
 
 import java.util.ArrayList;
 
