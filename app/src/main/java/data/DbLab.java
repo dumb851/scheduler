@@ -44,9 +44,6 @@ final public class DbLab {
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduleItem.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, scheduleItem.getSortOrder());
-        values.put(DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TYPE,
-                scheduleItem.getScheduleType().toString()
-        );
 
         int isRunningInt = 0;
         if (scheduleItem.isRunning()) {
@@ -121,13 +118,6 @@ final public class DbLab {
                     )
             );
 
-            String scheduleTypeString = cursor.getString(
-                    cursor.getColumnIndex(
-                            DbContract.ScheduleListEntry.COLUMN_SCHEDULE_TYPE
-                    )
-            );
-
-
             int ID = cursor.getInt(
                     cursor.getColumnIndex(
                             DbContract.ScheduleListEntry._ID
@@ -146,16 +136,8 @@ final public class DbLab {
                     )
             );
 
-
-
             scheduleItem.setID(ID);
             scheduleItem.setTitle(title);
-
-            if (scheduleTypeString.equals(ScheduleItem.ScheduleType.EXACT_TIME.toString())) {
-                scheduleItem.setScheduleType(ScheduleItem.ScheduleType.EXACT_TIME);
-            } else if (scheduleTypeString.equals(ScheduleItem.ScheduleType.PERIOD_TIME.toString())){
-                scheduleItem.setScheduleType(ScheduleItem.ScheduleType.PERIOD_TIME);
-            }
 
             if (isRunningInt == 1) {
                 scheduleItem.setIsRunning(true);

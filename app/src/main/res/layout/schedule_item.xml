@@ -29,17 +29,6 @@
             android:orientation="horizontal"
             >
 
-            <RadioButton
-                android:id="@+id/schedule_item_r_btn_period"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/period"/>
-
-            <RadioButton
-                android:id="@+id/schedule_item_r_btn_exact_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/exact_time"/>
 
 
         </RadioGroup>
