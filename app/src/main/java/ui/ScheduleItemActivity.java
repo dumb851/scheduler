@@ -69,7 +69,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_schedule_item, menu);
         return true;
     }
@@ -80,8 +80,11 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(R.string.timer);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            actionBar.setTitle(R.string.timer);
+        }
     }
 
     private void initVariables() {
@@ -130,7 +133,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     }
 
     //! save
-    void OnDoneClick() {
+    void saveSchedule() {
 
         mScheduleItem.setTitle(mTvTitle.getText().toString());
 
