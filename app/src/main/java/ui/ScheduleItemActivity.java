@@ -1,15 +1,20 @@
 package ui;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.zubrid.scheduletimer.R;
 
@@ -19,7 +24,7 @@ import data.DbLab;
 import model.ScheduleItem;
 import model.TimePoint;
 
-public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
+public final class ScheduleItemActivity extends AppCompatActivity
         implements TimePointListAdapter.ItemClickListener {
 
     private DbLab mDbLab;
@@ -45,9 +50,9 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setActionBar();
-
         setContentView(R.layout.schedule_item);
+
+        setToolbar();
 
         initVariables();
 
@@ -60,6 +65,23 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_schedule_item, menu);
+        return true;
+    }
+
+    private void setToolbar() {
+        Toolbar toolbar = new Toolbar(this);
+        setActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.timer);
     }
 
     private void initVariables() {
@@ -107,7 +129,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
         }
     }
 
-    @Override
+    //! save
     void OnDoneClick() {
 
         mScheduleItem.setTitle(mTvTitle.getText().toString());
@@ -123,7 +145,7 @@ public final class ScheduleItemActivity extends ActivityDoneCancelActionBar
 
     }
 
-    @Override
+    //! cancel
     void OnCancelClick() {
         finish();
     }
