@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -71,6 +72,32 @@ public final class ScheduleItemActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_schedule_item, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            case R.id.action_schedule_item_done:
+                saveSchedule();
+                break;
+
+            case R.id.action_schedule_item_delete:
+                break;
+
+            case R.id.action_schedule_item_duplicate:
+                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
         return true;
     }
 
