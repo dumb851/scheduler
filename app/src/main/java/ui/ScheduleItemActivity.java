@@ -89,6 +89,8 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 break;
 
             case R.id.action_schedule_item_delete:
+
+                // TODO: 14.01.2018 here task #6
                 break;
 
             case R.id.action_schedule_item_duplicate:
