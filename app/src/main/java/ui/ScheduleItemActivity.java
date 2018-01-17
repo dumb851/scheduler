@@ -90,7 +90,8 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
             case R.id.action_schedule_item_delete:
 
-                // TODO: 14.01.2018 here task #6
+                deleteSchedule();
+                finish();
                 break;
 
             case R.id.action_schedule_item_duplicate:
@@ -161,8 +162,12 @@ public final class ScheduleItemActivity extends AppCompatActivity
         }
     }
 
-    //! save
-    void saveSchedule() {
+    private void deleteSchedule() {
+
+        mDbLab.deleteSchedule(mScheduleItem);
+    }
+
+    private void saveSchedule() {
 
         mScheduleItem.setTitle(mTvTitle.getText().toString());
 
@@ -175,11 +180,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         finish();
 
-    }
-
-    //! cancel
-    void OnCancelClick() {
-        finish();
     }
 
     private void showExactTimePicker(int pos) {

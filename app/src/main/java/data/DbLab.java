@@ -37,8 +37,6 @@ final public class DbLab {
 
     // ScheduleItem
 
-    // TODO: 26.12.2017 work with COLUMN_SCHEDULE_TYPE
-
     public int saveSchedule(ScheduleItem scheduleItem) {
 
         ContentValues values = new ContentValues();
@@ -78,6 +76,20 @@ final public class DbLab {
         notifyScheduleItemListChanged();
 
         return resultID;
+    }
+
+    public void deleteSchedule(ScheduleItem scheduleItem) {
+
+        String whereClause = DbContract.ScheduleListEntry._ID + "=?";
+        String[] whereArgs = {String.valueOf(scheduleItem.getID())};
+
+        int result = mDataBase.delete(DbContract.ScheduleListEntry.TABLE_NAME,
+                whereClause,
+                whereArgs
+        );
+
+        notifyScheduleItemListChanged();
+
     }
 
     public ArrayList<ScheduleItem> getScheduleItemList() {
@@ -161,7 +173,7 @@ final public class DbLab {
     }
 
     //// interface ScheduleItemListListener
-    public interface ScheduleItemListListener{
+    public interface ScheduleItemListListener {
 
         void onScheduleItemListChanged();
 
@@ -286,7 +298,7 @@ final public class DbLab {
     }
 
     //// interface TimePointListListener
-    public interface TimePointListListener{
+    public interface TimePointListListener {
 
         void timePointListChanged();
 
