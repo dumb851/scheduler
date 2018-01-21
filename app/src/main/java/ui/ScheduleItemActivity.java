@@ -51,7 +51,8 @@ public final class ScheduleItemActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.schedule_item);
+        //!setContentView(R.layout.schedule_item);
+        setContentView(R.layout.schedule_item_n);
 
         setToolbar();
 
@@ -145,9 +146,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
         mRvTimePointList.setAdapter(mListAdapter);
         mRvTimePointList.setNestedScrollingEnabled(false);
 
-        if (!mTvTitle.getText().toString().isEmpty()) {
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        }
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 
