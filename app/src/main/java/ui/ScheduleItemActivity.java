@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -38,6 +39,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
     private TimePointListAdapter mListAdapter;
+    private CardView mCvTimerName;
 
     public static Intent getIntent(Context context, int scheduleID) {
 
@@ -67,6 +69,17 @@ public final class ScheduleItemActivity extends AppCompatActivity
             }
         });
 
+        mCvTimerName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //todo here
+                TimerNameDialog nameDialog = new TimerNameDialog();
+                nameDialog.show(getSupportFragmentManager(), "timerName");
+
+
+            }
+        });
     }
 
     @Override
@@ -127,7 +140,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
         mTvTitle = findViewById(R.id.schedule_item_title);
         mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
         mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
-
+        mCvTimerName = findViewById(R.id.schedule_item_cv_title);
         mTimePointArrayList = mDbLab.getTimePointList(mScheduleItem.getID());
 
     }
