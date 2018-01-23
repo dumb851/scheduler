@@ -1,5 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dialog_margin">8dp</dimen>
     <dimen name="margin_medium">6dp</dimen>
     <dimen name="corner_radius">2dp</dimen>
     <dimen name="corner_width">1dp</dimen>

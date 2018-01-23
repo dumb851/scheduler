@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.zubrid.scheduletimer.R;
@@ -27,7 +28,12 @@ import model.ScheduleItem;
 import model.TimePoint;
 
 public final class ScheduleItemActivity extends AppCompatActivity
-        implements TimePointListAdapter.ItemClickListener {
+        implements TimePointListAdapter.ItemClickListener,
+        TimerNameDialog.TimerNameDialogListener {
+
+    private static int EXACT_TIME_PICKER_REQUEST = 27;
+    private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
+    private static int NAME_REQUEST_CODE = 44;
 
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
@@ -36,10 +42,9 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private RecyclerView mRvTimePointList;
     private ArrayList<TimePoint> mTimePointArrayList;
     private int mClickedTimePointPos;
-    private static int EXACT_TIME_PICKER_REQUEST = 27;
-    private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
+
 
     public static Intent getIntent(Context context, int scheduleID) {
 
@@ -76,7 +81,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 //todo here
                 TimerNameDialog nameDialog = new TimerNameDialog();
                 nameDialog.show(getSupportFragmentManager(), "timerName");
-
 
             }
         });
@@ -262,4 +266,12 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     }
 
+    //TimerNameDialogListener
+
+    @Override
+    public void onDialogDoneClick(String timerName) {
+
+        Toast.makeText(this, timerName, Toast.LENGTH_SHORT).show();
+
+    }
 }
