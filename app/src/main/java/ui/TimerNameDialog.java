@@ -17,8 +17,10 @@ import com.zubrid.scheduletimer.R;
 
 final public class TimerNameDialog extends DialogFragment {
 
-    TimerNameDialogListener mListener;
-    EditText mInputText;
+
+    public static final String EXTRA_NAME = "EXTRA_NAME_BUNDLE";
+    private TimerNameDialogListener mListener;
+    private EditText mInputText;
 
     public interface TimerNameDialogListener {
         void onDialogDoneClick(String name);
@@ -28,8 +30,15 @@ final public class TimerNameDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        mInputText = new EditText(getActivity());
         int margin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+
+        mInputText = new EditText(getActivity());
+
+        Bundle bundle = getArguments();
+        String name = bundle.getString(EXTRA_NAME);
+        if (name != null) {
+            mInputText.setText(name);
+        }
 
         FrameLayout container = new FrameLayout(getActivity());
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
@@ -39,6 +48,10 @@ final public class TimerNameDialog extends DialogFragment {
         layoutParams.setMargins(margin, margin, margin, margin);
 
         mInputText.setLayoutParams(layoutParams);
+        mInputText.setSingleLine();
+        int pos = mInputText.getText().length();
+        mInputText.setSelection(pos);
+
         container.addView(mInputText);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

@@ -80,6 +80,11 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
                 //todo here
                 TimerNameDialog nameDialog = new TimerNameDialog();
+
+                Bundle args = new Bundle();
+                args.putString(TimerNameDialog.EXTRA_NAME, mScheduleItem.getTitle());
+                nameDialog.setArguments(args);
+
                 nameDialog.show(getSupportFragmentManager(), "timerName");
 
             }
