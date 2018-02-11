@@ -9,14 +9,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.view.ViewGroup;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.zubrid.scheduletimer.R;
 
 final public class TimerNameDialog extends DialogFragment {
-
 
     public static final String EXTRA_NAME = "EXTRA_NAME_BUNDLE";
     private TimerNameDialogListener mListener;
@@ -32,39 +32,48 @@ final public class TimerNameDialog extends DialogFragment {
 
         int margin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
 
-        mInputText = new EditText(getActivity());
+        View rootView = getActivity().getLayoutInflater().inflate(R.layout.dialog_timer_name, null);
+        mInputText = rootView.findViewById(R.id.dialog_timer_name_et_name);
+
+        // clear button
+        ImageView clearButton = rootView.findViewById(R.id.dialog_timer_name_iv_clear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mInputText.setText("");
+            }
+        });
 
         Bundle bundle = getArguments();
         String name = bundle.getString(EXTRA_NAME);
         if (name != null) {
             mInputText.setText(name);
+            int pos = mInputText.getText().length();
+            mInputText.setSelection(pos);
         }
 
-        FrameLayout container = new FrameLayout(getActivity());
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-        layoutParams.setMargins(margin, margin, margin, margin);
-
-        mInputText.setLayoutParams(layoutParams);
-        mInputText.setSingleLine();
-        int pos = mInputText.getText().length();
-        mInputText.setSelection(pos);
-
-        container.addView(mInputText);
+        final InputMethodManager imm = (InputMethodManager) getContext().
+                getSystemService(Context.INPUT_METHOD_SERVICE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.hint_name)
-                .setView(container)
-                .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
+                .setView(rootView)
+                .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+                        if (imm != null) {
+                            imm.hideSoftInputFromWindow(mInputText.getWindowToken(), 0);
+                        }
+
                         mListener.onDialogDoneClick(mInputText.getText().toString());
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //!mListener.onDialogCancelClick(TimerNameDialog.this);
+
+                        if (imm != null) {
+                            imm.hideSoftInputFromWindow(mInputText.getWindowToken(), 0);
+                        }
                     }
                 });
 
