@@ -82,7 +82,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 TimerNameDialog nameDialog = new TimerNameDialog();
 
                 Bundle args = new Bundle();
-                args.putString(TimerNameDialog.EXTRA_NAME, mScheduleItem.getTitle());
+                args.putString(TimerNameDialog.EXTRA_NAME, mTvTitle.getText().toString());
                 nameDialog.setArguments(args);
 
                 nameDialog.show(getSupportFragmentManager(), "timerName");
@@ -277,6 +277,9 @@ public final class ScheduleItemActivity extends AppCompatActivity
     public void onDialogDoneClick(String timerName) {
 
         Toast.makeText(this, timerName, Toast.LENGTH_SHORT).show();
+
+        mTvTitle.setText(timerName);
+
 
     }
 }
