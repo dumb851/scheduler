@@ -30,8 +30,6 @@ final public class TimerNameDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        int margin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
-
         View rootView = getActivity().getLayoutInflater().inflate(R.layout.dialog_timer_name, null);
         mInputText = rootView.findViewById(R.id.dialog_timer_name_et_name);
 

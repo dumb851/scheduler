@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.zubrid.scheduletimer.R;
@@ -58,8 +57,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //!setContentView(R.layout.schedule_item);
-        setContentView(R.layout.schedule_item_n);
+        setContentView(R.layout.schedule_item);
 
         setToolbar();
 
@@ -78,7 +76,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                //todo here
                 TimerNameDialog nameDialog = new TimerNameDialog();
 
                 Bundle args = new Bundle();
@@ -276,10 +273,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
     @Override
     public void onDialogDoneClick(String timerName) {
 
-        Toast.makeText(this, timerName, Toast.LENGTH_SHORT).show();
-
         mTvTitle.setText(timerName);
-
-
     }
 }
