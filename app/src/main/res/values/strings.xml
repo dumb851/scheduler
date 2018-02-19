@@ -14,5 +14,6 @@
     <string name="exact_time">exact time</string>
     <string name="duplicate">Duplicate</string>
     <string name="timer">Timer</string>
+    <string name="hint_time_picker_message">message</string>
 
 </resources>

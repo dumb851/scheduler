@@ -8,8 +8,10 @@
 
     <TimePicker
         android:id="@+id/acv_exact_time_picker_tp_time_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        />
 
     <EditText
         android:id="@+id/acv_exact_time_picker_te_title"

@@ -32,7 +32,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
-    private static int NAME_REQUEST_CODE = 44;
 
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
