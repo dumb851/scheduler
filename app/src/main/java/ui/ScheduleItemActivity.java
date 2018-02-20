@@ -1,7 +1,6 @@
 package ui;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +27,7 @@ import model.TimePoint;
 
 public final class ScheduleItemActivity extends AppCompatActivity
         implements TimePointListAdapter.ItemClickListener,
-        TimerNameDialog.TimerNameDialogListener {
+        TimerNameDialog.TimerNameDialogListener, TimePickerDialog.TimePickerDialogListener{
 
     private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
@@ -203,23 +202,43 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         mClickedTimePointPos = pos;
 
-        Intent intent;
+        TimePickerDialog timePickerDialog = new TimePickerDialog();
+
+        Bundle args = new Bundle();
 
         if (pos != -1) {
-
             TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
+            args.putString(TimePickerDialog.EXTRA_MESSAGE, clickedTimePoint.getTitle());
+            args.putInt(TimePickerDialog.EXTRA_HOUR, clickedTimePoint.getHour());
+            args.putInt(TimePickerDialog.EXTRA_MINUTE, clickedTimePoint.getMinute());
 
-            intent = ExactTimePickerActivity.getIntent(this,
-                    clickedTimePoint.getTitle(),
-                    clickedTimePoint.getHour(),
-                    clickedTimePoint.getMinute()
-            );
-
-        } else {
-            intent = ExactTimePickerActivity.getIntent(this);
         }
 
-        startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
+        timePickerDialog.setArguments(args);
+
+        timePickerDialog.show(getSupportFragmentManager(), "timePickerDialog");
+
+
+
+//!        mClickedTimePointPos = pos;
+//
+//        Intent intent;
+//
+//        if (pos != -1) {
+//
+//            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
+//
+//            intent = ExactTimePickerActivity.getIntent(this,
+//                    clickedTimePoint.getTitle(),
+//                    clickedTimePoint.getHour(),
+//                    clickedTimePoint.getMinute()
+//            );
+//
+//        } else {
+//            intent = ExactTimePickerActivity.getIntent(this);
+//        }
+//
+//        startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
 
     }
 
@@ -228,28 +247,30 @@ public final class ScheduleItemActivity extends AppCompatActivity
         showExactTimePicker(pos);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == EXACT_TIME_PICKER_REQUEST) {
-
-            if (resultCode != Activity.RESULT_OK) {
-                return;
-            }
-
-            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
-
-            clickedTimePoint.setTitle(
-                    data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE));
-            clickedTimePoint.setHour(
-                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, 0));
-            clickedTimePoint.setMinute(
-                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, 0));
-
-            mListAdapter.refreshDataSet(mTimePointArrayList);
-
-        }
-    }
+    //! do not need this any more
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        if (requestCode == EXACT_TIME_PICKER_REQUEST) {
+//
+//            if (resultCode != Activity.RESULT_OK) {
+//                return;
+//            }
+//
+//            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
+//
+//            clickedTimePoint.setTitle(
+//                    data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE));
+//            clickedTimePoint.setHour(
+//                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, 0));
+//            clickedTimePoint.setMinute(
+//                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, 0));
+//
+//            mListAdapter.refreshDataSet(mTimePointArrayList);
+//
+//        }
+//    }
 
     TimePoint findTimePointByPos(int pos) {
 
@@ -274,4 +295,22 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         mTvTitle.setText(timerName);
     }
+
+    //TimerDialogListener
+    @Override
+    public void onTimePickerDialogDoneClick(Bundle bundle) {
+
+        TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
+
+        clickedTimePoint.setTitle(
+                bundle.getString(TimePickerDialog.EXTRA_MESSAGE));
+        clickedTimePoint.setHour(
+                bundle.getInt(TimePickerDialog.EXTRA_HOUR, 0));
+        clickedTimePoint.setMinute(
+                bundle.getInt(TimePickerDialog.EXTRA_MINUTE, 0));
+
+        mListAdapter.refreshDataSet(mTimePointArrayList);
+
+    }
+
 }
