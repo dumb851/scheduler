@@ -7,6 +7,13 @@
               tools:context="ui.MainActivityFragment"
               tools:showIn="@layout/activity_main">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test notify"
+        android:id="@+id/btn_test_notify"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_schedule_list"
         android:layout_width="match_parent"

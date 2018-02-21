@@ -9,10 +9,14 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.zubrid.scheduletimer.R;
 
 import java.util.Collections;
+
+import ui.notifacation.NotificationHelper;
+import ui.notifacation.NotificationProperties;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -40,6 +44,20 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
         mScheduleListAdapter.setItemClickListener(this);
 
         setItemTouchHelper();
+
+        //! test button
+        Button btn_test_notify = rootView.findViewById(R.id.btn_test_notify);
+        btn_test_notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                NotificationProperties properties = new NotificationProperties();
+
+                NotificationHelper notificationHelper = new NotificationHelper(getActivity(), properties);
+
+                notificationHelper.show();
+            }
+        });
 
         return rootView;
     }
