@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -35,7 +35,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private DbLab mDbLab;
     private ScheduleItem mScheduleItem;
     private TextView mTvTitle;
-    private Button mBtnAddPoint;
+    private AppCompatButton mBtnAddPoint;
     private RecyclerView mRvTimePointList;
     private ArrayList<TimePoint> mTimePointArrayList;
     private int mClickedTimePointPos;
