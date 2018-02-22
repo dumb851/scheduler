@@ -13,6 +13,14 @@
 
     </style>
 
+    <style name="RaisedButton" parent="Widget.AppCompat.Button.Colored">
+
+        <item name="android:backgroundTint">@color/color_button_background_tint</item>
+        <item name="android:textColor">@color/color_button_text</item>
+
+    </style>
+
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -22,7 +30,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-     <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+    <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
 
     </style>
 
