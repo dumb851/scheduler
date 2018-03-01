@@ -14,6 +14,13 @@
         android:id="@+id/btn_test_notify"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test notify delay"
+        android:id="@+id/btn_test_notify_delay"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_schedule_list"
         android:layout_width="match_parent"
