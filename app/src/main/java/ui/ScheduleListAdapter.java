@@ -15,6 +15,7 @@ import java.util.Random;
 
 import data.DbLab;
 import model.ScheduleItem;
+import utils.AlarmHelper;
 
 
 final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ViewHolder>
@@ -27,7 +28,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     private static ItemClickListener sItemClickListener;
     private static RecyclerView.ViewHolder sSelectedItem;
     private static int sSelectedItemPos;
-    private DbLab mDbLab;
+    private static DbLab mDbLab;
 
     static {
         sSelectedItem = null;
@@ -108,7 +109,11 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             mIvIsRunning.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DbLab.changeScheduleRunningState(ID);
+                    ScheduleItem scheduleItem = DbLab.changeScheduleRunningState(ID);
+                    //TODO here
+                    // get context somewhere
+                    //
+                    AlarmHelper.runSchedule(view.getContext(), scheduleItem);
                 }
             });
         }

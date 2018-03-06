@@ -164,12 +164,13 @@ final public class DbLab {
         return itemArrayList;
     }
 
-    public static void changeScheduleRunningState(int id) {
+    public static ScheduleItem changeScheduleRunningState(int id) {
         ScheduleItem scheduleItem = sDbLab.getScheduleItem(id);
 
         scheduleItem.setIsRunning(!scheduleItem.isRunning());
         sDbLab.saveSchedule(scheduleItem);
 
+        return scheduleItem;
     }
 
     //// interface ScheduleItemListListener

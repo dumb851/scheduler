@@ -27,7 +27,7 @@ final public class TimePickerDialog extends DialogFragment {
     private EditText mMessage;
     private TimePicker mTimeSpinner;
 
-   public interface TimePickerDialogListener {
+    public interface TimePickerDialogListener {
         void onTimePickerDialogDoneClick(Bundle bundle);
     }
 
@@ -63,7 +63,7 @@ final public class TimePickerDialog extends DialogFragment {
 
         int hour = bundle.getInt(EXTRA_HOUR, -1);
         if (hour != -1) {
-           mTimeSpinner.setHour(hour);
+            mTimeSpinner.setHour(hour);
         }
 
         int minute = bundle.getInt(EXTRA_MINUTE, -1);
@@ -75,6 +75,7 @@ final public class TimePickerDialog extends DialogFragment {
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         builder.setTitle(R.string.hint_name)
                 .setView(rootView)
                 .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {

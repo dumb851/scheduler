@@ -8,7 +8,7 @@
     <string name="running">running</string>
     <string name="not_running">not running</string>
     <string name="hint_name">timer name</string>
-    <string name="add_point">add point</string>
+    <string name="add_point">add time point</string>
     <string name="ok">OK</string>
     <string name="period">period</string>
     <string name="exact_time">exact time</string>
