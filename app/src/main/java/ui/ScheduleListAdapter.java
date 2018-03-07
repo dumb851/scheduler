@@ -113,7 +113,13 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
                     //TODO here
                     // get context somewhere
                     //
-                    AlarmHelper.runSchedule(view.getContext(), scheduleItem);
+                    if (scheduleItem.isRunning()) {
+
+                        AlarmHelper.runSchedule(view.getContext(), scheduleItem);
+                    } else {
+                        AlarmHelper.stopSchedule(view.getContext(), scheduleItem);
+                    }
+
                 }
             });
         }

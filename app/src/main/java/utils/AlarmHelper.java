@@ -11,9 +11,9 @@ public class AlarmHelper {
         new Alarm().setAlarm(context);
     }
 
-    public static void stopSchedule(ScheduleItem scheduleItem) {
+    public static void stopSchedule(Context context, ScheduleItem scheduleItem) {
 
-
+        new Alarm().cancelAlarm(context);
 
 
     }

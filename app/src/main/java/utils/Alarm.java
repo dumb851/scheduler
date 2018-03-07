@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class Alarm extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
@@ -17,25 +18,31 @@ public class Alarm extends BroadcastReceiver {
         wl.acquire();
 
         // Put here YOUR code.
-        Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For example
+        Toast.makeText(context, "Alarm !yeaph!!!!!", Toast.LENGTH_LONG).show(); // For example
 
-        Log.d("onReceive", "onReceive: yeaph");
+        Log.i("onReceive", "onReceive: yeaph");
 
         wl.release();
     }
 
     public void setAlarm(Context context) {
-        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent i = new Intent(context, Alarm.class);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                1000 * 60 * 1, pi); // Millisec * Second * Minute
+
+        Intent intent = new Intent(context, Alarm.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+//                1000 * 5, pendingIntent); // Millisec * Second * Minute
+        // TODO: 07.03.2018  
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, 1000 * 5, pendingIntent);
+
     }
 
     public void cancelAlarm(Context context) {
         Intent intent = new Intent(context, Alarm.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(sender);
+        alarmManager.cancel(pendingIntent);
     }
 }
