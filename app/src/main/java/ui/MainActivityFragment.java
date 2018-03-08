@@ -1,6 +1,5 @@
 package ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,7 +15,6 @@ import com.zubrid.scheduletimer.R;
 
 import java.util.Collections;
 
-import utils.Alarm;
 import utils.NotificationHelper;
 import utils.NotificationProperties;
 
@@ -58,22 +56,6 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
                 NotificationHelper notificationHelper = new NotificationHelper(getActivity(), properties);
 
                 notificationHelper.show();
-            }
-        });
-
-        //! test button delay
-        Button btn_test_notify_delay = rootView.findViewById(R.id.btn_test_notify_delay);
-        btn_test_notify_delay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Context context = getActivity();
-
-                Alarm alarm = new Alarm();
-                alarm.setAlarm(context);
-
-
-//
             }
         });
 
