@@ -11,30 +11,33 @@ import android.widget.Toast;
 
 public class Alarm extends BroadcastReceiver {
 
+    private static final String ALARM_ID = "ALARM_ID";
+
     @Override
     public void onReceive(Context context, Intent intent) {
+
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "");
         wl.acquire();
 
-        // Put here YOUR code.
         Toast.makeText(context, "Alarm !yeaph!!!!!", Toast.LENGTH_LONG).show();
 
-        Log.i("MeLog", "onReceive: yeaph");
+        int requestCode = intent.getIntExtra(ALARM_ID, -1);
+
+        Log.i("MeLog", "onReceive: id=" + requestCode);
 
         wl.release();
     }
 
-    public void setAlarm(Context context, int hour, int minute) {
+    public static void setAlarm(Context context, int requestCode, int hour, int minute) {
 
         Intent intent = new Intent(context, Alarm.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        intent.putExtra(ALARM_ID, requestCode);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-//                1000 * 5, pendingIntent); // Millisec * Second * Minute
-        // TODO: 07.03.2018
-        Log.i("MeLog", "setExact: yeaph");
 
         int hourTrigger = hour == 0 ? 1 : hour;
         int minuteTrigger = minute == 0 ? 1 : minute;
@@ -44,15 +47,18 @@ public class Alarm extends BroadcastReceiver {
                 System.currentTimeMillis() + trigger,
                 pendingIntent
         );
+
+        Log.i("MeLog", "setExact: id=" + requestCode + " trigger=" + trigger);
     }
 
-    public void cancelAlarm(Context context) {
+    public static void cancelAlarm(Context context, int requestCode) {
+
         Intent intent = new Intent(context, Alarm.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Log.i("MeLog", "cancel: yeaph");
+        Log.i("MeLog", "cancel: id=" + requestCode);
         alarmManager.cancel(pendingIntent);
     }
 }
