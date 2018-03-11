@@ -15,9 +15,16 @@ public class AlarmHelper {
         DbLab dbLab = DbLab.getLab(context);
         ArrayList<TimePoint> timePoints = dbLab.getTimePointList(scheduleItem.getID());
 
-        for (TimePoint timePoint :
-                timePoints) {
-            Alarm.setAlarm(context, timePoint.getID(), timePoint.getHour(), timePoint.getMinute());
+        for (TimePoint timePoint : timePoints) {
+
+            int hour = timePoint.getHour();
+            int minute = timePoint.getMinute();
+
+            int hourTrigger = hour == 0 ? 1 : hour;
+            int minuteTrigger = minute == 0 ? 1 : minute;
+
+            long trigger = 1000 * minuteTrigger * hourTrigger;
+            Alarm.setAlarm(context, timePoint.getID(), trigger);
         }
     }
 

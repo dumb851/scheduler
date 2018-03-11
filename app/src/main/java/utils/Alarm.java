@@ -29,7 +29,7 @@ public class Alarm extends BroadcastReceiver {
         wl.release();
     }
 
-    public static void setAlarm(Context context, int requestCode, int hour, int minute) {
+    public static void setAlarm(Context context, int requestCode, long trigger) {
 
         Intent intent = new Intent(context, Alarm.class);
         intent.putExtra(ALARM_ID, requestCode);
@@ -39,10 +39,6 @@ public class Alarm extends BroadcastReceiver {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        int hourTrigger = hour == 0 ? 1 : hour;
-        int minuteTrigger = minute == 0 ? 1 : minute;
-
-        long trigger = 1000 * minuteTrigger * hourTrigger;
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + trigger,
                 pendingIntent
