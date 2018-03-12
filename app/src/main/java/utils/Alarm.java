@@ -40,7 +40,7 @@ public class Alarm extends BroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + trigger,
+                trigger,
                 pendingIntent
         );
 

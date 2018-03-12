@@ -3,6 +3,7 @@ package utils;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import data.DbLab;
 import model.ScheduleItem;
@@ -15,16 +16,22 @@ public class AlarmHelper {
         DbLab dbLab = DbLab.getLab(context);
         ArrayList<TimePoint> timePoints = dbLab.getTimePointList(scheduleItem.getID());
 
+        long previousTrigger = -1;
+
         for (TimePoint timePoint : timePoints) {
 
-            int hour = timePoint.getHour();
-            int minute = timePoint.getMinute();
+            if (previousTrigger == -1) {
+                previousTrigger = System.currentTimeMillis();
+            }
 
-            int hourTrigger = hour == 0 ? 1 : hour;
-            int minuteTrigger = minute == 0 ? 1 : minute;
+            long trigger = previousTrigger
+                    + TimeUnit.MINUTES.toMillis(timePoint.getMinute())
+                    + TimeUnit.HOURS.toMillis(timePoint.getHour());
 
-            long trigger = 1000 * minuteTrigger * hourTrigger;
             Alarm.setAlarm(context, timePoint.getID(), trigger);
+
+            previousTrigger = trigger;
+
         }
     }
 
