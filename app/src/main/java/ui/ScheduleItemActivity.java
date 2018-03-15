@@ -206,39 +206,23 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         Bundle args = new Bundle();
 
-        if (pos != -1) {
+        if (mClickedTimePointPos == -1) {
+
+            args.putString(TimePickerDialog.EXTRA_MESSAGE, "");
+            args.putInt(TimePickerDialog.EXTRA_HOUR, 0);
+            args.putInt(TimePickerDialog.EXTRA_MINUTE, 0);
+
+        } else {
+
             TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
             args.putString(TimePickerDialog.EXTRA_MESSAGE, clickedTimePoint.getTitle());
             args.putInt(TimePickerDialog.EXTRA_HOUR, clickedTimePoint.getHour());
             args.putInt(TimePickerDialog.EXTRA_MINUTE, clickedTimePoint.getMinute());
-
         }
 
         timePickerDialog.setArguments(args);
 
         timePickerDialog.show(getSupportFragmentManager(), "timePickerDialog");
-
-
-
-//!        mClickedTimePointPos = pos;
-//
-//        Intent intent;
-//
-//        if (pos != -1) {
-//
-//            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
-//
-//            intent = ExactTimePickerActivity.getIntent(this,
-//                    clickedTimePoint.getTitle(),
-//                    clickedTimePoint.getHour(),
-//                    clickedTimePoint.getMinute()
-//            );
-//
-//        } else {
-//            intent = ExactTimePickerActivity.getIntent(this);
-//        }
-//
-//        startActivityForResult(intent, EXACT_TIME_PICKER_REQUEST);
 
     }
 
@@ -248,31 +232,8 @@ public final class ScheduleItemActivity extends AppCompatActivity
     }
 
 
-    //! do not need this any more
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        if (requestCode == EXACT_TIME_PICKER_REQUEST) {
-//
-//            if (resultCode != Activity.RESULT_OK) {
-//                return;
-//            }
-//
-//            TimePoint clickedTimePoint = findTimePointByPos(mClickedTimePointPos);
-//
-//            clickedTimePoint.setTitle(
-//                    data.getStringExtra(ExactTimePickerActivity.EXTRA_TITLE));
-//            clickedTimePoint.setHour(
-//                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_HOUR, 0));
-//            clickedTimePoint.setMinute(
-//                    data.getIntExtra(ExactTimePickerActivity.EXTRA_TIME_MINUTE, 0));
-//
-//            mListAdapter.refreshDataSet(mTimePointArrayList);
-//
-//        }
-//    }
 
-    TimePoint findTimePointByPos(int pos) {
+    private TimePoint findTimePointByPos(int pos) {
 
         if (pos == -1) {
             TimePoint clickedTimePoint = new TimePoint();

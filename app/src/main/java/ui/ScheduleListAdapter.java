@@ -110,9 +110,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
                 @Override
                 public void onClick(View view) {
                     ScheduleItem scheduleItem = DbLab.changeScheduleRunningState(ID);
-                    //TODO here
-                    // get context somewhere
-                    //
+
                     if (scheduleItem.isRunning()) {
 
                         AlarmHelper.runSchedule(view.getContext(), scheduleItem);
