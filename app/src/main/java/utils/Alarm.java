@@ -22,9 +22,20 @@ public class Alarm extends BroadcastReceiver {
 
         Toast.makeText(context, "Alarm !yeaph!!!!!", Toast.LENGTH_LONG).show();
 
-        int requestCode = intent.getIntExtra(ALARM_ID, -1);
+        int timePointID = intent.getIntExtra(ALARM_ID, -1);
 
-        Log.i("MeLog", "onReceive: id=" + requestCode);
+        //TODO fill notification properties, don't know how yet
+        //getNotificationProperties maybe, but getting from TimePoint is better, not sure
+        //think about it
+
+        if (timePointID != -1) {
+//            NotificationHelper notificationHelper = new NotificationHelper(context, timePointID);
+//            notificationHelper.getNotificationProperties()
+        }
+
+
+
+        Log.i("MeLog", "onReceive: id=" + timePointID);
 
         wl.release();
     }

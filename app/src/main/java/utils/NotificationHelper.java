@@ -10,6 +10,8 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.zubrid.scheduletimer.R;
 
+import data.DbLab;
+import model.TimePoint;
 import ui.MainActivity;
 
 public class NotificationHelper {
@@ -24,17 +26,39 @@ public class NotificationHelper {
     private Context mContext;
 
     // constructor
-    private NotificationHelper() {
-    }
-
-    public NotificationHelper(Context context, Properties properties) {
-        mProperties = properties;
+    public NotificationHelper(Context context, int timePointID) {
         mContext = context;
     }
 
-    public void show() {
+    public Properties getNotificationProperties(int timePointID) {
 
-        boolean enableVibration = mProperties.enableVibration();
+        DbLab dbLab = DbLab.getLab(mContext);
+        final TimePoint timePoint = dbLab.getTimePoint(timePointID);
+
+        Properties properties = new Properties() {
+
+            @Override
+            public boolean enableVibration() {
+                return true;
+            }
+
+            @Override
+            public String getContentText() {
+                return timePoint.getTitle();
+            }
+
+            @Override
+            public String getContentTitle() {
+                return "getContentTitle";
+            }
+        };
+
+        return null;
+    }
+
+    public void show(Properties properties) {
+
+        boolean enableVibration = properties.enableVibration();
 
         //!
         // The id of the channel.

@@ -87,7 +87,10 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
         }
 
         void setViewTime(int hour, int minute) {
-            viewTime.setText("" + hour + " : " + minute);
+
+            String str = String.format("%d:%02d", hour, minute);
+            viewTime.setText(str);
+
         }
 
         void setPos(int pos) {
