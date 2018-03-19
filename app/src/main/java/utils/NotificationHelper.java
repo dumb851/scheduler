@@ -16,55 +16,31 @@ import ui.MainActivity;
 
 public class NotificationHelper {
 
-    interface Properties {
-        boolean enableVibration();
-        String getContentText();
-        String getContentTitle();
-    }
-
-    private Properties mProperties;
     private Context mContext;
+
+    private boolean mEnableVibration;
+    private String mContentText;
+    private String mContentTitle;
 
     // constructor
     public NotificationHelper(Context context, int timePointID) {
-        mContext = context;
-    }
 
-    public Properties getNotificationProperties(int timePointID) {
+        mContext = context;
 
         DbLab dbLab = DbLab.getLab(mContext);
-        final TimePoint timePoint = dbLab.getTimePoint(timePointID);
+        TimePoint timePoint = dbLab.getTimePoint(timePointID);
 
-        Properties properties = new Properties() {
 
-            @Override
-            public boolean enableVibration() {
-                return true;
-            }
-
-            @Override
-            public String getContentText() {
-                return timePoint.getTitle();
-            }
-
-            @Override
-            public String getContentTitle() {
-                return "getContentTitle";
-            }
-        };
-
-        return null;
     }
 
-    public void show(Properties properties) {
 
-        boolean enableVibration = properties.enableVibration();
+    public void show() {
 
-        //!
-        // The id of the channel.
+        // TODO: 19.03.2018 here fill notification properties
 
         Notification notification = new Notification();
-        if (enableVibration) {
+
+        if (mEnableVibration) {
             notification.defaults |= Notification.DEFAULT_VIBRATE;
         }
 
@@ -72,8 +48,8 @@ public class NotificationHelper {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(mContext, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_notification)
-                        .setContentTitle(mProperties.getContentTitle())
-                        .setContentText(mProperties.getContentText())
+                        .setContentTitle(mContentTitle)
+                        .setContentText(mContentText)
                         .setDefaults(notification.defaults)
                         //.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
                 ;

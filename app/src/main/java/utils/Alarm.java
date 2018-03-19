@@ -24,16 +24,10 @@ public class Alarm extends BroadcastReceiver {
 
         int timePointID = intent.getIntExtra(ALARM_ID, -1);
 
-        //TODO fill notification properties, don't know how yet
-        //getNotificationProperties maybe, but getting from TimePoint is better, not sure
-        //think about it
-
         if (timePointID != -1) {
-//            NotificationHelper notificationHelper = new NotificationHelper(context, timePointID);
-//            notificationHelper.getNotificationProperties()
+            NotificationHelper notificationHelper = new NotificationHelper(context, timePointID);
+            notificationHelper.show();
         }
-
-
 
         Log.i("MeLog", "onReceive: id=" + timePointID);
 
