@@ -11,6 +11,7 @@ import android.support.v4.app.TaskStackBuilder;
 import com.zubrid.scheduletimer.R;
 
 import data.DbLab;
+import model.ScheduleItem;
 import model.TimePoint;
 import ui.MainActivity;
 
@@ -21,18 +22,24 @@ public class NotificationHelper {
     private boolean mEnableVibration;
     private String mContentText;
     private String mContentTitle;
+    private int mTimePointID;
 
     // constructor
     public NotificationHelper(Context context, int timePointID) {
 
         mContext = context;
+        mTimePointID = timePointID;
 
         DbLab dbLab = DbLab.getLab(mContext);
         TimePoint timePoint = dbLab.getTimePoint(timePointID);
 
+        mContentText = timePoint.getTitle();
+
+        ScheduleItem scheduleItem = dbLab.getScheduleItem(timePoint.getScheduleID());
+
+        mContentTitle = scheduleItem.getTitle();
 
     }
-
 
     public void show() {
 
@@ -51,7 +58,7 @@ public class NotificationHelper {
                         .setContentTitle(mContentTitle)
                         .setContentText(mContentText)
                         .setDefaults(notification.defaults)
-                        //.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                //.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
                 ;
 
 
@@ -80,10 +87,7 @@ public class NotificationHelper {
 // notification. For example, to cancel the notification, you can pass its ID
 // number to NotificationManager.cancel().
 
-        //!
-        int mNotificationId = 111;
-
-        mNotificationManager.notify(mNotificationId, mBuilder.build());
+        mNotificationManager.notify(mTimePointID, mBuilder.build());
 
     }
 
