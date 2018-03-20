@@ -57,9 +57,9 @@ public class NotificationHelper {
                         .setSmallIcon(R.drawable.ic_notification)
                         .setContentTitle(mContentTitle)
                         .setContentText(mContentText)
-                        .setDefaults(notification.defaults)
+                        .setDefaults(notification.defaults);
                 //.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                ;
+                //;
 
 
 // Creates an explicit intent for an Activity in your app
