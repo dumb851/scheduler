@@ -76,7 +76,7 @@ final public class TimePickerDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setTitle(R.string.hint_name)
+        builder.setTitle(R.string.time_point)
                 .setView(rootView)
                 .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

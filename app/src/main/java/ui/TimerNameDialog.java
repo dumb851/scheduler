@@ -54,7 +54,7 @@ final public class TimerNameDialog extends DialogFragment {
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.hint_name)
+        builder.setTitle(R.string.timer_name)
                 .setView(rootView)
                 .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

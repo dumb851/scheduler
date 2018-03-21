@@ -77,7 +77,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 TimerNameDialog nameDialog = new TimerNameDialog();
 
                 Bundle args = new Bundle();
-                args.putString(TimerNameDialog.EXTRA_NAME, mTvTitle.getText().toString());
+                args.putString(TimerNameDialog.EXTRA_NAME, mScheduleItem.getTitle());
                 nameDialog.setArguments(args);
 
                 nameDialog.show(getSupportFragmentManager(), "timerName");
@@ -141,7 +141,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         mScheduleItem = getScheduleItem();
 
-        mTvTitle = findViewById(R.id.schedule_item_title);
+        mTvTitle = findViewById(R.id.schedule_item_timer_name);
         mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
         mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
@@ -151,7 +151,12 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     private void fillUI() {
 
-        mTvTitle.setText(mScheduleItem.getTitle());
+        if (mScheduleItem.getTitle().isEmpty()) {
+            mTvTitle.setText(R.string.timer_name);
+        } else {
+            mTvTitle.setText(mScheduleItem.getTitle());
+        }
+
 
         mListAdapter = new TimePointListAdapter(mTimePointArrayList);
 
@@ -254,6 +259,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     @Override
     public void onDialogDoneClick(String timerName) {
 
+        //TODO put timerName in schedule item then set mTvTitle (need common method)
         mTvTitle.setText(timerName);
     }
 
