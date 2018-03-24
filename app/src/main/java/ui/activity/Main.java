@@ -1,4 +1,4 @@
-package ui;
+package ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.zubrid.scheduletimer.R;
 
-final public class MainActivity extends AppCompatActivity {
+final public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,8 @@ final public class MainActivity extends AppCompatActivity {
 
     private void addNewScheduleAction() {
 
-        Intent intent = new Intent(MainActivity.this,
-                ScheduleItemActivity.class);
+        Intent intent = new Intent(Main.this,
+                ScheduleItem.class);
 
         startActivity(intent);
     }

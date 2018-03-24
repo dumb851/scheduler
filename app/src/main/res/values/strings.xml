@@ -17,5 +17,9 @@
     <string name="duplicate">Duplicate</string>
     <string name="timer">Timer</string>
     <string name="hint_time_picker_message">message</string>
+    <string name="vibration">Vibration</string>
+    <string name="pop_up">Pop-up</string>
+    <string name="led_light">LED Light</string>
+    <string name="ringtone">Ringtone</string>
 
 </resources>
