@@ -35,7 +35,7 @@ final public class DbLab {
     }
 
 
-    // ScheduleItem
+    // ScheduleItemActivity
 
     public int saveSchedule(ScheduleItem scheduleItem) {
 

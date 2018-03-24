@@ -21,5 +21,6 @@
     <string name="pop_up">Pop-up</string>
     <string name="led_light">LED Light</string>
     <string name="ringtone">Ringtone</string>
+    <string name="notification_settings">Notification settings</string>
 
 </resources>

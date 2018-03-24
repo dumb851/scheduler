@@ -22,20 +22,20 @@ import com.zubrid.scheduletimer.R;
 import java.util.ArrayList;
 
 import data.DbLab;
+import model.ScheduleItem;
 import model.TimePoint;
-import ui.dialog.TimePickerDialog;
 import ui.TimePointListAdapter;
+import ui.dialog.TimePickerDialog;
 import ui.dialog.TimerNameDialog;
 
-public final class ScheduleItem extends AppCompatActivity
+public final class ScheduleItemActivity extends AppCompatActivity
         implements TimePointListAdapter.ItemClickListener,
         TimerNameDialog.TimerNameDialogListener, TimePickerDialog.TimePickerDialogListener {
 
-    private static int EXACT_TIME_PICKER_REQUEST = 27;
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
     private DbLab mDbLab;
-    private model.ScheduleItem mScheduleItem;
+    private ScheduleItem mScheduleItem;
     private TextView mTvTimerName;
     private AppCompatButton mBtnAddPoint;
     private RecyclerView mRvTimePointList;
@@ -43,11 +43,12 @@ public final class ScheduleItem extends AppCompatActivity
     private int mClickedTimePointPos;
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
+    private CardView mCvNotificationSettings;
 
 
     public static Intent getIntent(Context context, int scheduleID) {
 
-        Intent intent = new Intent(context, ScheduleItem.class);
+        Intent intent = new Intent(context, ScheduleItemActivity.class);
         intent.putExtra(EXTRA_ID, scheduleID);
 
         return intent;
@@ -86,6 +87,18 @@ public final class ScheduleItem extends AppCompatActivity
 
             }
         });
+
+        mCvNotificationSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = NotificationSettingsActivity.getIntent(getApplicationContext(),
+                        mScheduleItem.getID());
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -147,6 +160,7 @@ public final class ScheduleItem extends AppCompatActivity
         mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
         mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
+        mCvNotificationSettings = findViewById(R.id.schedule_item_notification_settings);
         mTimePointArrayList = mDbLab.getTimePointList(mScheduleItem.getID());
 
     }
@@ -186,8 +200,6 @@ public final class ScheduleItem extends AppCompatActivity
     }
 
     private void saveSchedule() {
-
-        mScheduleItem.setTitle(mTvTimerName.getText().toString());
 
         int resultID = mDbLab.saveSchedule(mScheduleItem);
 

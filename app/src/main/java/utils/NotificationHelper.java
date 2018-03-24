@@ -13,7 +13,7 @@ import com.zubrid.scheduletimer.R;
 import data.DbLab;
 import model.ScheduleItem;
 import model.TimePoint;
-import ui.activity.Main;
+import ui.activity.MainActivity;
 
 public class NotificationHelper {
 
@@ -63,7 +63,7 @@ public class NotificationHelper {
 
 
 // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(mContext, Main.class);
+        Intent resultIntent = new Intent(mContext, MainActivity.class);
 
 // The stack builder object will contain an artificial back stack for the
 // started Activity.
@@ -71,7 +71,7 @@ public class NotificationHelper {
 // your app to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(mContext);
 // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(Main.class);
+        stackBuilder.addParentStack(MainActivity.class);
 // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =

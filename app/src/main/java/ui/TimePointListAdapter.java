@@ -99,7 +99,7 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 
     }
 
-    void refreshDataSet(ArrayList<TimePoint> timePointArrayList) {
+    public void refreshDataSet(ArrayList<TimePoint> timePointArrayList) {
         mDataSet = timePointArrayList;
         notifyDataSetChanged();
     }

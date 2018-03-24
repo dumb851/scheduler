@@ -16,7 +16,7 @@
 
         <activity
             android:launchMode="singleTop"
-            android:name="ui.activity.Main"
+            android:name="ui.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -25,10 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ui.activity.ScheduleItem"/>
-        <activity android:name="ui.activity.ExactTimePicker"
-                  android:theme="@style/AppThemeLight"
-                  />
+        <activity android:name="ui.activity.ScheduleItemActivity"/>
+        <activity android:name="ui.activity.NotificationSettingsActivity"/>
+        <!--<//!activity android:name="ui.activity.ExactTimePickerActivity"/>-->
     </application>
 
 
