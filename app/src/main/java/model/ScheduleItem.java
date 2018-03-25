@@ -18,7 +18,7 @@ public final class ScheduleItem {
     // constructor
     public ScheduleItem() {
         mID = NO_ID;
-
+        mTitle = "";
         mSortOrder = sSortOrder + 100f;
     }
 
