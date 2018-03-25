@@ -58,7 +58,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.schedule_item);
+        setContentView(R.layout.scheduled_timer);
 
         setToolbar();
 
