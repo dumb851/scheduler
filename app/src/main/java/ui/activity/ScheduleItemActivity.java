@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -44,6 +45,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
     private CardView mCvNotificationSettings;
+    private Switch mUseVibrationView;
 
 
     public static Intent getIntent(Context context, int scheduleID) {
@@ -155,19 +157,21 @@ public final class ScheduleItemActivity extends AppCompatActivity
         mDbLab = DbLab.getLab(this);
 
         mScheduledTimer = getScheduledTimer();
+        mTimePointArrayList = mDbLab.getTimePointList(mScheduledTimer.getID());
 
         mTvTimerName = findViewById(R.id.schedule_item_timer_name);
         mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
         mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
-        mCvNotificationSettings = findViewById(R.id.schedule_item_notification_settings);
-        mTimePointArrayList = mDbLab.getTimePointList(mScheduledTimer.getID());
+        mCvNotificationSettings = findViewById(R.id.schedule_item_notification_settings);//! don't need any more
 
+        mUseVibrationView = findViewById(R.id.scheduled_timer_vibration);
     }
 
     private void fillUI() {
 
         setTvTimerName();
+        mUseVibrationView.setChecked(mScheduledTimer.isUseVibration());
 
         mListAdapter = new TimePointListAdapter(mTimePointArrayList);
 
@@ -201,7 +205,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     private void saveSchedule() {
 
-        int resultID = mDbLab.saveSchedule(mScheduledTimer);
+        int resultID = mDbLab.saveScheduledTimer(mScheduledTimer);
 
         for (TimePoint point : mTimePointArrayList) {
             point.setScheduleID(resultID);

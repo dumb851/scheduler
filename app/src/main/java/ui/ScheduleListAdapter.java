@@ -218,7 +218,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         newSortOrder = min + random.nextFloat() * (max - min);
 
         currentItem.setSortOrder(newSortOrder);
-        mDbLab.saveSchedule(currentItem);
+        mDbLab.saveScheduledTimer(currentItem);
 
     }
 

@@ -37,7 +37,7 @@ final public class DbLab {
 
     // ScheduleItemActivity
 
-    public int saveSchedule(ScheduledTimer scheduledTimer) {
+    public int saveScheduledTimer(ScheduledTimer scheduledTimer) {
 
         ContentValues values = new ContentValues();
         values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduledTimer.getTitle());
@@ -168,7 +168,7 @@ final public class DbLab {
         ScheduledTimer scheduledTimer = sDbLab.getScheduleItem(id);
 
         scheduledTimer.setIsRunning(!scheduledTimer.isRunning());
-        sDbLab.saveSchedule(scheduledTimer);
+        sDbLab.saveScheduledTimer(scheduledTimer);
 
         return scheduledTimer;
     }

@@ -5,6 +5,7 @@ public final class ScheduledTimer {
     private String mTitle;
     private int mID;
     private boolean mIsRunning;
+    private boolean mIsUseVibration;
     private float mSortOrder;
     private static float sSortOrder;
 
@@ -58,4 +59,11 @@ public final class ScheduledTimer {
         mID = ID;
     }
 
+    public boolean isUseVibration() {
+        return mIsUseVibration;
+    }
+
+    public void setUseVibration(boolean useVibration) {
+        mIsUseVibration = useVibration;
+    }
 }

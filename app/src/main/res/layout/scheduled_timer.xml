@@ -208,23 +208,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
-            android:background="@drawable/card_view_effect"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/card_view_effect"
             card_view:cardCornerRadius="@dimen/card_corner_radius">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-
                 >
 
                 <TextView
-
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="notification settings //!"/>
@@ -240,6 +236,15 @@
 
         <View style="@style/Divider"/>
 
+        <Switch
+            android:id="@+id/scheduled_timer_vibration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vibration"
+            android:foreground="?android:attr/selectableItemBackground"
+            />
+
+        <View style="@style/Divider"/>
 
     </LinearLayout>
 
