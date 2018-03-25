@@ -22,7 +22,7 @@ import com.zubrid.scheduletimer.R;
 import java.util.ArrayList;
 
 import data.DbLab;
-import model.ScheduleItem;
+import model.ScheduledTimer;
 import model.TimePoint;
 import ui.TimePointListAdapter;
 import ui.dialog.TimePickerDialog;
@@ -35,7 +35,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
     private DbLab mDbLab;
-    private ScheduleItem mScheduleItem;
+    private ScheduledTimer mScheduledTimer;
     private TextView mTvTimerName;
     private AppCompatButton mBtnAddPoint;
     private RecyclerView mRvTimePointList;
@@ -80,7 +80,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 TimerNameDialog nameDialog = new TimerNameDialog();
 
                 Bundle args = new Bundle();
-                args.putString(TimerNameDialog.EXTRA_NAME, mScheduleItem.getTitle());
+                args.putString(TimerNameDialog.EXTRA_NAME, mScheduledTimer.getTitle());
                 nameDialog.setArguments(args);
 
                 nameDialog.show(getSupportFragmentManager(), "timerName");
@@ -93,7 +93,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 Intent intent = NotificationSettingsActivity.getIntent(getApplicationContext(),
-                        mScheduleItem.getID());
+                        mScheduledTimer.getID());
                 startActivity(intent);
 
             }
@@ -154,14 +154,14 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
         mDbLab = DbLab.getLab(this);
 
-        mScheduleItem = getScheduleItem();
+        mScheduledTimer = getScheduledTimer();
 
         mTvTimerName = findViewById(R.id.schedule_item_timer_name);
         mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
         mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
         mCvNotificationSettings = findViewById(R.id.schedule_item_notification_settings);
-        mTimePointArrayList = mDbLab.getTimePointList(mScheduleItem.getID());
+        mTimePointArrayList = mDbLab.getTimePointList(mScheduledTimer.getID());
 
     }
 
@@ -183,25 +183,25 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     }
 
-    private model.ScheduleItem getScheduleItem() {
+    private ScheduledTimer getScheduledTimer() {
 
         int schedule_ID = getIntent().getIntExtra(EXTRA_ID, -1);
 
         if (schedule_ID != -1) {
             return mDbLab.getScheduleItem(schedule_ID);
         } else {
-            return new model.ScheduleItem();
+            return new ScheduledTimer();
         }
     }
 
     private void deleteSchedule() {
 
-        mDbLab.deleteSchedule(mScheduleItem);
+        mDbLab.deleteSchedule(mScheduledTimer);
     }
 
     private void saveSchedule() {
 
-        int resultID = mDbLab.saveSchedule(mScheduleItem);
+        int resultID = mDbLab.saveSchedule(mScheduledTimer);
 
         for (TimePoint point : mTimePointArrayList) {
             point.setScheduleID(resultID);
@@ -268,17 +268,17 @@ public final class ScheduleItemActivity extends AppCompatActivity
     @Override
     public void onDialogDoneClick(String timerName) {
 
-        mScheduleItem.setTitle(timerName);
+        mScheduledTimer.setTitle(timerName);
         setTvTimerName();
 
     }
 
     void setTvTimerName() {
 
-        if (mScheduleItem.getTitle().isEmpty()) {
+        if (mScheduledTimer.getTitle().isEmpty()) {
             mTvTimerName.setText(R.string.timer_name);
         } else {
-            mTvTimerName.setText(mScheduleItem.getTitle());
+            mTvTimerName.setText(mScheduledTimer.getTitle());
         }
     }
 

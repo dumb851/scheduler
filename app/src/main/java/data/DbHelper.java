@@ -20,7 +20,7 @@ final class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        // Create a table to hold ScheduleItem data
+        // Create a table to hold ScheduledTimer data
         final String SQL_CREATE_SCHEDULE_LIST_TABLE = "CREATE TABLE " + ScheduleListEntry.TABLE_NAME + " (" +
                 ScheduleListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ScheduleListEntry.COLUMN_TITLE + " TEXT, " +

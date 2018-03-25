@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import model.ScheduleItem;
+import model.ScheduledTimer;
 import model.TimePoint;
 
 final public class DbLab {
@@ -37,14 +37,14 @@ final public class DbLab {
 
     // ScheduleItemActivity
 
-    public int saveSchedule(ScheduleItem scheduleItem) {
+    public int saveSchedule(ScheduledTimer scheduledTimer) {
 
         ContentValues values = new ContentValues();
-        values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduleItem.getTitle());
-        values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, scheduleItem.getSortOrder());
+        values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduledTimer.getTitle());
+        values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, scheduledTimer.getSortOrder());
 
         int isRunningInt = 0;
-        if (scheduleItem.isRunning()) {
+        if (scheduledTimer.isRunning()) {
             isRunningInt = 1;
         }
 
@@ -52,12 +52,12 @@ final public class DbLab {
 
         int resultID;
 
-        if (scheduleItem.getID() != ScheduleItem.NO_ID) {
+        if (scheduledTimer.getID() != ScheduledTimer.NO_ID) {
 
-            resultID = scheduleItem.getID();
+            resultID = scheduledTimer.getID();
 
             String whereClause = DbContract.ScheduleListEntry._ID + "=?";
-            String[] whereArgs = {String.valueOf(scheduleItem.getID())};
+            String[] whereArgs = {String.valueOf(scheduledTimer.getID())};
 
             mDataBase.update(DbContract.ScheduleListEntry.TABLE_NAME,
                     values,
@@ -78,10 +78,10 @@ final public class DbLab {
         return resultID;
     }
 
-    public void deleteSchedule(ScheduleItem scheduleItem) {
+    public void deleteSchedule(ScheduledTimer scheduledTimer) {
 
         String whereClause = DbContract.ScheduleListEntry._ID + "=?";
-        String[] whereArgs = {String.valueOf(scheduleItem.getID())};
+        String[] whereArgs = {String.valueOf(scheduledTimer.getID())};
 
         int result = mDataBase.delete(DbContract.ScheduleListEntry.TABLE_NAME,
                 whereClause,
@@ -92,23 +92,23 @@ final public class DbLab {
 
     }
 
-    public ArrayList<ScheduleItem> getScheduleItemList() {
+    public ArrayList<ScheduledTimer> getScheduleItemList() {
         return getScheduleItemList(null, null);
     }
 
-    public ScheduleItem getScheduleItem(int ID) {
+    public ScheduledTimer getScheduleItem(int ID) {
 
         String whereClause = DbContract.ScheduleListEntry._ID + "=?";
         String[] whereArgs = {String.valueOf(ID)};
 
-        ArrayList<ScheduleItem> itemArrayList = getScheduleItemList(whereClause, whereArgs);
+        ArrayList<ScheduledTimer> itemArrayList = getScheduleItemList(whereClause, whereArgs);
 
         return itemArrayList.get(0);
     }
 
-    private ArrayList<ScheduleItem> getScheduleItemList(String whereClause, String[] whereArgs) {
+    private ArrayList<ScheduledTimer> getScheduleItemList(String whereClause, String[] whereArgs) {
 
-        ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();
+        ArrayList<ScheduledTimer> itemArrayList = new ArrayList<>();
 
         Cursor cursor = mDataBase.query(
                 DbContract.ScheduleListEntry.TABLE_NAME,
@@ -122,7 +122,7 @@ final public class DbLab {
 
         while (cursor.moveToNext()) {
 
-            ScheduleItem scheduleItem = new ScheduleItem();
+            ScheduledTimer scheduledTimer = new ScheduledTimer();
 
             String title = cursor.getString(
                     cursor.getColumnIndex(
@@ -148,15 +148,15 @@ final public class DbLab {
                     )
             );
 
-            scheduleItem.setID(ID);
-            scheduleItem.setTitle(title);
+            scheduledTimer.setID(ID);
+            scheduledTimer.setTitle(title);
 
             if (isRunningInt == 1) {
-                scheduleItem.setIsRunning(true);
+                scheduledTimer.setIsRunning(true);
             }
 
-            scheduleItem.setSortOrder(sortOrder);
-            itemArrayList.add(scheduleItem);
+            scheduledTimer.setSortOrder(sortOrder);
+            itemArrayList.add(scheduledTimer);
         }
 
         cursor.close();
@@ -164,13 +164,13 @@ final public class DbLab {
         return itemArrayList;
     }
 
-    public static ScheduleItem changeScheduleRunningState(int id) {
-        ScheduleItem scheduleItem = sDbLab.getScheduleItem(id);
+    public static ScheduledTimer changeScheduleRunningState(int id) {
+        ScheduledTimer scheduledTimer = sDbLab.getScheduleItem(id);
 
-        scheduleItem.setIsRunning(!scheduleItem.isRunning());
-        sDbLab.saveSchedule(scheduleItem);
+        scheduledTimer.setIsRunning(!scheduledTimer.isRunning());
+        sDbLab.saveSchedule(scheduledTimer);
 
-        return scheduleItem;
+        return scheduledTimer;
     }
 
     //// interface ScheduleItemListListener
@@ -323,36 +323,36 @@ final public class DbLab {
     //!
     public void addDemo() {
 
-        ArrayList<ScheduleItem> itemArrayList = new ArrayList<>();
+        ArrayList<ScheduledTimer> itemArrayList = new ArrayList<>();
 
-        ScheduleItem scheduleItem1 = new ScheduleItem();
-        scheduleItem1.setTitle("schedule 1");
+        ScheduledTimer scheduledTimer1 = new ScheduledTimer();
+        scheduledTimer1.setTitle("schedule 1");
 
-        ScheduleItem scheduleItem2 = new ScheduleItem();
-        scheduleItem2.setTitle("SCHEDULE 2");
+        ScheduledTimer scheduledTimer2 = new ScheduledTimer();
+        scheduledTimer2.setTitle("SCHEDULE 2");
 
-        ScheduleItem scheduleItem3 = new ScheduleItem();
-        scheduleItem3.setTitle("SCHEdule 3");
+        ScheduledTimer scheduledTimer3 = new ScheduledTimer();
+        scheduledTimer3.setTitle("SCHEdule 3");
 
-        ScheduleItem scheduleItem4 = new ScheduleItem();
-        scheduleItem4.setTitle("scheDULE 4");
+        ScheduledTimer scheduledTimer4 = new ScheduledTimer();
+        scheduledTimer4.setTitle("scheDULE 4");
 
-        ScheduleItem scheduleItem5 = new ScheduleItem();
-        scheduleItem5.setTitle("schedule 5 with long name");
+        ScheduledTimer scheduledTimer5 = new ScheduledTimer();
+        scheduledTimer5.setTitle("schedule 5 with long name");
 
-        ScheduleItem scheduleItem6 = new ScheduleItem();
-        scheduleItem6.setTitle("по русски");
+        ScheduledTimer scheduledTimer6 = new ScheduledTimer();
+        scheduledTimer6.setTitle("по русски");
 
-        ScheduleItem scheduleItem7 = new ScheduleItem();
-        scheduleItem7.setTitle("");
+        ScheduledTimer scheduledTimer7 = new ScheduledTimer();
+        scheduledTimer7.setTitle("");
 
-        itemArrayList.add(scheduleItem1);
-        itemArrayList.add(scheduleItem2);
-        itemArrayList.add(scheduleItem3);
-        itemArrayList.add(scheduleItem4);
-        itemArrayList.add(scheduleItem5);
-        itemArrayList.add(scheduleItem6);
-        itemArrayList.add(scheduleItem7);
+        itemArrayList.add(scheduledTimer1);
+        itemArrayList.add(scheduledTimer2);
+        itemArrayList.add(scheduledTimer3);
+        itemArrayList.add(scheduledTimer4);
+        itemArrayList.add(scheduledTimer5);
+        itemArrayList.add(scheduledTimer6);
+        itemArrayList.add(scheduledTimer7);
 
         itemArrayList.clear();
 

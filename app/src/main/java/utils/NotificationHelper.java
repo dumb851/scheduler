@@ -11,7 +11,7 @@ import android.support.v4.app.TaskStackBuilder;
 import com.zubrid.scheduletimer.R;
 
 import data.DbLab;
-import model.ScheduleItem;
+import model.ScheduledTimer;
 import model.TimePoint;
 import ui.activity.MainActivity;
 
@@ -35,9 +35,9 @@ public class NotificationHelper {
 
         mContentText = timePoint.getTitle();
 
-        ScheduleItem scheduleItem = dbLab.getScheduleItem(timePoint.getScheduleID());
+        ScheduledTimer scheduledTimer = dbLab.getScheduleItem(timePoint.getScheduleID());
 
-        mContentTitle = scheduleItem.getTitle();
+        mContentTitle = scheduledTimer.getTitle();
 
     }
 

@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import data.DbLab;
-import model.ScheduleItem;
+import model.ScheduledTimer;
 import model.TimePoint;
 
 public class AlarmHelper {
 
-    public static void runSchedule(Context context, ScheduleItem scheduleItem) {
+    public static void runSchedule(Context context, ScheduledTimer scheduledTimer) {
 
         DbLab dbLab = DbLab.getLab(context);
-        ArrayList<TimePoint> timePoints = dbLab.getTimePointList(scheduleItem.getID());
+        ArrayList<TimePoint> timePoints = dbLab.getTimePointList(scheduledTimer.getID());
 
         long previousTrigger = -1;
 
@@ -35,10 +35,10 @@ public class AlarmHelper {
         }
     }
 
-    public static void stopSchedule(Context context, ScheduleItem scheduleItem) {
+    public static void stopSchedule(Context context, ScheduledTimer scheduledTimer) {
 
         DbLab dbLab = DbLab.getLab(context);
-        ArrayList<TimePoint> timePoints = dbLab.getTimePointList(scheduleItem.getID());
+        ArrayList<TimePoint> timePoints = dbLab.getTimePointList(scheduledTimer.getID());
 
         for (TimePoint timePoint :
                 timePoints) {

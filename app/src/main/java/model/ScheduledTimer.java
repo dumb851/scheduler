@@ -1,6 +1,6 @@
 package model;
 
-public final class ScheduleItem {
+public final class ScheduledTimer {
 
     private String mTitle;
     private int mID;
@@ -16,7 +16,7 @@ public final class ScheduleItem {
     }
 
     // constructor
-    public ScheduleItem() {
+    public ScheduledTimer() {
         mID = NO_ID;
         mTitle = "";
         mSortOrder = sSortOrder + 100f;

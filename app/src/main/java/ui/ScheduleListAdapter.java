@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import data.DbLab;
-import model.ScheduleItem;
+import model.ScheduledTimer;
 import utils.AlarmHelper;
 
 
@@ -23,7 +23,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
     public static final String TAG = ScheduleListAdapter.class.getSimpleName();
 
-    private ArrayList<ScheduleItem> mDataSet;
+    private ArrayList<ScheduledTimer> mDataSet;
     private Context mContext;
     private static ItemClickListener sItemClickListener;
     private static RecyclerView.ViewHolder sSelectedItem;
@@ -62,12 +62,12 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        ScheduleItem scheduleItem = mDataSet.get(position);
-        holder.setScheduleViewTitle(scheduleItem.getTitle());
-        holder.setScheduleViewID(scheduleItem.getID());
+        ScheduledTimer scheduledTimer = mDataSet.get(position);
+        holder.setScheduleViewTitle(scheduledTimer.getTitle());
+        holder.setScheduleViewID(scheduledTimer.getID());
 
-        holder.setIsRunningView(scheduleItem.isRunning());
-        holder.setSortOrder(scheduleItem.getSortOrder());
+        holder.setIsRunningView(scheduledTimer.isRunning());
+        holder.setSortOrder(scheduledTimer.getSortOrder());
     }
 
     @Override
@@ -109,13 +109,13 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             mIvIsRunning.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ScheduleItem scheduleItem = DbLab.changeScheduleRunningState(ID);
+                    ScheduledTimer scheduledTimer = DbLab.changeScheduleRunningState(ID);
 
-                    if (scheduleItem.isRunning()) {
+                    if (scheduledTimer.isRunning()) {
 
-                        AlarmHelper.runSchedule(view.getContext(), scheduleItem);
+                        AlarmHelper.runSchedule(view.getContext(), scheduledTimer);
                     } else {
-                        AlarmHelper.stopSchedule(view.getContext(), scheduleItem);
+                        AlarmHelper.stopSchedule(view.getContext(), scheduledTimer);
                     }
 
                 }
@@ -184,7 +184,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
             return;
         }
 
-        ScheduleItem currentItem = mDataSet.get(pos);
+        ScheduledTimer currentItem = mDataSet.get(pos);
 
         float newSortOrder;
         float min;
@@ -194,22 +194,22 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
 
         if (pos == 0) {
 
-            ScheduleItem nextItem = mDataSet.get(pos + 1);
+            ScheduledTimer nextItem = mDataSet.get(pos + 1);
 
             min = 0f;
             max = nextItem.getSortOrder();
 
         } else if (pos == mDataSet.size() - 1) {
 
-            ScheduleItem prevItem = mDataSet.get(pos - 1);
+            ScheduledTimer prevItem = mDataSet.get(pos - 1);
 
             min = prevItem.getSortOrder();
             max = min + 100f;
 
         } else {
 
-            ScheduleItem nextItem = mDataSet.get(pos + 1);
-            ScheduleItem prevItem = mDataSet.get(pos - 1);
+            ScheduledTimer nextItem = mDataSet.get(pos + 1);
+            ScheduledTimer prevItem = mDataSet.get(pos - 1);
 
             min = prevItem.getSortOrder();
             max = nextItem.getSortOrder();
@@ -226,7 +226,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
         mDataSet = mDbLab.getScheduleItemList();
     }
 
-    public ArrayList<ScheduleItem> getDataSet() {
+    public ArrayList<ScheduledTimer> getDataSet() {
         return mDataSet;
     }
 
