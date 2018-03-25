@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -101,6 +102,13 @@ public final class ScheduleItemActivity extends AppCompatActivity
             }
         });
 
+        mUseVibrationView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mScheduledTimer.setUseVibration(b);
+            }
+        });
+
     }
 
     @Override
@@ -120,7 +128,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 break;
 
             case R.id.action_schedule_item_done:
-                saveSchedule();
+                saveScheduledTimer();
                 break;
 
             case R.id.action_schedule_item_delete:
@@ -203,7 +211,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
         mDbLab.deleteSchedule(mScheduledTimer);
     }
 
-    private void saveSchedule() {
+    private void saveScheduledTimer() {
 
         int resultID = mDbLab.saveScheduledTimer(mScheduledTimer);
 

@@ -43,12 +43,20 @@ final public class DbLab {
         values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduledTimer.getTitle());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, scheduledTimer.getSortOrder());
 
+        // running
         int isRunningInt = 0;
         if (scheduledTimer.isRunning()) {
             isRunningInt = 1;
         }
-
         values.put(DbContract.ScheduleListEntry.COLUMN_IS_RUNNING, isRunningInt);
+
+        // vibration
+        int isUseVibrationInt = 0;
+        if (scheduledTimer.isUseVibration()) {
+            isUseVibrationInt = 1;
+        }
+        values.put(DbContract.ScheduleListEntry.COLUMN_IS_USE_VIBRATION, isUseVibrationInt);
+
 
         int resultID;
 
@@ -142,6 +150,12 @@ final public class DbLab {
                     )
             );
 
+            int isUseVibrationInt = cursor.getInt(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_IS_USE_VIBRATION
+                    )
+            );
+
             float sortOrder = cursor.getFloat(
                     cursor.getColumnIndex(
                             DbContract.ScheduleListEntry.COLUMN_SORT_ORDER
@@ -153,6 +167,10 @@ final public class DbLab {
 
             if (isRunningInt == 1) {
                 scheduledTimer.setIsRunning(true);
+            }
+
+            if (isUseVibrationInt == 1) {
+                scheduledTimer.setUseVibration(true);
             }
 
             scheduledTimer.setSortOrder(sortOrder);
