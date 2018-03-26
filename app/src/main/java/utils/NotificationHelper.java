@@ -19,7 +19,7 @@ public class NotificationHelper {
 
     private Context mContext;
 
-    private boolean mEnableVibration;
+    private boolean mUseVibration;
     private String mContentText;
     private String mContentTitle;
     private int mTimePointID;
@@ -37,8 +37,8 @@ public class NotificationHelper {
 
         ScheduledTimer scheduledTimer = dbLab.getScheduleItem(timePoint.getScheduleID());
 
-        mContentTitle = scheduledTimer.getTitle();
-
+        mContentTitle = scheduledTimer.getTimerName();
+        mUseVibration = scheduledTimer.isUseVibration();
     }
 
     public void show() {
@@ -47,7 +47,7 @@ public class NotificationHelper {
 
         Notification notification = new Notification();
 
-        if (mEnableVibration) {
+        if (mUseVibration) {
             notification.defaults |= Notification.DEFAULT_VIBRATE;
         }
 

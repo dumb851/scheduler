@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/schedulelist_item_id"
                 tools:layout_constraintLeft_creator="1"
                 tools:layout_constraintTop_creator="1"
-                tools:text="Schedule title" />
+                tools:text="Schedule timerName" />
 
             <TextView
                 android:id="@+id/schedulelist_item_id"

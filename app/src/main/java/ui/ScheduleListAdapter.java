@@ -63,7 +63,7 @@ final public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleList
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         ScheduledTimer scheduledTimer = mDataSet.get(position);
-        holder.setScheduleViewTitle(scheduledTimer.getTitle());
+        holder.setScheduleViewTitle(scheduledTimer.getTimerName());
         holder.setScheduleViewID(scheduledTimer.getID());
 
         holder.setIsRunningView(scheduledTimer.isRunning());

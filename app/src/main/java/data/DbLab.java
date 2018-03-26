@@ -40,7 +40,7 @@ final public class DbLab {
     public int saveScheduledTimer(ScheduledTimer scheduledTimer) {
 
         ContentValues values = new ContentValues();
-        values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduledTimer.getTitle());
+        values.put(DbContract.ScheduleListEntry.COLUMN_TITLE, scheduledTimer.getTimerName());
         values.put(DbContract.ScheduleListEntry.COLUMN_SORT_ORDER, scheduledTimer.getSortOrder());
 
         // running
@@ -163,7 +163,7 @@ final public class DbLab {
             );
 
             scheduledTimer.setID(ID);
-            scheduledTimer.setTitle(title);
+            scheduledTimer.setTimerName(title);
 
             if (isRunningInt == 1) {
                 scheduledTimer.setIsRunning(true);
@@ -344,25 +344,25 @@ final public class DbLab {
         ArrayList<ScheduledTimer> itemArrayList = new ArrayList<>();
 
         ScheduledTimer scheduledTimer1 = new ScheduledTimer();
-        scheduledTimer1.setTitle("schedule 1");
+        scheduledTimer1.setTimerName("schedule 1");
 
         ScheduledTimer scheduledTimer2 = new ScheduledTimer();
-        scheduledTimer2.setTitle("SCHEDULE 2");
+        scheduledTimer2.setTimerName("SCHEDULE 2");
 
         ScheduledTimer scheduledTimer3 = new ScheduledTimer();
-        scheduledTimer3.setTitle("SCHEdule 3");
+        scheduledTimer3.setTimerName("SCHEdule 3");
 
         ScheduledTimer scheduledTimer4 = new ScheduledTimer();
-        scheduledTimer4.setTitle("scheDULE 4");
+        scheduledTimer4.setTimerName("scheDULE 4");
 
         ScheduledTimer scheduledTimer5 = new ScheduledTimer();
-        scheduledTimer5.setTitle("schedule 5 with long name");
+        scheduledTimer5.setTimerName("schedule 5 with long name");
 
         ScheduledTimer scheduledTimer6 = new ScheduledTimer();
-        scheduledTimer6.setTitle("по русски");
+        scheduledTimer6.setTimerName("по русски");
 
         ScheduledTimer scheduledTimer7 = new ScheduledTimer();
-        scheduledTimer7.setTitle("");
+        scheduledTimer7.setTimerName("");
 
         itemArrayList.add(scheduledTimer1);
         itemArrayList.add(scheduledTimer2);

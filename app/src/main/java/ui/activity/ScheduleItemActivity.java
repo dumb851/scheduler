@@ -83,7 +83,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 TimerNameDialog nameDialog = new TimerNameDialog();
 
                 Bundle args = new Bundle();
-                args.putString(TimerNameDialog.EXTRA_NAME, mScheduledTimer.getTitle());
+                args.putString(TimerNameDialog.EXTRA_NAME, mScheduledTimer.getTimerName());
                 nameDialog.setArguments(args);
 
                 nameDialog.show(getSupportFragmentManager(), "timerName");
@@ -280,17 +280,17 @@ public final class ScheduleItemActivity extends AppCompatActivity
     @Override
     public void onDialogDoneClick(String timerName) {
 
-        mScheduledTimer.setTitle(timerName);
+        mScheduledTimer.setTimerName(timerName);
         setTvTimerName();
 
     }
 
     void setTvTimerName() {
 
-        if (mScheduledTimer.getTitle().isEmpty()) {
+        if (mScheduledTimer.getTimerName().isEmpty()) {
             mTvTimerName.setText(R.string.timer_name);
         } else {
-            mTvTimerName.setText(mScheduledTimer.getTitle());
+            mTvTimerName.setText(mScheduledTimer.getTimerName());
         }
     }
 

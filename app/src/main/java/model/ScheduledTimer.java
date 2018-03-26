@@ -2,7 +2,7 @@ package model;
 
 public final class ScheduledTimer {
 
-    private String mTitle;
+    private String mTimerName;
     private int mID;
     private boolean mIsRunning;
     private boolean mIsUseVibration;
@@ -19,7 +19,7 @@ public final class ScheduledTimer {
     // constructor
     public ScheduledTimer() {
         mID = NO_ID;
-        mTitle = "";
+        mTimerName = "";
         mSortOrder = sSortOrder + 100f;
     }
 
@@ -43,12 +43,12 @@ public final class ScheduledTimer {
         mIsRunning = isRunning;
     }
 
-    public String getTitle() {
-        return mTitle;
+    public String getTimerName() {
+        return mTimerName;
     }
 
-    public void setTitle(String title) {
-        mTitle = title;
+    public void setTimerName(String timerName) {
+        mTimerName = timerName;
     }
 
     public int getID() {
