@@ -45,7 +45,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private int mClickedTimePointPos;
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
-    private CardView mCvNotificationSettings;
     private Switch mUseVibrationView;
 
 
@@ -87,17 +86,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
                 nameDialog.setArguments(args);
 
                 nameDialog.show(getSupportFragmentManager(), "timerName");
-
-            }
-        });
-
-        mCvNotificationSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = NotificationSettingsActivity.getIntent(getApplicationContext(),
-                        mScheduledTimer.getID());
-                startActivity(intent);
 
             }
         });
@@ -171,7 +159,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
         mBtnAddPoint = findViewById(R.id.schedule_item_btn_add_point);
         mRvTimePointList = findViewById(R.id.schedule_item_rv_time_point_list);
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
-        mCvNotificationSettings = findViewById(R.id.schedule_item_notification_settings);//! don't need any more
 
         mUseVibrationView = findViewById(R.id.scheduled_timer_vibration);
     }

@@ -26,7 +26,6 @@
             </intent-filter>
         </activity>
         <activity android:name="ui.activity.ScheduleItemActivity"/>
-        <activity android:name="ui.activity.NotificationSettingsActivity"/>
         <!--<//!activity android:name="ui.activity.ExactTimePickerActivity"/>-->
     </application>
 
