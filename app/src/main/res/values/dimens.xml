@@ -5,5 +5,5 @@
     <dimen name="corner_radius">2dp</dimen>
     <dimen name="corner_width">1dp</dimen>
     <dimen name="corner_width_selected">2dp</dimen>
-    <dimen name="card_corner_radius">0dp</dimen>
+    <dimen name="card_corner_radius">1dp</dimen>
 </resources>

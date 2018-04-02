@@ -10,12 +10,12 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -45,7 +45,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private int mClickedTimePointPos;
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
-    private Switch mUseVibrationView;
+    private SwitchCompat mUseVibrationView;
 
 
     public static Intent getIntent(Context context, int scheduleID) {
