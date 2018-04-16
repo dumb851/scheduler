@@ -15,7 +15,7 @@
 
     <style name="RaisedButton" parent="Widget.AppCompat.Button.Colored">
 
-        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/primary_text</item>
 
     </style>
