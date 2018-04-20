@@ -1,31 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CommonBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/CommonBackground"
-    tools:context="ui.activity.ScheduleItemActivity"
-    >
+    tools:context="ui.activity.ScheduleItemActivity">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/schedule_item_cv_title"
-        style="@style/MyCardView"
-        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/schedule_item_timer_name"
-            android:textColor="@color/primary_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_medium"
-            android:fontFamily="sans-serif-medium"
-            tools:text="@string/timer_name"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/schedule_item_cv_point_lis"
+            style="@style/MyCardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/schedule_item_btn_add_point"
+                        style="@style/RaisedButton"
+                        android:drawableStart="@drawable/ic_add"
+                        android:text="@string/add_point"/>
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/scheduled_timer_repeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+
+                    android:text="@string/repeat"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/schedule_item_cv_title"
+            style="@style/MyCardView">
 
-    </android.support.v7.widget.CardView>
+            <TextView
+                android:id="@+id/schedule_item_timer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/primary_text"
+                tools:text="@string/timer_name" />
 
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
