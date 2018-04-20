@@ -177,7 +177,6 @@
 
         </android.support.v7.widget.CardView>
 
-
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/scheduled_timer_vibration"
             android:layout_width="match_parent"
