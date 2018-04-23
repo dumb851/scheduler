@@ -53,6 +53,7 @@
     <style name="MyTextViewMedium" parent="MyTextView">
 
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
 
     </style>
 
