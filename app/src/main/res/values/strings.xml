@@ -23,5 +23,6 @@
     <string name="ringtone">Ringtone</string>
     <string name="notification_settings">Notification settings</string>
     <string name="repeat">Repeat</string>
+    <string name="show_in_notification_bar">Show in notification bar</string>
 
 </resources>

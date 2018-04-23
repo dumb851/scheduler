@@ -36,6 +36,40 @@
 
     </style>
 
+    <style name="MyTextView" parent="AppTheme">
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:layout_margin">@dimen/margin_medium</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MyTextViewLarge" parent="MyTextView">
+
+
+    </style>
+
+    <style name="MyTextViewMedium" parent="MyTextView">
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+
+    </style>
+
+    <style name="MyTextViewSmall" parent="MyTextView">
+
+        <item name="android:fontFamily">sans-serif</item>
+
+    </style>
+
+    <style name="MySwitch" parent="MyTextView">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+
+    </style>
+
     <style name="AppThemeLight" parent="Theme.AppCompat.Light">
 
     </style>
