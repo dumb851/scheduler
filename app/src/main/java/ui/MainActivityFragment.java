@@ -21,6 +21,8 @@ import ui.activity.ScheduleItemActivity;
  */
 final public class MainActivityFragment extends Fragment implements ScheduleListAdapter.ItemClickListener {
 
+    //todo //!test from home
+
     private static final String TAG = MainActivityFragment.class.getSimpleName();
     protected RecyclerView mRecyclerViewScheduleList;
     protected ScheduleListAdapter mScheduleListAdapter;
