@@ -116,7 +116,10 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
             case android.R.id.home:
                 onBackPressed();
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right); //!
+                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right); //!
+                overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_left); //!
+
+
                 break;
 
             case R.id.action_schedule_item_done:
