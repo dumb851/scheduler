@@ -63,8 +63,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
         //!setContentView(R.layout.scheduled_timer);
         setContentView(R.layout.scheduled_timer_new);
 
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-
         setToolbar();
 
         initVariables();
@@ -116,10 +114,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
             case android.R.id.home:
                 onBackPressed();
-                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right); //!
-                overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_left); //!
-
-
                 break;
 
             case R.id.action_schedule_item_done:
@@ -130,7 +124,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
                 deleteSchedule();
                 finish();
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left); //!
                 break;
 
             case R.id.action_schedule_item_duplicate:
@@ -216,8 +209,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
         }
 
         finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left); //!
-
     }
 
     private void showExactTimePicker(int pos) {
