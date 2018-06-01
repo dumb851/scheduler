@@ -23,6 +23,7 @@ public class NotificationHelper {
     private String mContentText;
     private String mContentTitle;
     private int mTimePointID;
+    private PendingIntent contentIntent;
 
     // constructor
     public NotificationHelper(Context context, int timePointID) {
@@ -51,15 +52,26 @@ public class NotificationHelper {
             notification.defaults |= Notification.DEFAULT_VIBRATE;
         }
 
+        Intent notificationIntent = new Intent();
+
+        PendingIntent intentButtonStop = PendingIntent.getActivity(
+                mContext,
+                0,
+                notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
         String CHANNEL_ID = "my_channel_01";
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(mContext, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_notification)
                         .setContentTitle(mContentTitle)
                         .setContentText(mContentText)
-                        .setDefaults(notification.defaults);
+                        .setDefaults(notification.defaults)
+                        .addAction(R.drawable.ic_action_done, mContext.getString(R.string.stop_timer), intentButtonStop)
+                        .addAction(R.drawable.ic_action_done, mContext.getString(R.string.ok), intentButtonStop);
                 //.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                //;
+                ;
 
 
 // Creates an explicit intent for an Activity in your app
@@ -74,6 +86,7 @@ public class NotificationHelper {
         stackBuilder.addParentStack(MainActivity.class);
 // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
+
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(
                         0,

@@ -3,6 +3,7 @@ package ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +47,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
     private SwitchCompat mUseVibrationView;
-
+    private CardView mLedColorView;
 
     public static Intent getIntent(Context context, int scheduleID) {
 
@@ -61,13 +62,19 @@ public final class ScheduleItemActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         //!setContentView(R.layout.scheduled_timer);
-        setContentView(R.layout.scheduled_timer_new);
+        setContentView(R.layout.scheduled_timer_new_new);
 
         setToolbar();
 
         initVariables();
 
         fillUI();
+
+        setListeners();
+
+    }
+
+    private void setListeners() {
 
         mBtnAddPoint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +105,13 @@ public final class ScheduleItemActivity extends AppCompatActivity
             }
         });
 
+        mLedColorView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
     }
 
     @Override
@@ -162,6 +176,9 @@ public final class ScheduleItemActivity extends AppCompatActivity
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
 
         mUseVibrationView = findViewById(R.id.scheduled_timer_vibration);
+
+        mLedColorView = findViewById(R.id.schedule_item_cv_led_light);
+
     }
 
     private void fillUI() {

@@ -1,5 +1,7 @@
 package model;
 
+import android.graphics.Color;
+
 public final class ScheduledTimer {
 
     private String mTimerName;
@@ -8,6 +10,7 @@ public final class ScheduledTimer {
     private boolean mIsUseVibration;
     private float mSortOrder;
     private static float sSortOrder;
+    private int mColor;
 
     public static final int NO_ID = -1;
 
@@ -65,5 +68,16 @@ public final class ScheduledTimer {
 
     public void setUseVibration(boolean useVibration) {
         mIsUseVibration = useVibration;
+    }
+
+    public int getColor() {
+
+        return Color.GREEN;
+
+        //!return mColor;
+    }
+
+    public void setColor(int color) {
+        this.mColor = color;
     }
 }
