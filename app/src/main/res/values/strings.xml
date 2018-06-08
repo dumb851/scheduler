@@ -25,5 +25,8 @@
     <string name="repeat">Repeat</string>
     <string name="show_in_notification_bar">Show in notification bar</string>
     <string name="stop_timer">Stop timer</string>
+    <string name="red">Red</string>
+    <string name="orange">Orange</string>
+    <string name="yellow">Yellow</string>
 
 </resources>

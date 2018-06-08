@@ -31,4 +31,13 @@
     <color name="color_button_text">#FFFFFF</color>
 
 
+    <!--for LED-->
+    <color name="color_LED_red">@android:color/holo_red_dark</color>
+    <color name="color_LED_orange">@android:color/holo_orange_dark</color>
+    <color name="color_LED_yellow">@android:color/holo_orange_light</color>
+    <color name="color_LED_green">@android:color/holo_green_dark</color>
+    <color name="color_LED_blue">@android:color/holo_blue_dark</color>
+    <color name="color_LED_cyan">@android:color/holo_blue_bright</color>
+    <color name="color_LED_white">@android:color/white</color>
+
 </resources>

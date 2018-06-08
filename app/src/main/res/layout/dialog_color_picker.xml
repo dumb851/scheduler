@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_LED_red"
+            android:text="@string/red" />
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/orange"
+            android:buttonTint="@color/color_LED_orange"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="41dp" />
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_LED_yellow"
+            android:text="@string/yellow"/>
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_LED_green"
+            android:text="@string/yellow" />
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_LED_blue"
+            android:text="@string/yellow" />
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_cyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_LED_cyan"
+            android:text="@string/yellow" />
+
+        <RadioButton
+            android:id="@+id/dialog_color_picker_rb_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/yellow" />
+
+    </RadioGroup>
+</android.support.constraint.ConstraintLayout>
