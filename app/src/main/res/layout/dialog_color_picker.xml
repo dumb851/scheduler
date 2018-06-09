@@ -4,74 +4,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        style="@style/RaisedButton"
-        android:id="@+id/dialog_color_picker_bt_disable"
-        android:text="@string/disable"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <Button
-        style="@style/RaisedButton"
-        android:id="@+id/dialog_color_picker_bt_set"
-        android:text="@string/set"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="232dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_red"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
             android:buttonTint="@color/color_LED_red"
             android:text="@string/red"
             />
 
         <RadioButton
-            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_orange"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
             android:buttonTint="@color/color_LED_orange"
-            android:text="@string/orange" />
+            android:text="@string/orange"/>
 
         <RadioButton
-            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_yellow"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
             android:buttonTint="@color/color_LED_yellow"
-            android:text="@string/yellow" />
+            android:text="@string/yellow"/>
 
         <RadioButton
-            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_green"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
             android:buttonTint="@color/color_LED_green"
-            android:text="@string/green" />
+            android:text="@string/green"/>
 
         <RadioButton
-            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_blue"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
             android:buttonTint="@color/color_LED_blue"
-            android:text="@string/blue" />
+            android:text="@string/blue"/>
 
         <RadioButton
-            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_cyan"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
             android:buttonTint="@color/color_LED_cyan"
-            android:text="@string/cyan" />
+            android:text="@string/cyan"/>
 
         <RadioButton
-            style="@style/MyRadioButton"
+
             android:id="@+id/dialog_color_picker_rb_white"
-            android:text="@string/white" />
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
+            android:text="@string/white"/>
+
+        <RadioButton
+
+            android:id="@+id/dialog_color_picker_rb_none"
+            style="@style/MyRadioButton"
+            android:layout_width="match_parent"
+            android:text="@string/none"/>
 
     </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            app:srcCompat="@android:color/holo_orange_light"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/yellow"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

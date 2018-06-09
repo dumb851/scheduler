@@ -34,5 +34,6 @@
     <string name="white">White</string>
     <string name="set">Set</string>
     <string name="disable">Disable</string>
+    <string name="none">None</string>
 
 </resources>
