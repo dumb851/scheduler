@@ -6,71 +6,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        style="@style/RaisedButton"
+        android:id="@+id/dialog_color_picker_bt_disable"
+        android:text="@string/disable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Button
+        style="@style/RaisedButton"
+        android:id="@+id/dialog_color_picker_bt_set"
+        android:text="@string/set"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_red"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:buttonTint="@color/color_LED_red"
-            android:text="@string/red" />
+            android:text="@string/red"
+            />
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_orange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/orange"
             android:buttonTint="@color/color_LED_orange"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="41dp" />
+            android:text="@string/orange" />
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_yellow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:buttonTint="@color/color_LED_yellow"
-            android:text="@string/yellow"/>
+            android:text="@string/yellow" />
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:buttonTint="@color/color_LED_green"
-            android:text="@string/yellow" />
+            android:text="@string/green" />
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:buttonTint="@color/color_LED_blue"
-            android:text="@string/yellow" />
+            android:text="@string/blue" />
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_cyan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:buttonTint="@color/color_LED_cyan"
-            android:text="@string/yellow" />
+            android:text="@string/cyan" />
 
         <RadioButton
+            style="@style/MyRadioButton"
             android:id="@+id/dialog_color_picker_rb_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:text="@string/yellow" />
+            android:text="@string/white" />
 
     </RadioGroup>
+
 </android.support.constraint.ConstraintLayout>

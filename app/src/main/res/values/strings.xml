@@ -28,5 +28,11 @@
     <string name="red">Red</string>
     <string name="orange">Orange</string>
     <string name="yellow">Yellow</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="cyan">Cyan</string>
+    <string name="white">White</string>
+    <string name="set">Set</string>
+    <string name="disable">Disable</string>
 
 </resources>
