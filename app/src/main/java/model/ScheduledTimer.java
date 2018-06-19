@@ -10,7 +10,7 @@ public final class ScheduledTimer {
     private boolean mIsUseVibration;
     private float mSortOrder;
     private static float sSortOrder;
-    private int mColor;
+    private int mLedColor;
 
     public static final int NO_ID = -1;
 
@@ -70,14 +70,12 @@ public final class ScheduledTimer {
         mIsUseVibration = useVibration;
     }
 
-    public int getColor() {
-
-        return Color.GREEN;
-
-        //!return mColor;
+    public int getLedColor() {
+        return mLedColor;
     }
 
-    public void setColor(int color) {
-        this.mColor = color;
+    public void setLedColor(int color) {
+        mLedColor = color;
     }
+
 }

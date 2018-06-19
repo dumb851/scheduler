@@ -54,7 +54,7 @@ final public class MainActivity extends AppCompatActivity {
     private void addNewScheduleAction() {
 
         Intent intent = new Intent(MainActivity.this,
-                ScheduleItemActivity.class);
+                ScheduledTimerActivity.class);
 
         startActivity(intent);
     }

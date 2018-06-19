@@ -14,7 +14,7 @@ import com.zubrid.scheduletimer.R;
 
 import java.util.Collections;
 
-import ui.activity.ScheduleItemActivity;
+import ui.activity.ScheduledTimerActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -104,7 +104,7 @@ final public class MainActivityFragment extends Fragment implements ScheduleList
     @Override
     public void OnItemClickListener(int id) {
 
-        Intent intent = ScheduleItemActivity.getIntent(getContext(), id);
+        Intent intent = ScheduledTimerActivity.getIntent(getContext(), id);
         startActivity(intent);
 
     }

@@ -35,7 +35,7 @@ final public class DbLab {
     }
 
 
-    // ScheduleItemActivity
+    // ScheduleItem
 
     public int saveScheduledTimer(ScheduledTimer scheduledTimer) {
 
@@ -56,6 +56,9 @@ final public class DbLab {
             isUseVibrationInt = 1;
         }
         values.put(DbContract.ScheduleListEntry.COLUMN_IS_USE_VIBRATION, isUseVibrationInt);
+
+        // led color
+        values.put(DbContract.ScheduleListEntry.COLUMN_LED_COLOR, scheduledTimer.getLedColor());
 
 
         int resultID;
@@ -162,6 +165,12 @@ final public class DbLab {
                     )
             );
 
+            int ledColor = cursor.getInt(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_LED_COLOR
+                    )
+            );
+
             scheduledTimer.setID(ID);
             scheduledTimer.setTimerName(title);
 
@@ -171,6 +180,10 @@ final public class DbLab {
 
             if (isUseVibrationInt == 1) {
                 scheduledTimer.setUseVibration(true);
+            }
+
+            if (ledColor != 0) {
+                scheduledTimer.setLedColor(ledColor);
             }
 
             scheduledTimer.setSortOrder(sortOrder);

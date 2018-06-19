@@ -42,7 +42,7 @@ public class NotificationHelper {
 
         mContentTitle = scheduledTimer.getTimerName();
         mUseVibration = scheduledTimer.isUseVibration();
-        mColor = scheduledTimer.getColor();
+        mColor = scheduledTimer.getLedColor();
     }
 
     public void show() {

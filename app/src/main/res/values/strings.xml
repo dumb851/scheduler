@@ -19,7 +19,7 @@
     <string name="hint_time_picker_message">message</string>
     <string name="vibration">Vibration</string>
     <string name="pop_up">Pop-up</string>
-    <string name="led_light">LED Color</string>
+    <string name="led_color">LED Color</string>
     <string name="ringtone">Ringtone</string>
     <string name="notification_settings">Notification settings</string>
     <string name="repeat">Repeat</string>

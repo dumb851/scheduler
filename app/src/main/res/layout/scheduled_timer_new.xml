@@ -6,7 +6,7 @@
     style="@style/CommonBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.activity.ScheduleItemActivity">
+    tools:context="ui.activity.ScheduledTimerActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -218,7 +218,7 @@
 
                 <TextView
                     style="@style/MyTextViewMedium"
-                    android:text="@string/led_light" />
+                    android:text="@string/led_color" />
 
                 <TextView
                     style="@style/MyTextViewSmall"

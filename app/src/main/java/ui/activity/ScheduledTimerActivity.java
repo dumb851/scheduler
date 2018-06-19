@@ -3,7 +3,6 @@ package ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,12 +27,14 @@ import data.DbLab;
 import model.ScheduledTimer;
 import model.TimePoint;
 import ui.TimePointListAdapter;
+import ui.dialog.LedColorPickerDialog;
 import ui.dialog.TimePickerDialog;
 import ui.dialog.TimerNameDialog;
 
-public final class ScheduleItemActivity extends AppCompatActivity
+public final class ScheduledTimerActivity extends AppCompatActivity
         implements TimePointListAdapter.ItemClickListener,
-        TimerNameDialog.TimerNameDialogListener, TimePickerDialog.TimePickerDialogListener {
+        TimerNameDialog.TimerNameDialogListener, TimePickerDialog.TimePickerDialogListener,
+        LedColorPickerDialog.LedColorPickerDialogListener {
 
     private static String EXTRA_ID = "ScheduleItemActivity_EXTRA_ID";
 
@@ -51,7 +52,7 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     public static Intent getIntent(Context context, int scheduleID) {
 
-        Intent intent = new Intent(context, ScheduleItemActivity.class);
+        Intent intent = new Intent(context, ScheduledTimerActivity.class);
         intent.putExtra(EXTRA_ID, scheduleID);
 
         return intent;
@@ -109,6 +110,13 @@ public final class ScheduleItemActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
+                LedColorPickerDialog colorPicker = new LedColorPickerDialog();
+
+                Bundle args = new Bundle();
+//                args.putString(TimerNameDialog.EXTRA_NAME, mScheduledTimer.getTimerName());
+                colorPicker.setArguments(args);
+
+                colorPicker.show(getSupportFragmentManager(), "ledColor");
 
             }
         });
@@ -261,8 +269,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
         showExactTimePicker(pos);
     }
 
-
-
     private TimePoint findTimePointByPos(int pos) {
 
         if (pos == -1) {
@@ -280,7 +286,6 @@ public final class ScheduleItemActivity extends AppCompatActivity
     }
 
     //TimerNameDialogListener
-
     @Override
     public void onDialogDoneClick(String timerName) {
 
@@ -315,4 +320,10 @@ public final class ScheduleItemActivity extends AppCompatActivity
 
     }
 
+    //LedColorPickerDialogListener
+    @Override
+    public void onLedColorPickerDialogChanged(Bundle bundle) {
+
+
+    }
 }
