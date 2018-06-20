@@ -24,12 +24,12 @@ public class Alarm extends BroadcastReceiver {
 
         int timePointID = intent.getIntExtra(ALARM_ID, -1);
 
+        Log.i("MeLog", "onReceive: id=" + timePointID);
+
         if (timePointID != -1) {
             NotificationHelper notificationHelper = new NotificationHelper(context, timePointID);
             notificationHelper.show();
         }
-
-        Log.i("MeLog", "onReceive: id=" + timePointID);
 
         wl.release();
     }

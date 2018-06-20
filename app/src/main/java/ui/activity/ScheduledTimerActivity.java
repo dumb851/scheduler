@@ -3,6 +3,8 @@ package ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.zubrid.scheduletimer.R;
 
@@ -49,6 +52,7 @@ public final class ScheduledTimerActivity extends AppCompatActivity
     private CardView mCvTimerName;
     private SwitchCompat mUseVibrationView;
     private CardView mLedColorView;
+    private ImageView mLedCircle;
 
     public static Intent getIntent(Context context, int scheduleID) {
 
@@ -62,8 +66,7 @@ public final class ScheduledTimerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //!setContentView(R.layout.scheduled_timer);
-        setContentView(R.layout.scheduled_timer_new_new);
+        setContentView(R.layout.scheduled_timer_activity);
 
         setToolbar();
 
@@ -125,6 +128,8 @@ public final class ScheduledTimerActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
+        super.onCreateOptionsMenu(menu);
+
         getMenuInflater().inflate(R.menu.menu_schedule_item, menu);
         return true;
     }
@@ -159,8 +164,9 @@ public final class ScheduledTimerActivity extends AppCompatActivity
     }
 
     private void setToolbar() {
-        Toolbar toolbar = new Toolbar(this);
-        setActionBar(toolbar);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_1);
+        setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -186,12 +192,15 @@ public final class ScheduledTimerActivity extends AppCompatActivity
         mUseVibrationView = findViewById(R.id.scheduled_timer_vibration);
 
         mLedColorView = findViewById(R.id.schedule_item_cv_led_light);
+        mLedCircle = findViewById(R.id.schedule_item_led_circle);
 
     }
 
     private void fillUI() {
 
         setTvTimerName();
+        fillLedColor();
+
         mUseVibrationView.setChecked(mScheduledTimer.isUseVibration());
 
         mListAdapter = new TimePointListAdapter(mTimePointArrayList);
@@ -205,6 +214,18 @@ public final class ScheduledTimerActivity extends AppCompatActivity
         mRvTimePointList.setNestedScrollingEnabled(false);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+    }
+
+    private void fillLedColor() {
+
+        int ledColor = mScheduledTimer.getLedColor();
+
+        Drawable circleDrawable = mLedCircle.getDrawable();
+
+        GradientDrawable gradientDrawable = (GradientDrawable) circleDrawable;
+
+        gradientDrawable.setColor(ledColor);
 
     }
 
@@ -324,6 +345,7 @@ public final class ScheduledTimerActivity extends AppCompatActivity
     @Override
     public void onLedColorPickerDialogChanged(Bundle bundle) {
 
-
+        mScheduledTimer.setLedColor(bundle.getInt(LedColorPickerDialog.EXTRA_LED_COLOR, 0));
+        fillLedColor();
     }
 }
