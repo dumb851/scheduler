@@ -12,8 +12,13 @@
     <color name="colorAccent">#90A4AE</color>
     <color name="colorPrimaryLight">#B2DFDB</color>
 
-    <color name="primary_text">#cfd8dc</color>
+    <!--<color name="primary_text">#cfd8dc</color>-->
+    <color name="primary_text">#000000</color>
+
     <color name="secondary_text">#757575</color>
+
+    <color name="background_form">#ECEFF1</color>
+
 
 
     <!--Light mode-->

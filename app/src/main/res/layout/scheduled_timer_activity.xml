@@ -26,8 +26,6 @@
 
             </android.support.design.widget.AppBarLayout>
 
-
-
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_point_lis"
                 style="@style/MyCardView">
@@ -86,20 +84,21 @@
 
                     <TextView
                         android:id="@+id/schedule_item_timer_name"
-                        style="@style/MyTextViewMedium"
+                        style="@style/MyTextTitle"
                         tools:text="@string/timer_name" />
 
                     <TextView
                         android:id="@+id/schedule_item_name_hint"
-                        style="@style/MyTextViewSmall"
+                        style="@style/MyTextHint"
                         android:text="@string/schedule_item_name_hint"
-
-                        android:textColor="@color/primary_text" />
+                        />
 
 
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <View style="@style/Divider"/>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_title1"
@@ -135,6 +134,8 @@
 
             </android.support.v7.widget.CardView>
 
+            <View style="@style/Divider"/>
+
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_vibration"
                 style="@style/MyCardView">
@@ -167,6 +168,8 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <View style="@style/Divider"/>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_pop_up"
