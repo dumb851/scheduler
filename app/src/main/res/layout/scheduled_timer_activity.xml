@@ -205,41 +205,48 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_zero"
+                        android:background="#FFFFFF"
+                        android:padding="@dimen/margin_medium"
+
+                        android:text="Notification"
+                        android:textColor="@color/color_LED_green"
+                        android:textStyle="bold" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:padding="4dp">
 
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="match_parent"
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_zero"
-                            android:background="#FFFFFF"
-                            android:padding="@dimen/margin_medium"
-                            android:text="Notification"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
 
-                            android:textColor="@color/color_LED_green"
-                            android:textStyle="bold" />
+                            <TextView
+                                style="@style/MyTextTitle"
+                                android:text="@string/vibration" />
 
+                            <TextView
+                                style="@style/MyTextHint"
+                                android:text="Use vibration" />
 
-                        <TextView
-                            style="@style/MyTextTitle"
-                            android:text="@string/vibration" />
+                        </LinearLayout>
 
-                        <TextView
-                            style="@style/MyTextHint"
-                            android:text="Use vibration" />
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/scheduled_timer_vibration"
+                            style="@style/MySwitch" />
 
                     </LinearLayout>
-
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/scheduled_timer_vibration"
-                        style="@style/MySwitch" />
 
                 </LinearLayout>
 
@@ -319,27 +326,29 @@
                     android:orientation="horizontal"
                     android:padding="4dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        style="@style/MyTextTitle"
-                        android:text="@string/led_color" />
+                        <TextView
+                            style="@style/MyTextTitle"
+                            android:text="@string/led_color" />
 
-                    <TextView
-                        style="@style/MyTextHint"
-                        android:text="Set LED-blinking" />
-                </LinearLayout>
+                        <TextView
+                            style="@style/MyTextHint"
+                            android:text="Set LED-blinking" />
+                    </LinearLayout>
 
 
                     <ImageView
                         android:id="@+id/schedule_item_led_circle"
                         android:layout_width="21dp"
-                        android:layout_height="24dp"
+                        android:layout_height="21dp"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="0"
+                        android:layout_margin="10dp"
                         app:srcCompat="@drawable/circle" />
 
 
