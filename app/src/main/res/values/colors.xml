@@ -3,7 +3,7 @@
 
     <!--Dark mode-->
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorPrimary">#212121</color>212121
+    <color name="colorPrimary">#424242</color>212121
     <color name="colorPrimaryBackground">#303030</color>
 
     <color name="colorBackgroundCard">#424242</color>
@@ -13,9 +13,9 @@
     <color name="colorPrimaryLight">#B2DFDB</color>
 
     <!--<color name="primary_text">#cfd8dc</color>-->
-    <color name="primary_text">#000000</color>
+    <color name="primary_text">#616161</color>
 
-    <color name="secondary_text">#757575</color>
+    <color name="secondary_text">#9e9e9e</color>
 
     <color name="background_form">#ECEFF1</color>
 

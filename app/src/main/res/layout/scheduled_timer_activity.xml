@@ -1,30 +1,46 @@
 
-    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ui.activity.ScheduledTimerActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_1"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
         style="@style/CommonBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="ui.activity.ScheduledTimerActivity">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+            <!--<TextView-->
+                <!--android:id="@+id/textView2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="6dp"-->
+                <!--android:text="Timer points" />-->
 
-            </android.support.design.widget.AppBarLayout>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_point_lis"
@@ -38,19 +54,34 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView34"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_zero"
+                            android:layout_weight="1"
+                            android:background="#FFFFFF"
+                            android:padding="@dimen/margin_medium"
+
+                            android:text="Timer points"
+                            android:textColor="@color/color_LED_green"
+                            android:textStyle="bold" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/schedule_item_btn_add_point"
+                            style="@style/RaisedButton"
+                            android:layout_width="173dp"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_add"
+                            android:text="@string/add_point" />
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/schedule_item_btn_add_point"
-                                style="@style/RaisedButton"
-                                android:drawableStart="@drawable/ic_add"
-                                android:text="@string/add_point" />
+                            android:orientation="horizontal">
 
                         </LinearLayout>
 
@@ -58,7 +89,8 @@
                             android:id="@+id/scheduled_timer_repeat"
                             style="@style/MyCheckBox"
                             android:layout_gravity="center_vertical"
-                            android:text="@string/repeat" />
+                            android:text="@string/repeat"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -73,14 +105,35 @@
 
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="12sp" />
+
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_title"
-                style="@style/MyCardView">
+                style="@style/MyCardView"
+
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_zero"
+                        android:background="#FFFFFF"
+                        android:padding="@dimen/margin_medium"
+                        android:text="About timer"
+
+                        android:textColor="@color/color_LED_green"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/schedule_item_timer_name"
@@ -90,8 +143,8 @@
                     <TextView
                         android:id="@+id/schedule_item_name_hint"
                         style="@style/MyTextHint"
-                        android:text="@string/schedule_item_name_hint"
-                        />
+
+                        android:text="@string/schedule_item_name_hint" />
 
 
                 </LinearLayout>
@@ -107,7 +160,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    >
 
                     <LinearLayout
 
@@ -117,11 +172,11 @@
                         android:orientation="vertical">
 
                         <TextView
-                            style="@style/MyTextViewMedium"
+                            style="@style/MyTextTitle"
                             android:text="@string/show_in_notification_bar" />
 
                         <TextView
-                            style="@style/MyTextViewSmall"
+                            style="@style/MyTextHint"
                             android:text="Show current status " />
 
                     </LinearLayout>
@@ -136,6 +191,13 @@
 
             <View style="@style/Divider"/>
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="12sp" />
+
+
+
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_vibration"
                 style="@style/MyCardView">
@@ -149,14 +211,28 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="4dp">
 
                         <TextView
-                            style="@style/MyTextViewMedium"
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_zero"
+                            android:background="#FFFFFF"
+                            android:padding="@dimen/margin_medium"
+                            android:text="Notification"
+
+                            android:textColor="@color/color_LED_green"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            style="@style/MyTextTitle"
                             android:text="@string/vibration" />
 
                         <TextView
-                            style="@style/MyTextViewSmall"
+                            style="@style/MyTextHint"
                             android:text="Use vibration" />
 
                     </LinearLayout>
@@ -178,7 +254,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    >
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -187,11 +265,11 @@
                         android:orientation="vertical">
 
                         <TextView
-                            style="@style/MyTextViewMedium"
+                            style="@style/MyTextTitle"
                             android:text="@string/pop_up" />
 
                         <TextView
-                            style="@style/MyTextViewSmall"
+                            style="@style/MyTextHint"
                             android:text="Use pop-up notification" />
 
                     </LinearLayout>
@@ -204,50 +282,77 @@
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/schedule_item_cv_ringtone"
-                style="@style/MyCardView">
+            <!--<View style="@style/Divider"/>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/schedule_item_cv_ringtone"-->
+                <!--style="@style/MyCardView">-->
 
-                    <TextView
-                        style="@style/MyTextViewMedium"
-                        android:text="@string/ringtone" />
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="4dp">-->
 
-                    <TextView
-                        style="@style/MyTextViewSmall"
-                        android:text="Press to set a ringtone" />
+                    <!--<TextView-->
+                        <!--style="@style/MyTextTitle"-->
+                        <!--android:text="@string/ringtone" />-->
 
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--style="@style/MyTextHint"-->
+                        <!--android:text="Press to set a ringtone" />-->
 
-            </android.support.v7.widget.CardView>
+                <!--</LinearLayout>-->
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <View style="@style/Divider"/>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_item_cv_led_light"
                 style="@style/MyCardView">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
                     <TextView
-                        style="@style/MyTextViewMedium"
+                        style="@style/MyTextTitle"
                         android:text="@string/led_color" />
+
+                    <TextView
+                        style="@style/MyTextHint"
+                        android:text="Set LED-blinking" />
+                </LinearLayout>
+
 
                     <ImageView
                         android:id="@+id/schedule_item_led_circle"
                         android:layout_width="21dp"
                         android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
                         app:srcCompat="@drawable/circle" />
+
 
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="12sp" />
         </LinearLayout>
 
+
     </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
