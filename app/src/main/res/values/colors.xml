@@ -15,11 +15,13 @@
     <!--<color name="primary_text">#cfd8dc</color>-->
     <color name="primary_text">#616161</color>
 
+
     <color name="secondary_text">#9e9e9e</color>
 
     <color name="background_form">#ECEFF1</color>
 
 
+    <color name="border_shape_stroke_color">#616161</color>
 
     <!--Light mode-->
     <!--<color name="colorPrimary">#009688</color>-->

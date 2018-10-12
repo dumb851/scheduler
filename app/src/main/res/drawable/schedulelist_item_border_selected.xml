@@ -13,6 +13,6 @@
 
     <stroke
         android:width="@dimen/corner_width_selected"
-        android:color="@color/colorPrimaryDark"/>
+        android:color="@color/border_shape_stroke_color"/>
 
 </shape>

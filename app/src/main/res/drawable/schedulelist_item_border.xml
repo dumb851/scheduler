@@ -2,6 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
        android:shape="rectangle">
 
+    <!--<solid-->
+        <!--android:color="@color/divider"/>-->
+
     <corners android:radius="@dimen/corner_radius"/>
 
     <padding
@@ -12,6 +15,6 @@
 
     <stroke
         android:width="@dimen/corner_width"
-        android:color="@color/colorPrimary"/>
+        android:color="@color/border_shape_stroke_color"/>
 
 </shape>
