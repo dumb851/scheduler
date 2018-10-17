@@ -27,6 +27,7 @@ final class DbHelper extends SQLiteOpenHelper {
                 ScheduleListEntry.COLUMN_SORT_ORDER + " REAL NOT NULL, " +
                 ScheduleListEntry.COLUMN_IS_RUNNING + " INTEGER NOT NULL, " +
                 ScheduleListEntry.COLUMN_IS_USE_VIBRATION + " INTEGER NOT NULL, " +
+                ScheduleListEntry.COLUMN_IS_USE_POP_UP + " INTEGER NOT NULL, " +
                 ScheduleListEntry.COLUMN_LED_COLOR + " INTEGER" +
                 ");";
 

@@ -10,7 +10,7 @@
     <string name="schedule_item_name_hint">Press to enter name</string>
     <string name="timer_name">Timer name</string>
     <string name="time_point">Timer name</string>
-    <string name="add_point">add</string>
+    <string name="add_point">add point</string>
     <string name="ok">OK</string>
     <string name="period">period</string>
     <string name="exact_time">exact time</string>

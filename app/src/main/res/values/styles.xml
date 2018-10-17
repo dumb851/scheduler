@@ -110,8 +110,22 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
 
+    </style>
+
+    <style name="MySwitchTheme" parent="AppTheme">
+
+
+        <item name="colorControlActivated">@color/color_LED_blue</item>
+        <!--<item name="colorAccent">@color/color_LED_blue</item>-->
+        <!--<item name="colorControlHighlight">@color/color_LED_blue</item>-->
+        <!--<item name="colorPrimary">@color/color_LED_blue</item>-->
+        <!--<item name="colorPrimaryDark">@color/color_LED_blue</item>-->
+
+        <!--<item name="colorControlNormal">@color/color_LED_blue</item>-->
+        <!--<item name="colorSwitchThumbNormal">@color/color_LED_blue</item>-->
 
     </style>
+
 
     <style name="AppThemeLight" parent="Theme.AppCompat.Light">
 
@@ -124,7 +138,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/margin_medium</item>
         <item name="android:padding">@dimen/margin_medium</item>
-        <item name="android:minHeight">20dp</item>
+        <!--<item name="android:minHeight">20dp</item>-->
+
+
+
+        <!--android:drawableStart="@drawable/ic_add"-->
 
     </style>
 

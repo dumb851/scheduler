@@ -54,14 +54,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/textView34"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_zero"
-                            android:layout_weight="1"
+                            android:layout_weight="50"
                             android:background="#FFFFFF"
                             android:padding="@dimen/margin_medium"
 
@@ -72,18 +72,14 @@
                         <android.support.v7.widget.AppCompatButton
                             android:id="@+id/schedule_item_btn_add_point"
                             style="@style/RaisedButton"
-                            android:layout_width="173dp"
-                            android:layout_weight="1"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="@string/add_point"
+                            android:textColor="@color/color_LED_blue"
                             android:drawableStart="@drawable/ic_add"
-                            android:text="@string/add_point" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                        </LinearLayout>
+                            />
 
                         <CheckBox
                             android:id="@+id/scheduled_timer_repeat"
@@ -122,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="4dp"
+
                     >
 
                     <TextView
@@ -138,61 +134,76 @@
                         android:textStyle="bold" />
 
 
-                    <TextView
-                        android:id="@+id/schedule_item_timer_name"
-                        style="@style/MyTextTitle"
-                        tools:text="@string/timer_name" />
-
-                    <TextView
-                        android:id="@+id/schedule_item_name_hint"
-                        style="@style/MyTextHint"
-
-                        android:text="@string/schedule_item_name_hint" />
-
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <View style="@style/Divider"/>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/schedule_item_cv_title1"
-                style="@style/MyCardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="4dp"
-                    >
-
                     <LinearLayout
-
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:padding="4dp"
+                        >
 
                         <TextView
+                            android:id="@+id/schedule_item_timer_name"
                             style="@style/MyTextTitle"
-                            android:text="@string/show_in_notification_bar" />
+                            tools:text="@string/timer_name" />
 
                         <TextView
+                            android:id="@+id/schedule_item_name_hint"
                             style="@style/MyTextHint"
-                            android:text="Show current status " />
+
+                            android:text="@string/schedule_item_name_hint" />
+
 
                     </LinearLayout>
 
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/switch1"
-                        style="@style/MySwitch" />
+
 
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
             <View style="@style/Divider"/>
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/schedule_item_cv_title1"-->
+                <!--style="@style/MyCardView">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:padding="4dp"-->
+                    <!--&gt;-->
+
+                    <!--<LinearLayout-->
+
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="vertical"-->
+
+                        <!--android:background="?android:attr/selectableItemBackground"-->
+                        <!--&gt;-->
+
+                        <!--<TextView-->
+                            <!--style="@style/MyTextTitle"-->
+                            <!--android:text="@string/show_in_notification_bar" />-->
+
+                        <!--<TextView-->
+                            <!--style="@style/MyTextHint"-->
+                            <!--android:text="Show current status " />-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<android.support.v7.widget.SwitchCompat-->
+                        <!--android:id="@+id/switch1"-->
+                        <!--style="@style/MySwitch" />-->
+
+                <!--</LinearLayout>-->
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <!--<View style="@style/Divider"/>-->
 
             <TextView
                 android:id="@+id/textView"
@@ -225,15 +236,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="4dp">
-
-
+                        android:padding="4dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:id="@+id/scheduled_timer_vibration_click"
+                        >
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+
+                            >
 
                             <TextView
                                 style="@style/MyTextTitle"
@@ -247,7 +261,10 @@
 
                         <android.support.v7.widget.SwitchCompat
                             android:id="@+id/scheduled_timer_vibration"
-                            style="@style/MySwitch" />
+                            style="@style/MySwitch"
+                            android:theme="@style/MySwitchTheme"
+
+                            />
 
                     </LinearLayout>
 
@@ -266,6 +283,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="4dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:id="@+id/scheduled_timer_pop_up_click"
                     >
 
                     <LinearLayout
@@ -285,8 +304,11 @@
                     </LinearLayout>
 
                     <android.support.v7.widget.SwitchCompat
+
                         android:id="@+id/scheduled_timer_pop_up"
-                        style="@style/MySwitch" />
+                        android:theme="@style/MySwitchTheme"
+                        style="@style/MySwitch"
+                        />
 
                 </LinearLayout>
 
@@ -327,7 +349,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="4dp">
+                    android:padding="4dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"

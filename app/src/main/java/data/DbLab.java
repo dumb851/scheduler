@@ -57,6 +57,14 @@ final public class DbLab {
         }
         values.put(DbContract.ScheduleListEntry.COLUMN_IS_USE_VIBRATION, isUseVibrationInt);
 
+
+        // pop_up
+        int isUsePopUpInt = 0;
+        if (scheduledTimer.isUsePopUp()) {
+            isUsePopUpInt = 1;
+        }
+        values.put(DbContract.ScheduleListEntry.COLUMN_IS_USE_POP_UP, isUsePopUpInt);
+
         // led color
         values.put(DbContract.ScheduleListEntry.COLUMN_LED_COLOR, scheduledTimer.getLedColor());
 
@@ -159,6 +167,13 @@ final public class DbLab {
                     )
             );
 
+            int isUsePopUpInt = cursor.getInt(
+                    cursor.getColumnIndex(
+                            DbContract.ScheduleListEntry.COLUMN_IS_USE_POP_UP
+                    )
+            );
+
+
             float sortOrder = cursor.getFloat(
                     cursor.getColumnIndex(
                             DbContract.ScheduleListEntry.COLUMN_SORT_ORDER
@@ -180,6 +195,10 @@ final public class DbLab {
 
             if (isUseVibrationInt == 1) {
                 scheduledTimer.setUseVibration(true);
+            }
+
+            if (isUsePopUpInt == 1) {
+                scheduledTimer.setIsUsePopUp(true);
             }
 
             if (ledColor != 0) {

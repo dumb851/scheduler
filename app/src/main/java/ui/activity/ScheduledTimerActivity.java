@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
@@ -50,7 +51,13 @@ public final class ScheduledTimerActivity extends AppCompatActivity
     private int mClickedTimePointPos;
     private TimePointListAdapter mListAdapter;
     private CardView mCvTimerName;
+
     private SwitchCompat mUseVibrationView;
+    private LinearLayout mUseVibrationViewClick;
+
+    private SwitchCompat mUsePopUpView;
+    private LinearLayout mUsePopUpViewClick;
+
     private CardView mLedColorView;
     private ImageView mLedCircle;
 
@@ -108,6 +115,34 @@ public final class ScheduledTimerActivity extends AppCompatActivity
                 mScheduledTimer.setUseVibration(b);
             }
         });
+
+        mUseVibrationViewClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mUseVibrationView.setChecked(!mScheduledTimer.isUseVibration());
+
+            }
+        });
+
+
+
+        mUsePopUpView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mScheduledTimer.setIsUsePopUp(b);
+            }
+        });
+
+        mUsePopUpViewClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mUsePopUpView.setChecked(!mScheduledTimer.isUsePopUp());
+
+            }
+        });
+
 
         mLedColorView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +225,13 @@ public final class ScheduledTimerActivity extends AppCompatActivity
         mCvTimerName = findViewById(R.id.schedule_item_cv_title);
 
         mUseVibrationView = findViewById(R.id.scheduled_timer_vibration);
+        mUseVibrationViewClick = findViewById(R.id.scheduled_timer_vibration_click);
+
+        mUsePopUpView = findViewById(R.id.scheduled_timer_pop_up);
+        mUsePopUpViewClick = findViewById(R.id.scheduled_timer_pop_up_click);
+
+
+
 
         mLedColorView = findViewById(R.id.schedule_item_cv_led_light);
         mLedCircle = findViewById(R.id.schedule_item_led_circle);
@@ -202,6 +244,7 @@ public final class ScheduledTimerActivity extends AppCompatActivity
         fillLedColor();
 
         mUseVibrationView.setChecked(mScheduledTimer.isUseVibration());
+        mUsePopUpView.setChecked(mScheduledTimer.isUsePopUp());
 
         mListAdapter = new TimePointListAdapter(mTimePointArrayList);
 

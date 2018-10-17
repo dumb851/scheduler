@@ -8,6 +8,7 @@ public final class ScheduledTimer {
     private int mID;
     private boolean mIsRunning;
     private boolean mIsUseVibration;
+    private boolean mIsUsePopUp;
     private float mSortOrder;
     private static float sSortOrder;
     private int mLedColor;
@@ -78,4 +79,11 @@ public final class ScheduledTimer {
         mLedColor = color;
     }
 
+    public boolean isUsePopUp() {
+        return mIsUsePopUp;
+    }
+
+    public void setIsUsePopUp(boolean mIsUsePopUp) {
+        this.mIsUsePopUp = mIsUsePopUp;
+    }
 }
