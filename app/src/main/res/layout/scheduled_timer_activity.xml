@@ -162,7 +162,7 @@
 
             </android.support.v7.widget.CardView>
 
-            <View style="@style/Divider"/>
+
 
             <!--<android.support.v7.widget.CardView-->
                 <!--android:id="@+id/schedule_item_cv_title1"-->
@@ -376,7 +376,10 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="0"
                         android:layout_margin="10dp"
-                        app:srcCompat="@drawable/circle" />
+                        app:srcCompat="@drawable/circle"
+
+
+                        />
 
 
                 </LinearLayout>

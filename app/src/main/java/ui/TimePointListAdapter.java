@@ -8,7 +8,11 @@ import android.widget.TextView;
 
 import com.zubrid.scheduletimer.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import data.DbLab;
 import model.TimePoint;
@@ -36,8 +40,12 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+//!        View v = LayoutInflater.from(viewGroup.getContext())
+//                .inflate(R.layout.time_point_list_item, viewGroup, false);
+
+
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.time_point_list_item, viewGroup, false);
+                .inflate(R.layout.time_point_list_item_card, viewGroup, false);
 
         return new ViewHolder(v);
     }
@@ -88,7 +96,8 @@ final public class TimePointListAdapter extends RecyclerView.Adapter<TimePointLi
 
         void setViewTime(int hour, int minute) {
 
-            String str = String.format("%d:%02d", hour, minute);
+
+            String str = String.format("%02d:%02d", hour, minute);
             viewTime.setText(str);
 
         }
