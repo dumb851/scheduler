@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -28,6 +29,7 @@ public class NotificationHelper {
     private int mTimePointID;
     private PendingIntent contentIntent;
     private int mColor;
+    private boolean mIsUsePopup;
 
     // constructor
     public NotificationHelper(Context context, int timePointID) {
@@ -45,6 +47,9 @@ public class NotificationHelper {
         mContentTitle = scheduledTimer.getTimerName();
         mUseVibration = scheduledTimer.isUseVibration();
         mColor = scheduledTimer.getLedColor();
+
+        mIsUsePopup = scheduledTimer.isUsePopUp();
+
     }
 
     public void show() {
@@ -103,9 +108,9 @@ public class NotificationHelper {
                     .setContentText("You've received new messages.")
                     .setSmallIcon(R.drawable.ic_action_done)
                     .setChannelId(CHANNEL_ID)
-                    .setDefaults(defaults)
                     .build();
-
+//            mNotificationChannel.setVibrationPattern(new long[]{ 0 });
+//            mNotificationChannel.enableVibration(true);
 
         } else {
 
@@ -117,13 +122,16 @@ public class NotificationHelper {
                             .setDefaults(defaults)
                             .addAction(R.drawable.ic_action_done, mContext.getString(R.string.stop_timer), intentButtonStop)
                             .addAction(R.drawable.ic_action_done, mContext.getString(R.string.ok), intentButtonStop)
-                            .setLights(Color.BLUE, 500, 2000)//!
-
-                    //.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                            .setLights(Color.BLUE, 500, 2000)
                     ;
 
+            if (mIsUsePopup) {
+                mBuilder.setPriority(NotificationManager.IMPORTANCE_HIGH);
+            }
 
-
+            if (mUseVibration) {
+                mBuilder.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 });
+            }
 
 
             // Creates an explicit intent for an Activity in your app
